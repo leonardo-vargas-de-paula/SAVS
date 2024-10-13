@@ -2,10 +2,10 @@ package com.example.sisapsoo.repository;
 
 public interface PedidoRepository {
 
-	private void salvar();
+	void salvar();
 
-	private void obterPeloId();
+	void obterPeloId();
 
-	private void deletar();
+	void deletar();
 
 }

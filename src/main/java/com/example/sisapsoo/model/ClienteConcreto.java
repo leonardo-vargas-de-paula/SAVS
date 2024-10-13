@@ -1,16 +1,18 @@
 package com.example.sisapsoo.model;
 
+import com.example.sisapsoo.repository.ClienteRepository;
+
 public class ClienteConcreto implements ClienteRepository {
 
-	private void salvar() {
+	public void salvar() {
 
 	}
 
-	private void obterPeloId() {
+	public void obterPeloId() {
 
 	}
 
-	private void deletar() {
+	public void deletar() {
 
 	}
 
@@ -18,7 +20,7 @@ public class ClienteConcreto implements ClienteRepository {
 	/**
 	 * @see ClienteRepository#obterPorId()
 	 */
-	private void obterPorId() {
+	public void obterPorId() {
 
 	}
 

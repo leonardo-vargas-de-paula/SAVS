@@ -1,5 +1,7 @@
 package com.example.sisapsoo.model;
 
+import java.util.Map;
+
 public class Estoque {
 
 	private Map ingredientesDisponiveis;

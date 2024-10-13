@@ -1,16 +1,18 @@
 package com.example.sisapsoo.model;
 
+import com.example.sisapsoo.repository.PedidoRepository;
+
 public class PedidoConcreto implements PedidoRepository {
 
-	private void salvar() {
+	public void salvar() {
 
 	}
 
-	private void obterPeloId() {
+	public void obterPeloId() {
 
 	}
 
-	private void deletar() {
+	public void deletar() {
 
 	}
 

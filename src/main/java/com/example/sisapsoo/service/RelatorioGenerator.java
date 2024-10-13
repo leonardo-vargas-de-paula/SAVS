@@ -2,10 +2,10 @@ package com.example.sisapsoo.service;
 
 public interface RelatorioGenerator {
 
-	private void gerarRelatorioDiario();
+	void gerarRelatorioDiario();
 
-	private void gerarRelatorioMensal();
+	void gerarRelatorioMensal();
 
-	private void gerarRelatorioAnual();
+	void gerarRelatorioAnual();
 
 }

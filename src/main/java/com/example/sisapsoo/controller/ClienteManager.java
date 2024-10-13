@@ -2,10 +2,10 @@ package com.example.sisapsoo.controller;
 
 public interface ClienteManager {
 
-	private abstract void cadastrarCliente();
+	void cadastrarCliente();
 
-	private abstract void alterarCliente();
+	void alterarCliente();
 
-	private abstract void removerCliente();
+	void removerCliente();
 
 }

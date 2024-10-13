@@ -1,5 +1,10 @@
 package com.example.sisapsoo.model;
 
+import com.example.sisapsoo.controller.EstoqueManager;
+import com.example.sisapsoo.service.RelatorioGenerator;
+
+import java.util.Map;
+
 public class Gerentte extends Funcionario implements RelatorioGenerator, EstoqueManager {
 
 	private Relatorio[] relatorio;
@@ -22,14 +27,44 @@ public class Gerentte extends Funcionario implements RelatorioGenerator, Estoque
 
 	}
 
-	private void removerCliente() {
+	@Override
+	public void cadastrarCliente() {
 
 	}
 
+	public void removerCliente() {
 
+	}
+
+	@Override
+	public void atualizarEstoque() {
+
+	}
+
+	@Override
+	public Map getIngredientes() {
+		return Map.of();
+	}
+
+	@Override
+	public void gerarRelatorioDiario() {
+
+	}
+
+	@Override
+	public void gerarRelatorioMensal() {
+
+	}
+
+	@Override
+	public void gerarRelatorioAnual() {
+
+	}
+
+	/*
 	/**
 	 * @see RelatorioGenerator#gerarRelatorioDiario()
-	 */
+	 /
 	private void gerarRelatorioDiario() {
 
 	}
@@ -37,7 +72,7 @@ public class Gerentte extends Funcionario implements RelatorioGenerator, Estoque
 
 	/**
 	 * @see RelatorioGenerator#gerarRelatorioMensal()
-	 */
+	 /
 	private void gerarRelatorioMensal() {
 
 	}
@@ -45,7 +80,7 @@ public class Gerentte extends Funcionario implements RelatorioGenerator, Estoque
 
 	/**
 	 * @see RelatorioGenerator#gerarRelatorioAnual()
-	 */
+	 /
 	private void gerarRelatorioAnual() {
 
 	}
@@ -53,7 +88,7 @@ public class Gerentte extends Funcionario implements RelatorioGenerator, Estoque
 
 	/**
 	 * @see EstoqueManager#atualizarEstoque()
-	 */
+	 /
 	private void atualizarEstoque() {
 
 	}
@@ -61,9 +96,9 @@ public class Gerentte extends Funcionario implements RelatorioGenerator, Estoque
 
 	/**
 	 * @see EstoqueManager#getIngredientes()
-	 */
+	 /
 	private Map getIngredientes() {
 		return null;
 	}
-
+	*/
 }

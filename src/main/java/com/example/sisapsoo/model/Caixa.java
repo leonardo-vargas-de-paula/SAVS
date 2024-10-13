@@ -1,5 +1,9 @@
 package com.example.sisapsoo.model;
 
+import com.example.sisapsoo.repository.PagamentoRepository;
+
+import java.util.List;
+
 public class Caixa {
 
 	private List historicoDeTransacoes;

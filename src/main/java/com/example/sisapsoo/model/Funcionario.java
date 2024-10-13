@@ -1,5 +1,10 @@
 package com.example.sisapsoo.model;
 
+import com.example.sisapsoo.controller.ClienteManager;
+import com.example.sisapsoo.controller.PedidoManager;
+import com.example.sisapsoo.repository.ClienteRepository;
+import com.example.sisapsoo.repository.PedidoRepository;
+
 public class Funcionario extends Usuario implements ClienteManager, PedidoManager {
 
 	private String nome;
@@ -14,11 +19,9 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 
 	private ClienteRepository clienteRepository;
 
-	private ClienteRepository clienteRepository;
-
 	private PedidoRepository pedidoRepository;
 
-	private void registrarPedido() {
+	public void registrarPedido() {
 
 	}
 
@@ -26,7 +29,7 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 
 	}
 
-	private void cadastrarCliente() {
+	public void cadastrarCliente() {
 
 	}
 
@@ -74,7 +77,7 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 	/**
 	 * @see ClienteManager#alterarCliente()
 	 */
-	private void alterarCliente() {
+	public void alterarCliente() {
 
 	}
 
@@ -82,7 +85,7 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 	/**
 	 * @see ClienteManager#removerCliente()
 	 */
-	private void removerCliente() {
+	public void removerCliente() {
 
 	}
 

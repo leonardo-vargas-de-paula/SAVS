@@ -2,10 +2,10 @@ package com.example.sisapsoo.repository;
 
 public interface ClienteRepository {
 
-	private abstract void salvar();
+	void salvar();
 
-	private abstract void obterPorId();
+	void obterPorId();
 
-	private abstract void deletar();
+	void deletar();
 
 }
