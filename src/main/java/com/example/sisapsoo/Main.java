@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 400);
-        stage.setTitle("Login");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("cadastro-funcionario-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
     }
