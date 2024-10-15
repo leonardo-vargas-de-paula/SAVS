@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.CadastroFuncController">
    <children>
       <BorderPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6F4E37;">
@@ -78,16 +77,21 @@
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="botaoSalvar" layoutX="518.0" layoutY="519.0" mnemonicParsing="false" text="Salvar">
+                  <Button fx:id="botaoSalvar" layoutX="518.0" layoutY="519.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoCancelar" layoutX="64.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar">
+                  <Button fx:id="botaoCancelar" layoutX="64.0" layoutY="519.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Button>
+                  <Label fx:id="labelSalvo" layoutX="315.0" layoutY="454.0" text="Salvo!!" textAlignment="CENTER" visible="false">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>

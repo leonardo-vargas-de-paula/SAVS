@@ -4,6 +4,7 @@ module com.example.sisapsoo {
 
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
 
     opens com.example.sisapsoo to javafx.fxml;
     exports com.example.sisapsoo;
