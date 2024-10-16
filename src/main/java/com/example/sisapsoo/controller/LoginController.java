@@ -1,11 +1,15 @@
 package com.example.sisapsoo.controller;
 
+import com.example.sisapsoo.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginController {
 
@@ -14,6 +18,13 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+
+    private List<Usuario> usuarios = new ArrayList<>();
+
+    public LoginController() {
+        usuarios.add(new Usuario("admin", "senha"));
+        usuarios.add(new Usuario("funcionario", "func2023"));
+    }
 
     @FXML
     private void handleLogin(ActionEvent event) {
@@ -28,7 +39,12 @@ public class LoginController {
     }
 
     private boolean authenticate(String username, String password) {
-        return "admin".equals(username) && "senha".equals(password);
+        for (Usuario usuario : usuarios) {
+            if (usuario.getId().equals(username) && usuario.getSenha().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void showAlert(String title, String message) {

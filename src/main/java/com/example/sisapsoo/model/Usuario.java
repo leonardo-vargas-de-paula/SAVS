@@ -3,27 +3,29 @@ package com.example.sisapsoo.model;
 public class Usuario {
 
 	private String ID;
-
 	private String senha;
 
-	private void login() {
-
+	public Usuario(String ID, String senha) {
+		this.ID = ID;
+		this.senha = senha;
 	}
 
-	public void getId() {
-
+	public String getId() {
+		return ID;
 	}
 
-	public void getSenha() {
-
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setId() {
-
+	public void setId(String ID) {
+		this.ID = ID;
 	}
 
-	public void setSenha() {
-
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
+	public void login() {
+	}
 }
