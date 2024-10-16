@@ -3,12 +3,12 @@ package com.example.sisapsoo.builder;
 import com.example.sisapsoo.model.Funcionario;
 
 public class FuncionarioBuilder {
-    protected String id;
-    protected String senha;
-    protected String nome;
-    protected String cpf;
-    protected String telefone;
-    protected double salario;
+    private String id;
+    private String senha;
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private double salario;
 
     public FuncionarioBuilder setId(String id) {
         this.id = id;
@@ -41,11 +41,6 @@ public class FuncionarioBuilder {
     }
 
     public Funcionario build() {
-        Funcionario funcionario = new Funcionario(id, senha, nome, cpf, telefone, salario);
-        funcionario.setNome(nome);
-        funcionario.setCpf(cpf);
-        funcionario.setTelefone(telefone);
-        funcionario.setSalario(salario);
-        return funcionario;
+        return new Funcionario(id, senha, nome, cpf, telefone, salario);
     }
 }

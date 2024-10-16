@@ -6,8 +6,6 @@ import com.example.sisapsoo.repository.ClienteRepository;
 import com.example.sisapsoo.repository.PedidoRepository;
 
 public class Funcionario extends Usuario implements ClienteManager, PedidoManager {
-
-	private String nome;
 	private String cpf;
 	private String telefone;
 	private double salario;
@@ -16,20 +14,15 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 	private ClienteRepository clienteRepository;
 	private PedidoRepository pedidoRepository;
 
-	public Funcionario(String id, String senha, String nome, String cpf, String telefone, double salario) {
-		super(id, senha);
-		this.nome = nome;
+	public Funcionario(String ID, String senha, String nome, String cpf, String telefone, double salario) {
+		super(ID, senha, nome);
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.salario = salario;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public boolean autenticar(String id, String senha) {
+		return this.getId().equals(id) && this.getSenha().equals(senha);
 	}
 
 	public String getCpf() {
@@ -58,15 +51,19 @@ public class Funcionario extends Usuario implements ClienteManager, PedidoManage
 
 	@Override
 	public void alterarCliente() {
+
 	}
 
 	@Override
 	public void removerCliente() {
+
 	}
 
 	public void registrarPedido() {
+
 	}
 
 	public void cadastrarCliente() {
+
 	}
 }

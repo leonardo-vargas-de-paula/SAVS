@@ -10,8 +10,8 @@ public class Gerente extends Funcionario implements RelatorioGenerator, EstoqueM
 	private Relatorio[] relatorios;
 	private Estoque estoque;
 
-	public Gerente(String id, String senha, String nome, String cpf, String telefone, double salario, Relatorio[] relatorios, Estoque estoque) {
-		super(id, senha, nome, cpf, telefone, salario);
+	public Gerente(String ID, String senha, String nome, String cpf, String telefone, double salario, Relatorio[] relatorios, Estoque estoque) {
+		super(ID, senha, nome, cpf, telefone, salario);
 		this.relatorios = relatorios;
 		this.estoque = estoque;
 	}
