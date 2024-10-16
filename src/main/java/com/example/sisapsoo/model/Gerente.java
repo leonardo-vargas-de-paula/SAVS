@@ -7,98 +7,55 @@ import java.util.Map;
 
 public class Gerente extends Funcionario implements RelatorioGenerator, EstoqueManager {
 
-	private Relatorio[] relatorio;
-
+	private Relatorio[] relatorios;
 	private Estoque estoque;
 
-	private void gerenciarEstoque() {
-
+	public Gerente(String id, String senha, String nome, String cpf, String telefone, double salario, Relatorio[] relatorios, Estoque estoque) {
+		super(id, senha, nome, cpf, telefone, salario);
+		this.relatorios = relatorios;
+		this.estoque = estoque;
 	}
 
-	private void gerenciarRelatorio() {
-
+	public Relatorio[] getRelatorios() {
+		return relatorios;
 	}
 
-	private void gerenciarFuncionario() {
-
+	public void setRelatorios(Relatorio[] relatorios) {
+		this.relatorios = relatorios;
 	}
 
-	private void alterarValoresPedido() {
-
+	public Estoque getEstoque() {
+		return estoque;
 	}
 
-	@Override
-	public void cadastrarCliente() {
-
-	}
-
-	public void removerCliente() {
-
-	}
-
-	@Override
-	public void atualizarEstoque() {
-
-	}
-
-	@Override
-	public Map getIngredientes() {
-		return Map.of();
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
 	}
 
 	@Override
 	public void gerarRelatorioDiario() {
-
 	}
 
 	@Override
 	public void gerarRelatorioMensal() {
-
 	}
 
 	@Override
 	public void gerarRelatorioAnual() {
-
 	}
 
-	/*
-	/**
-	 * @see RelatorioGenerator#gerarRelatorioDiario()
-	 /
-	private void gerarRelatorioDiario() {
-
+	@Override
+	public void atualizarEstoque() {
 	}
 
-
-	/**
-	 * @see RelatorioGenerator#gerarRelatorioMensal()
-	 /
-	private void gerarRelatorioMensal() {
-
+	@Override
+	public Map<String, Integer> getIngredientes() {
+		return Map.of();
 	}
 
-
-	/**
-	 * @see RelatorioGenerator#gerarRelatorioAnual()
-	 /
-	private void gerarRelatorioAnual() {
-
+	public void gerenciarFuncionario() {
 	}
 
-
-	/**
-	 * @see EstoqueManager#atualizarEstoque()
-	 /
-	private void atualizarEstoque() {
-
+	public void alterarValoresPedido() {
 	}
-
-
-	/**
-	 * @see EstoqueManager#getIngredientes()
-	 /
-	private Map getIngredientes() {
-		return null;
-	}
-	*/
 }
