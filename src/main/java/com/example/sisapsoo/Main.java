@@ -15,8 +15,8 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("Salgado Smart");
 
-        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
-        stage.getIcons().add(icon);
+//        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
+//        stage.getIcons().add(icon);
 
         stage.setScene(scene);
         stage.setResizable(false);

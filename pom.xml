@@ -55,6 +55,13 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>openjfx-repo</id>
+            <url>https://maven.pkg.github.com/openjfx/javafx-maven</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <!-- Primeira metade da tela -->
     <AnchorPane prefWidth="500.0" style="-fx-background-color: dd6262;">
         <children>
@@ -25,7 +25,7 @@
          </ImageView>
             <VBox layoutX="50.0" layoutY="20.0" spacing="10.0" />
              <Text fill="WHITE" layoutX="111.0" layoutY="322.0" style="-fx-font-size: 40px; -fx-font-weight: bold;" text="Salgado Smart" />
-         <Text fill="#ebebeb" layoutX="48.0" layoutY="361.0" style="-fx-font-size: 20px; -fx-font-weight: regular;" text="Digite usuário e senha para entrar no sistema" />
+         <Text fill="#ebebeb" layoutX="48.0" layoutY="361.0" style="-fx-font-size: 20px; -fx-font-weight: normal;" text="Digite usuário e senha para entrar no sistema" />
         </children>
     </AnchorPane>
 
@@ -35,7 +35,7 @@
             <VBox alignment="CENTER" layoutX="102.0" layoutY="248.0" prefHeight="204.0" prefWidth="291.0" spacing="10.0">
                 <PasswordField promptText="SENHA" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;" />
                 <TextField promptText="USUÁRIO" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;" />
-                <Button prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: dd6262; -fx-font-weight: BOLD;" text="ENTRAR" textAlignment="CENTER" textFill="WHITE" />
+                <Button prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: dd6262; -fx-font-weight: bold;" text="ENTRAR" textAlignment="CENTER" textFill="WHITE" />
             </VBox>
         </children>
     </AnchorPane>
