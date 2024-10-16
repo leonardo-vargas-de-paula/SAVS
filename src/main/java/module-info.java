@@ -8,4 +8,6 @@ module com.example.sisapsoo {
 
     opens com.example.sisapsoo to javafx.fxml;
     exports com.example.sisapsoo;
+    exports com.example.sisapsoo.controller;
+    opens com.example.sisapsoo.controller to javafx.fxml;
 }
