@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-//nao será mais utilizado
+
 @Entity
 public class Cliente {
     @Id
