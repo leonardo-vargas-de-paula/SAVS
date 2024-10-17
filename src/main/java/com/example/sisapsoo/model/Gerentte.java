@@ -1,11 +1,12 @@
 package com.example.sisapsoo.model;
 
 import com.example.sisapsoo.controller.EstoqueManager;
+import com.example.sisapsoo.model.teste.Funcionario2;
 import com.example.sisapsoo.service.RelatorioGenerator;
 
 import java.util.Map;
 
-public class Gerentte extends Funcionario implements RelatorioGenerator, EstoqueManager {
+public class Gerentte extends Funcionario2 implements RelatorioGenerator, EstoqueManager {
 
 	private Relatorio[] relatorio;
 
