@@ -2,8 +2,6 @@ package com.example.sisapsoo.model.teste;
 
 import com.example.sisapsoo.controller.ClienteManager;
 import com.example.sisapsoo.controller.PedidoManager;
-import com.example.sisapsoo.repository.ClienteRepository;
-import com.example.sisapsoo.repository.PedidoRepository;
 
 public class Funcionario2 extends Usuario2 implements ClienteManager, PedidoManager {
 
@@ -16,10 +14,6 @@ public class Funcionario2 extends Usuario2 implements ClienteManager, PedidoMana
 	private double salario;
 
 	private Cliente2 cliente;
-
-	private ClienteRepository clienteRepository;
-
-	private PedidoRepository pedidoRepository;
 
 	public void registrarPedido() {
 

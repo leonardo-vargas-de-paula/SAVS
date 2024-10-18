@@ -15,6 +15,7 @@ public class UsuarioDAO {
             em.getTransaction().begin();
             if (u.getId() == null) {
                 em.persist(u);
+                System.out.println("SALVOU USUARIO ----------------------------------------------");
             } else {
                 em.merge(u);
             }

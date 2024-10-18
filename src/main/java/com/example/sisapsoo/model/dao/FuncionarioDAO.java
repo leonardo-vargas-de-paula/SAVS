@@ -3,7 +3,6 @@ package com.example.sisapsoo.model.dao;
 import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
 import jakarta.persistence.EntityManager;
-
 import java.util.List;
 
 public class FuncionarioDAO {
@@ -15,6 +14,7 @@ public class FuncionarioDAO {
             em.getTransaction().begin();
             if (f.getCpf() == null) {
                 em.persist(f);
+                System.out.println("SALVOU FUNCIONARIO ----------------------------------------------");
             } else {
                 em.merge(f);
             }

@@ -1,8 +1,7 @@
 package com.example.sisapsoo.model;
 
-import com.example.sisapsoo.repository.ClienteRepository;
 
-public class ClienteConcreto implements ClienteRepository {
+public class ClienteConcreto {
 
 	public void salvar() {
 

@@ -1,6 +1,8 @@
-package com.example.sisapsoo;
+package com.example.sisapsoo.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -8,8 +10,6 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-
-import java.awt.event.ActionEvent;
 
 public class CadastroFuncController {
 
@@ -66,12 +66,29 @@ public class CadastroFuncController {
 
     @FXML
     void cancelar(javafx.event.ActionEvent actionEvent) {
+        // volta pra página inicial
         return;
     }
 
     @FXML
     void salvar(javafx.event.ActionEvent actionEvent) {
+        System.out.println("ok");
+        String nome = campoNome.getText();
+        String cpf = campoCpf.getText();
+        String salario = campoSalario.getText();
+        String telefone = campoTelefone.getText();
+
+        // Adicionar um try-catch com o código usando o dao
+
         labelSalvo.setVisible(true);
         return;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

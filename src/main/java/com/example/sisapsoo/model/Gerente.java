@@ -1,58 +1,73 @@
 package com.example.sisapsoo.model;
 
-import com.example.sisapsoo.controller.EstoqueManager;
-import com.example.sisapsoo.service.RelatorioGenerator;
-
 import java.util.Map;
 
-public class Gerente extends Funcionario implements RelatorioGenerator, EstoqueManager {
+public class Gerente extends Funcionario {
+	/* VARIÁVEIS DA CLASSE */
 
-	private Relatorio[] relatorios;
-	private Estoque estoque;
+	private String id;
+	private String nome;
+	//private String senha;
+	private String cpf;
+	private String telefone;
+	private double salario;
 
-	public Gerente(String ID, String senha, String nome, String cpf, String telefone, double salario, Relatorio[] relatorios, Estoque estoque) {
-		super(ID, senha, nome, cpf, telefone, salario);
-		this.relatorios = relatorios;
-		this.estoque = estoque;
+	/* CONSTRUTORES */
+
+	public Gerente(String ID, String nome, String senha, String cpf, String telefone, double salario) {
+		super(ID, nome, senha, cpf, telefone, salario);
+		this.id = ID;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.salario = salario;
 	}
 
-	public Relatorio[] getRelatorios() {
-		return relatorios;
+	/* GETTERS */
+
+	public String getId(){
+		return id;
 	}
 
-	public void setRelatorios(Relatorio[] relatorios) {
-		this.relatorios = relatorios;
+	public String getNome(){
+		return nome;
 	}
 
-	public Estoque getEstoque() {
-		return estoque;
+	public String getCpf(){
+		return cpf;
 	}
 
-	public void setEstoque(Estoque estoque) {
-		this.estoque = estoque;
+	public String getTelefone(){
+		return telefone;
 	}
 
-	@Override
-	public void gerarRelatorioDiario() {
+	public double getSalario(){
+		return salario;
 	}
 
-	@Override
-	public void gerarRelatorioMensal() {
-	}
+	/* SETTERS */
 
-	@Override
-	public void gerarRelatorioAnual() {
-	}
+	public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	@Override
-	public void atualizarEstoque() {
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
+    // public void setSenha(String senha){
+	// 	this.senha = senha;
+	// }
 
-	@Override
-	public Map<String, Integer> getIngredientes() {
-		return Map.of();
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+	
 	public void gerenciarFuncionario() {
 	}
 
