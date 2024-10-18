@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Funcionario")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Funcionario extends Usuario{
 	/* VARIÁVEIS DA CLASSE */
 
@@ -12,8 +12,6 @@ public class Funcionario extends Usuario{
     private String id;
     @Column(name = "nome")
     private String nome;
-    @Column(name = "senha")
-    private String senha;
     @Column(name = "cpf")
     private String cpf;
     @Column(name = "telefone")
@@ -26,8 +24,8 @@ public class Funcionario extends Usuario{
 
 	/* CONSTRUTORES */
 
-    public Funcionario(String id, String nome, String senha, String cpf, String telefone, double salario){
-        super(id, senha);
+    public Funcionario(String id, String nome, String cpf, String telefone, double salario){
+        super(id);
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -35,8 +33,8 @@ public class Funcionario extends Usuario{
         this.salario = salario;
     }
 
-    public Funcionario(String id, String nome, String senha, String cpf, String telefone, double salario, Usuario usuario){
-        super(id, senha);
+    public Funcionario(String id, String nome, String cpf, String telefone, double salario, Usuario usuario){
+        super(id);
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -63,9 +61,9 @@ public class Funcionario extends Usuario{
         return telefone;
     }
 
-    // public String getSenha(){
-    //     return senha;
-    // }
+    public String getSenha(){
+         return super.getSenha();
+     }
 
     public double getSalario() {
         return salario;
@@ -85,9 +83,9 @@ public class Funcionario extends Usuario{
         this.cpf = cpf;
     }
     
-    // public void setSenha(String senha){
-	// 	this.senha = senha;
-	// }
+    public void setSenha(String senha){
+		super.setSenha(senha);
+	}
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;

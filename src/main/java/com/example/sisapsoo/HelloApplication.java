@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
         uDAO.save(u);
 
         FuncionarioDAO fDao = new FuncionarioDAO();
-        Funcionario f = new Funcionario("1", "joao", "123", "1234", null, 25.5, u);
+        Funcionario f = new Funcionario("1", "joao", "1234", null, 25.5, u);
         fDao.save(f);
 
         LoginController controller = fxmlLoader.getController();

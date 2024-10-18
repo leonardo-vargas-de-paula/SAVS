@@ -2,20 +2,31 @@ package com.example.sisapsoo.model;
 
 import java.util.Map;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Gerente")
 public class Gerente extends Funcionario {
 	/* VARIÁVEIS DA CLASSE */
 
+	@Id
 	private String id;
+	@Column(name = "nome")
 	private String nome;
-	//private String senha;
+	@Column(name = "cpf")
 	private String cpf;
+	@Column(name = "telefone")
 	private String telefone;
+	@Column(name = "salario")
 	private double salario;
 
 	/* CONSTRUTORES */
 
-	public Gerente(String ID, String nome, String senha, String cpf, String telefone, double salario) {
-		super(ID, nome, senha, cpf, telefone, salario);
+	public Gerente(String ID, String nome, String cpf, String telefone, double salario) {
+		super(ID, nome, cpf, telefone, salario);
 		this.id = ID;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -37,6 +48,10 @@ public class Gerente extends Funcionario {
 		return cpf;
 	}
 
+	public String getSenha(){
+		return super.getSenha();
+	}
+
 	public String getTelefone(){
 		return telefone;
 	}
@@ -55,9 +70,9 @@ public class Gerente extends Funcionario {
         this.cpf = cpf;
     }
     
-    // public void setSenha(String senha){
-	// 	this.senha = senha;
-	// }
+    public void setSenha(String senha){
+		super.setSenha(senha);
+	}
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;

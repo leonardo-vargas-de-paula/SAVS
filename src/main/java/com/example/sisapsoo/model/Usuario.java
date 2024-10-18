@@ -12,21 +12,31 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Funcionario funcionario;
 
+    /* CONSTRUTORES */
+
+    public Usuario(String id){
+
+    }
+
     public Usuario(String id, String senha){
         this.id = id;
         this.senha = senha;
     }
 
+    /* GETTERS */
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getSenha() {
         return senha;
+    }
+
+    /* SETTERS */
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setSenha(String senha) {
