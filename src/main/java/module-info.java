@@ -4,10 +4,11 @@ module com.example.sisapsoo {
 
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
-    requires java.desktop;
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
+
+    opens com.example.sisapsoo.model to org.hibernate.orm.core;
 
     opens com.example.sisapsoo to javafx.fxml;
     exports com.example.sisapsoo;
-    exports com.example.sisapsoo.controller;
-    opens com.example.sisapsoo.controller to javafx.fxml;
 }

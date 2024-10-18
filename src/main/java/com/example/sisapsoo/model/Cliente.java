@@ -1,35 +1,46 @@
 package com.example.sisapsoo.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
+
+
+
+@Entity
 public class Cliente {
+    @Id
+    private String id;
+    private String nome;
+    private String telefone;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos;
 
-	private String ID;
+    public String getId() {
+        return id;
+    }
 
-	private String nome;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	private String telefone;
+    public String getNome() {
+        return nome;
+    }
 
-	public void getId() {
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void getNome() {
-
-	}
-
-	public void getTelefone() {
-
-	}
-
-	public void setId() {
-
-	}
-
-	public void setNome() {
-
-	}
-
-	public void setTelefone() {
-
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
 }

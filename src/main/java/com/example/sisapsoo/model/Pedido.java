@@ -1,45 +1,57 @@
 package com.example.sisapsoo.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPedido;
+    private String tipo;
+    private Double preco;
+    private String status;
+    @ManyToOne
+    @JoinColumn(name = "cliente_fk", referencedColumnName = "id")
+    private Cliente cliente;
 
-	private String tipo;
+    public Integer getIdPedido() {
+        return idPedido;
+    }
 
-	private int quantidade;
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
+    }
 
-	private double preco;
+    public String getTipo() {
+        return tipo;
+    }
 
-	private String status;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-	public void getTipo() {
+    public Double getPreco() {
+        return preco;
+    }
 
-	}
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
 
-	public void getQuantidade() {
+    public String getStatus() {
+        return status;
+    }
 
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void getPreco() {
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	}
-
-	public void getStatus() {
-
-	}
-
-	public void setTipo() {
-
-	}
-
-	public void setPreco() {
-
-	}
-
-	public void setQuantidade() {
-
-	}
-
-	public void setStatus() {
-
-	}
-
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
+

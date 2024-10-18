@@ -1,69 +1,55 @@
 package com.example.sisapsoo.model;
 
-import com.example.sisapsoo.controller.ClienteManager;
-import com.example.sisapsoo.controller.PedidoManager;
-import com.example.sisapsoo.repository.ClienteRepository;
-import com.example.sisapsoo.repository.PedidoRepository;
+import jakarta.persistence.*;
 
-public class Funcionario extends Usuario implements ClienteManager, PedidoManager {
-	private String cpf;
-	private String telefone;
-	private double salario;
+@Entity
+public class Funcionario{
+    private String nome;
+    @Id
+    private String cpf;
+    private String telefone;
+    private Double salario;
+    @OneToOne
+    @JoinColumn(name = "usuario_fk", referencedColumnName = "id")
+    private Usuario usuario;
 
-	private Cliente cliente;
-	private ClienteRepository clienteRepository;
-	private PedidoRepository pedidoRepository;
+    public String getNome() {
+        return nome;
+    }
 
-	public Funcionario(String ID, String senha, String nome, String cpf, String telefone, double salario) {
-		super(ID, senha, nome);
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.salario = salario;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public boolean autenticar(String id, String senha) {
-		return this.getId().equals(id) && this.getSenha().equals(senha);
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public Double getSalario() {
+        return salario;
+    }
 
-	public double getSalario() {
-		return salario;
-	}
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
 
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-	@Override
-	public void alterarCliente() {
-
-	}
-
-	@Override
-	public void removerCliente() {
-
-	}
-
-	public void registrarPedido() {
-
-	}
-
-	public void cadastrarCliente() {
-
-	}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

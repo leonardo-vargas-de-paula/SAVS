@@ -1,42 +1,36 @@
 package com.example.sisapsoo.model;
 
+import jakarta.persistence.*;
+@Entity
 public class Usuario {
-	private String ID;
-	private String senha;
-	private String nome;
+    @Id
+    private String id;
+    private String senha;
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Funcionario funcionario;
 
-	public Usuario(String ID, String senha) {
-		this.ID = ID;
-		this.senha = senha;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Usuario(String ID, String senha, String nome) {
-		this.ID = ID;
-		this.senha = senha;
-		this.nome = nome;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getId() {
-		return ID;
-	}
+    public String getSenha() {
+        return senha;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
 
-	public void setId(String id) {
-		this.ID = id;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 }
+
