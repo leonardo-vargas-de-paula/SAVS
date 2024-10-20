@@ -11,12 +11,13 @@
         <class>model.Usuario</class>
         <class>model.Funcionario</class>
         <class>model.Cliente</class>
+        <class>model.Gerente</class>
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistemaapsoo?useTimezone=true&amp;serverTimezone=UTC" />
             <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="joao2005" />
+            <property name="javax.persistence.jdbc.password" value="apsoo_MVC1817" />
             <!-- Configurações específicas do Hibernate -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="hibernate.hbm2ddl.auto" value="create" />

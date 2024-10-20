@@ -32,7 +32,7 @@ public class LoginController {
     private Usuario autenticar(String username, String password) throws LoginException {
         ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());  // Cria uma lista de funcionarios
         // ArrayList<Gerente> gerentes = (ArrayList<Gerentes>) gDAO.findAll();  // Cria uma lista de gerentes
-        
+
         // Verifica se há funcionários com as credenciais
         for(Funcionario funcionario : funcionarios){
             if (funcionario.getNome().equals(username) && funcionario.getSenha().equals(password)) {

@@ -19,7 +19,7 @@ public class Cliente {
     @Column(name = "telefone")
     private String telefone;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    //private List<Pedido> pedidos;
+    private List<Pedido> pedidos;
 
     public String getId() {
         return id;

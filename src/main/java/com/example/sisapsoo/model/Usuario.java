@@ -3,16 +3,20 @@ package com.example.sisapsoo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
     @Id
     private String id;
     @Column(name = "senha")
     private String senha;
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private Funcionario funcionario;
+//    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+//    private Funcionario funcionario;
 
     /* CONSTRUTORES */
+
+    public Usuario(){
+
+    }
 
     public Usuario(String id){
 
@@ -42,13 +46,13 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
+//
+//    public Funcionario getFuncionario() {
+//        return funcionario;
+//    }
+//
+//    public void setFuncionario(Funcionario funcionario) {
+//        this.funcionario = funcionario;
+//    }
 }
 
