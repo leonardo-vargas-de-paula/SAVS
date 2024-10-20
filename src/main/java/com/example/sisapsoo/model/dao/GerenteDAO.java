@@ -1,16 +1,16 @@
 package com.example.sisapsoo.model.dao;
 
 import com.example.sisapsoo.connection.ConnectionFactory;
-import com.example.sisapsoo.model.Usuario;
+import com.example.sisapsoo.model.Gerente;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class UsuarioDAO {
+public class GerenteDAO {
     EntityManager em = new ConnectionFactory().getConnection();
 
     //insert-update
-    public Usuario save(Usuario u) {
+    public Gerente save(Gerente u) {
         try {
             em.getTransaction().begin();
             if (u.getId() == null) {
@@ -30,12 +30,12 @@ public class UsuarioDAO {
     }
 
     //select where id = <valor desejado>
-    public Usuario findById(String id) {
+    public Gerente findById(String id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Usuario u = null;
+        Gerente u = null;
 
         try {
-            u = em.find(Usuario.class, id);
+            u = em.find(Gerente.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -45,12 +45,12 @@ public class UsuarioDAO {
     }
 
     //Lista de todos os objetos Tabelateste
-    public List<Usuario> findAll() {
+    public List<Gerente> findAll() {
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Usuario> us = null;
+        List<Gerente> us = null;
 
         try {
-            us = em.createQuery("from Usuario us").getResultList();
+            us = em.createQuery("from Gerente us").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -60,12 +60,12 @@ public class UsuarioDAO {
     }
 
     //delete
-    public Usuario remove(String id) {
+    public Gerente remove(String id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Usuario us = null;
+        Gerente us = null;
 
         try {
-            us = em.find(Usuario.class, id);
+            us = em.find(Gerente.class, id);
             em.getTransaction().begin();
             em.remove(us);
             em.getTransaction().commit();
