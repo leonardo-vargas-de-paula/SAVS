@@ -12,7 +12,6 @@ module com.example.sisapsoo {
     // Exportar pacotes para JavaFX
     opens com.example.sisapsoo.controller to javafx.fxml;
 
-
     opens com.example.sisapsoo to javafx.fxml;
     exports com.example.sisapsoo;
 }

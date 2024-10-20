@@ -6,13 +6,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.CadastroFuncController">
+<Pane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroFuncController">
    <children>
       <BorderPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6F4E37;">
          <left>
@@ -36,43 +37,43 @@
                         <Insets bottom="15.0" top="15.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="labelNome" layoutX="45.0" layoutY="141.0" text="Nome">
+                  <Label fx:id="labelNome" layoutX="68.0" layoutY="143.0" text="Nome">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                   <Separator fx:id="separador" layoutX="20.0" layoutY="81.0" prefHeight="12.0" prefWidth="717.0" />
-                  <Label fx:id="labelSalario" layoutX="47.0" layoutY="358.0" text="Salario">
+                  <Label fx:id="labelSalario" layoutX="60.0" layoutY="430.0" text="Salario">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelTelefone" layoutX="39.0" layoutY="286.0" text="Telefone">
+                  <Label fx:id="labelTelefone" layoutX="40.0" layoutY="359.0" text="Telefone">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelCpf" layoutX="45.0" layoutY="212.0" text="CPF">
+                  <Label fx:id="labelCpf" layoutX="82.0" layoutY="287.0" text="CPF">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoSalario" layoutX="179.0" layoutY="348.0" prefHeight="34.0" prefWidth="416.0">
+                  <TextField fx:id="campoSalario" layoutX="179.0" layoutY="420.0" prefHeight="34.0" prefWidth="416.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="campoNome" layoutX="179.0" layoutY="130.0" prefHeight="59.0" prefWidth="416.0">
+                  <TextField fx:id="campoNome" layoutX="178.0" layoutY="134.0" prefHeight="59.0" prefWidth="416.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="campoTelefone" layoutX="179.0" layoutY="276.0" prefHeight="34.0" prefWidth="416.0">
+                  <TextField fx:id="campoTelefone" layoutX="179.0" layoutY="348.0" prefHeight="34.0" prefWidth="416.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="campoCpf" layoutX="179.0" layoutY="202.0" prefHeight="34.0" prefWidth="416.0">
+                  <TextField fx:id="campoCpf" layoutX="179.0" layoutY="276.0" prefHeight="34.0" prefWidth="416.0">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -87,11 +88,21 @@
                         <Font size="30.0" />
                      </font>
                   </Button>
-                  <Label fx:id="labelSalvo" layoutX="315.0" layoutY="454.0" text="Salvo!!" textAlignment="CENTER" visible="false">
+                  <Label fx:id="labelSalvo" layoutX="324.0" layoutY="519.0" text="Salvo!!" textAlignment="CENTER" visible="false">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Label>
+                  <Label fx:id="labelSenha" layoutX="66.0" layoutY="214.0" text="Senha">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="campoSenha" layoutX="179.0" layoutY="205.0" prefHeight="62.0" prefWidth="416.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </PasswordField>
                </children>
             </Pane>
          </center>
