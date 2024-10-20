@@ -1,5 +1,7 @@
 package com.example.sisapsoo.controller;
 
+import com.example.sisapsoo.model.Funcionario;
+import com.example.sisapsoo.model.dao.FuncionarioDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -12,7 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class CadastroFuncController {
-
     @FXML
     private Button botaoCancelar;
 
@@ -30,6 +31,9 @@ public class CadastroFuncController {
 
     @FXML
     private TextField campoTelefone;
+
+    @FXML
+    private TextField campoSenha;
 
     @FXML
     private Label labelCpf;
@@ -64,23 +68,50 @@ public class CadastroFuncController {
     @FXML
     private Label titulo;
 
-    @FXML
-    void cancelar(javafx.event.ActionEvent actionEvent) {
-        // volta pra página inicial
-        return;
-    }
+    private Funcionario f;
+    private FuncionarioDAO fDAO;
 
     @FXML
     void salvar(javafx.event.ActionEvent actionEvent) {
-        System.out.println("ok");
+        f = new Funcionario();
+        fDAO = new FuncionarioDAO();
+
+        int id = 0;
+        String senha = campoSenha.getText();
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String salario = campoSalario.getText();
         String telefone = campoTelefone.getText();
 
-        // Adicionar um try-catch com o código usando o dao
+        try {
+            f.setId(Integer.toString(id));
+            f.setSenha(senha);
+            f.setNome(nome);
+            f.setCpf(cpf);
+            f.setSalario(Double.parseDouble(salario));
+            f.setTelefone(telefone);
+            
+            fDAO.save(f);
 
-        labelSalvo.setVisible(true);
+            labelSalvo.setVisible(true);
+        }catch(Exception e){
+            showAlert("Erro ao cadastrar: ", "" + e);
+        }
+    
+        return;
+    }
+
+    /**
+     * Limpa todos os campos
+     */
+    @FXML
+    void cancelar(javafx.event.ActionEvent actionEvent) {
+        campoNome.clear();
+        campoCpf.clear();
+        campoSalario.clear();
+        campoSenha.clear();
+        campoTelefone.clear();
+
         return;
     }
 
