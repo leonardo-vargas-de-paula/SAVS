@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Gerente")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Gerente extends Funcionario {
 	/* VARIÁVEIS DA CLASSE */
 	@Column(name = "nome")
@@ -72,7 +71,4 @@ public class Gerente extends Funcionario {
 //    public void setSalario(double salario) {
 //        this.salario = salario;
 //    }
-
-
-
 }

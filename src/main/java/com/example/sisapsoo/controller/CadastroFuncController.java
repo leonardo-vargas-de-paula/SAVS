@@ -12,10 +12,12 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class CadastroFuncController {
     @FXML
-    private Button botaoCancelar;
+    private Button botaoReiniciar;
 
     @FXML
     private Button botaoSalvar;
@@ -76,16 +78,22 @@ public class CadastroFuncController {
         f = new Funcionario();
         fDAO = new FuncionarioDAO();
 
-        int id = 0;
+        // Verifica se todos os campos estão preenchidos
+        if(campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()){
+            showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
+            return;
+        }
+
         String senha = campoSenha.getText();
+        String senhaHash = hashPassword(senha); // hash da senha
+        
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String salario = campoSalario.getText();
         String telefone = campoTelefone.getText();
 
         try {
-            f.setId(Integer.toString(id));
-            f.setSenha(senha);
+            f.setSenha(senhaHash);
             f.setNome(nome);
             f.setCpf(cpf);
             f.setSalario(Double.parseDouble(salario));
@@ -94,6 +102,11 @@ public class CadastroFuncController {
             fDAO.save(f);
 
             labelSalvo.setVisible(true);
+            campoNome.setDisable(true);
+            campoSenha.setDisable(true);
+            campoCpf.setDisable(true);
+            campoSalario.setDisable(true);
+            campoTelefone.setDisable(true);
         }catch(Exception e){
             showAlert("Erro ao cadastrar: ", "" + e);
         }
@@ -105,12 +118,20 @@ public class CadastroFuncController {
      * Limpa todos os campos
      */
     @FXML
-    void cancelar(javafx.event.ActionEvent actionEvent) {
+    void reiniciar(javafx.event.ActionEvent actionEvent) {
         campoNome.clear();
         campoCpf.clear();
         campoSalario.clear();
         campoSenha.clear();
         campoTelefone.clear();
+
+        campoNome.setDisable(false);
+        campoSenha.setDisable(false);
+        campoCpf.setDisable(false);
+        campoSalario.setDisable(false);
+        campoTelefone.setDisable(false);
+
+        labelSalvo.setVisible(false);
 
         return;
     }
@@ -121,5 +142,27 @@ public class CadastroFuncController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public static String hashPassword(String password) {
+        try {
+            // Cria uma instância do MessageDigest para SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Executa o hash da senha
+            byte[] hashBytes = digest.digest(password.getBytes());
+            
+            // Converte o hash em uma string hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

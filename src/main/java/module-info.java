@@ -7,7 +7,7 @@ module com.example.sisapsoo {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
 
-    opens com.example.sisapsoo.model to org.hibernate.orm.core;
+    opens com.example.sisapsoo.model to javafx.base, org.hibernate.orm.core;
     
     // Exportar pacotes para JavaFX
     opens com.example.sisapsoo.controller to javafx.fxml;
