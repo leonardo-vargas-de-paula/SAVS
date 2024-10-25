@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("Salgado Smart");
 
@@ -60,7 +60,7 @@ public class HelloApplication extends Application {
         gDAO.save(g);
 
 
-        LoginController controller = fxmlLoader.getController();
+//        LoginController controller = fxmlLoader.getController();
 
         stage.setScene(scene);
         stage.setResizable(false);
