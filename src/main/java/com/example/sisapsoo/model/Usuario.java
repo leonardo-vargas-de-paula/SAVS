@@ -1,16 +1,8 @@
 package com.example.sisapsoo.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
-    @Id
-    private String id;
-    @Column(name = "senha")
-    private String senha;
-//    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-//    private Funcionario funcionario;
+public abstract class Usuario {
+    protected String id;
+    protected String senha;
 
     /* CONSTRUTORES */
 
@@ -46,13 +38,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-//
-//    public Funcionario getFuncionario() {
-//        return funcionario;
-//    }
-//
-//    public void setFuncionario(Funcionario funcionario) {
-//        this.funcionario = funcionario;
-//    }
 }
 
