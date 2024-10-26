@@ -12,40 +12,31 @@ import java.util.ArrayList;
 import javax.security.auth.login.LoginException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class LoginController {
-
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
-
     private FuncionarioDAO fDAO;
+    private Usuario usuarioAtual; // Variável para armazenar o usuário autenticado
 
     public LoginController() {
         fDAO = new FuncionarioDAO();
     }
 
     private Usuario autenticar(String username, String password) throws LoginException {
-        ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());  // Cria uma lista de funcionarios
-        // ArrayList<Gerente> gerentes = (ArrayList<Gerentes>) gDAO.findAll();  // Cria uma lista de gerentes
-
+        ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());
         String passHash = hashPassword(password);
 
-        // Verifica se há funcionários com as credenciais
-        for(Funcionario funcionario : funcionarios){
+        for(Funcionario funcionario : funcionarios) {
             if (funcionario.getNome().equals(username) && funcionario.getSenha().equals(passHash)) {
                 return funcionario;
             }
         }
-
-        // for (Gerente gerente : gerentes) {
-        //     if (gerente.getNome().equals(username) && gerente.getSenha().equals(password)) {
-        //         return gerente;
-        //     }
-        // }
-
         throw new LoginException("Usuário ou senha incorretos.");
     }
 
@@ -55,14 +46,41 @@ public class LoginController {
         String password = passwordField.getText();
 
         try {
-            Usuario usuario = autenticar(username, password);
+            usuarioAtual = autenticar(username, password); // salva o usuario autenticado
+            abrirCadastroFuncionario();
         } catch (LoginException e) {
             showAlert("Erro de Login", e.getMessage());
+        } catch (Exception e) {
+            showAlert("Erro", "Ocorreu um erro ao abrir a tela de cadastro.");
         }
     }
 
+    private void abrirCadastroFuncionario() throws Exception {
+        if (usuarioAtual != null && usuarioAtual instanceof Funcionario) {
+            String cpfAtual = ((Funcionario) usuarioAtual).getCpf(); // obtenha o CPF do usuário logado
+            Funcionario funcionarioAtual = fDAO.findById(cpfAtual);
+
+            if (!(funcionarioAtual instanceof Gerente)) {
+                showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
+                return;
+            }
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/cadastro-funcionario-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+
+        Stage stage = new Stage();
+        stage.setTitle("Cadastro de Funcionário");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        Stage loginStage = (Stage) usernameField.getScene().getWindow();
+        loginStage.close();
+    }
+
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
@@ -71,12 +89,8 @@ public class LoginController {
 
     public static String hashPassword(String password) {
         try {
-            // Cria uma instância do MessageDigest para SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
-            
-            // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {
                 String hex = Integer.toHexString(0xff & b);
