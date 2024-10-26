@@ -4,12 +4,18 @@ import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityManager;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.NativeQuery;
 
 public class FuncionarioDAO {
-    EntityManager em = new ConnectionFactory().getConnection();
+    EntityManager em = ConnectionFactory.getConnection();
+
+    private EntityManager getEntityManager() {
+        return ConnectionFactory.getConnection();
+    }
 
     //insert
     public Funcionario save(Funcionario f) {
@@ -42,7 +48,7 @@ public class FuncionarioDAO {
 
     //select where id = <valor desejado>
     public Funcionario findById(String cpf) {
-        EntityManager em = new ConnectionFactory().getConnection();
+        EntityManager em = getEntityManager();
         Funcionario f = null;
 
         try {
@@ -57,22 +63,22 @@ public class FuncionarioDAO {
 
     //Lista de todos os objetos Funcionario
     public List<Funcionario> findAll() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Funcionario> f = null;
+        EntityManager em = ConnectionFactory.getConnection();
+        List<Funcionario> funcionarios = new ArrayList<>();
 
         try {
-            f = em.createQuery("from Funcionario f").getResultList();
+            funcionarios = em.createQuery("SELECT f FROM Funcionario f", Funcionario.class).getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             em.close();
         }
-        return f;
+        return funcionarios;
     }
 
     //delete
     public Funcionario remove(Integer id) {
-        EntityManager em = new ConnectionFactory().getConnection();
+        EntityManager em = ConnectionFactory.getConnection();
         Funcionario f = null;
 
         try {
@@ -89,5 +95,21 @@ public class FuncionarioDAO {
         return f;
 
     }
+
+    public Funcionario buscarFuncionarioAtual(String cpf) {
+        EntityManager em = ConnectionFactory.getConnection();
+        Funcionario funcionario = null;
+
+        try {
+            funcionario = em.find(Funcionario.class, cpf);
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            em.close();
+        }
+        return funcionario;
+    }
+
+
 
 }

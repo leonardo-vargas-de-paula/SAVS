@@ -1,7 +1,10 @@
 package com.example.sisapsoo.controller;
 
+import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
+import com.example.sisapsoo.model.Gerente;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
+import jakarta.persistence.EntityManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,75 +21,70 @@ import java.security.NoSuchAlgorithmException;
 public class CadastroFuncController {
     @FXML
     private Button botaoReiniciar;
-
     @FXML
     private Button botaoSalvar;
-
     @FXML
     private TextField campoCpf;
-
     @FXML
     private TextField campoNome;
-
     @FXML
     private TextField campoSalario;
-
     @FXML
     private TextField campoTelefone;
-
     @FXML
     private TextField campoSenha;
-
     @FXML
     private Label labelCpf;
-
     @FXML
     private Label labelNome;
-
     @FXML
     private Label labelSalario;
-
     @FXML
     private Label labelTelefone;
-
     @FXML
     private Label labelSalvo;
-
     @FXML
     private BorderPane mainPanel;
-
     @FXML
     private MenuBar menuBar;
-
     @FXML
     private Pane painelCadastro;
-
     @FXML
     private Pane painelLateral;
-
     @FXML
     private Separator separador;
-
     @FXML
     private Label titulo;
 
     private Funcionario f;
     private FuncionarioDAO fDAO;
+    private String cpfAtual; // armazena o CPF do usuario logado
+
+    // metodo para definir o CPF do usuário logado
+    public void setCpfAtual(String cpfAtual) {
+        this.cpfAtual = cpfAtual;
+    }
 
     @FXML
     void salvar(javafx.event.ActionEvent actionEvent) {
         f = new Funcionario();
         fDAO = new FuncionarioDAO();
 
-        // Verifica se todos os campos estão preenchidos
-        if(campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()){
+        // verifica se todos os campos estao preenchidos
+        if (campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()) {
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
             return;
         }
 
+        // verifica se o usuario logado é um gerente
+        if (!isGerenteAutorizado()) {
+            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
+            return;
+        }
+
         String senha = campoSenha.getText();
-        String senhaHash = hashPassword(senha); // hash da senha
-        
+        String senhaHash = hashPassword(senha); // Hash da senha
+
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String salario = campoSalario.getText();
@@ -98,7 +96,7 @@ public class CadastroFuncController {
             f.setCpf(cpf);
             f.setSalario(Double.parseDouble(salario));
             f.setTelefone(telefone);
-            
+
             fDAO.save(f);
 
             labelSalvo.setVisible(true);
@@ -107,16 +105,18 @@ public class CadastroFuncController {
             campoCpf.setDisable(true);
             campoSalario.setDisable(true);
             campoTelefone.setDisable(true);
-        }catch(Exception e){
+        } catch (Exception e) {
             showAlert("Erro ao cadastrar: ", "" + e);
         }
-    
+
         return;
     }
 
-    /**
-     * Limpa todos os campos
-     */
+    private boolean isGerenteAutorizado() {
+        Funcionario funcionarioAtual = fDAO.findById(cpfAtual); // busca o funcionario atual
+        return funcionarioAtual instanceof Gerente; // verifica se é gerente
+    }
+
     @FXML
     void reiniciar(javafx.event.ActionEvent actionEvent) {
         campoNome.clear();
