@@ -1,130 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroFuncController">
-   <children>
-      <BorderPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6F4E37;">
-         <left>
-            <Pane fx:id="painelLateral" prefHeight="200.0" prefWidth="188.0" style="-fx-background-color: #ECB176; -fx-background-radius: 10px;" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets right="10.0" />
-               </BorderPane.margin>
-            </Pane>
-         </left>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="40.0" />
-         </padding>
-         <center>
-            <Pane fx:id="painelCadastro" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ECB176; -fx-background-radius: 10px;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="104.0" layoutY="1.0" text="Cadastro de Funcionário" textAlignment="CENTER">
-                     <font>
-                        <Font size="45.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="15.0" top="15.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="labelNome" layoutX="68.0" layoutY="143.0" text="Nome">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Separator fx:id="separador" layoutX="20.0" layoutY="81.0" prefHeight="12.0" prefWidth="717.0" />
-                  <Label fx:id="labelSalario" layoutX="60.0" layoutY="430.0" text="Salario">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelTelefone" layoutX="40.0" layoutY="359.0" text="Telefone">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelCpf" layoutX="82.0" layoutY="287.0" text="CPF">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="campoSalario" layoutX="179.0" layoutY="420.0" prefHeight="34.0" prefWidth="416.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="campoNome" layoutX="178.0" layoutY="134.0" prefHeight="59.0" prefWidth="416.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="campoTelefone" layoutX="179.0" layoutY="348.0" prefHeight="34.0" prefWidth="416.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="campoCpf" layoutX="179.0" layoutY="276.0" prefHeight="34.0" prefWidth="416.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="botaoSalvar" layoutX="518.0" layoutY="519.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="botaoReiniciar" layoutX="24.0" layoutY="519.0" mnemonicParsing="false" onAction="#reiniciar" text="Cadastrar Novamente">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="labelSalvo" layoutX="407.0" layoutY="532.0" text="Salvo!!" textAlignment="CENTER" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelSenha" layoutX="66.0" layoutY="214.0" text="Senha">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="campoSenha" layoutX="179.0" layoutY="205.0" prefHeight="62.0" prefWidth="416.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </PasswordField>
-               </children>
-            </Pane>
-         </center>
-      </BorderPane>
-      <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="1000.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </children>
-</Pane>
+<HBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroFuncController">
+
+   <!-- Primeira metade da tela: Imagem de fundo e texto de boas-vindas -->
+   <AnchorPane prefHeight="700.0" prefWidth="517.0" style="-fx-background-color: #dd6262;">
+      <children>
+         <ImageView fitHeight="827.0" fitWidth="779.0" layoutX="-279.0" layoutY="-127.0" opacity="0.3">
+            <image>
+               <Image url="@../../../assets/images/salgado.jpeg" />
+            </image>
+         </ImageView>
+         <VBox alignment="CENTER" layoutX="82.0" layoutY="265.0" spacing="20.0">
+            <children>
+               <Text fill="WHITE" style="-fx-font-size: 40px; -fx-font-weight: bold;" text="Bem Vindo ao Salgado Smart!" textAlignment="CENTER" wrappingWidth="338.44921875" />
+               <Text fill="WHITE" style="-fx-font-size: 18px;" text="Voltar para tela de login">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+               <Button prefWidth="100.0" style="-fx-background-color: #dd6262; -fx-text-fill: white; -fx-font-size: 18px;" text="LOGIN">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </VBox>
+      </children>
+   </AnchorPane>
+
+   <!-- Segunda metade da tela: Campos de cadastro -->
+   <AnchorPane prefWidth="500.0" style="-fx-background-color: white;">
+      <children>
+         <VBox alignment="CENTER" layoutX="94.0" layoutY="221.0" spacing="20.0">
+            <Text fill="#979191" style="-fx-font-size: 18px;" text="Realize seu cadastro!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="campoNome" prefWidth="300.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField fx:id="campoCpf" prefWidth="300.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField fx:id="campoSalario" prefWidth="300.0" promptText="Salário" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField fx:id="campoTelefone" prefWidth="300.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Button fx:id="botaoCadastrar" prefWidth="200.0" style="-fx-background-color: #dd6262; -fx-text-fill: white; -fx-font-size: 16px;" text="CADASTRAR">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </VBox>
+      </children>
+   </AnchorPane>
+
+</HBox>
