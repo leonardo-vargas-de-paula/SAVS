@@ -2,24 +2,36 @@ package com.example.sisapsoo.model.dao;
 
 import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
+import jakarta.persistence.Query;
 import jakarta.persistence.EntityManager;
 import java.util.List;
+
+import org.hibernate.query.NativeQuery;
 
 public class FuncionarioDAO {
     EntityManager em = new ConnectionFactory().getConnection();
 
-    //insert-update
+    //insert
     public Funcionario save(Funcionario f) {
         try {
             em.getTransaction().begin();
-            if (f.getCpf() == null) {
-                em.persist(f);
-                System.out.println("SALVOU FUNCIONARIO ----------------------------------------------");
-            } else {
-                em.merge(f);
-            }
+            em.persist(f);
+            System.out.println("SALVOU FUNCIONARIO ----------------------------------------------");
             em.getTransaction().commit();
         } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+
+        return f;
+    }
+
+    // update
+    public Funcionario update(Funcionario f){
+        try {
+            em.getTransaction().begin();
+        }catch(Exception e){
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -49,7 +61,7 @@ public class FuncionarioDAO {
         List<Funcionario> f = null;
 
         try {
-            f = em.createQuery("from Funcionario ff").getResultList();
+            f = em.createQuery("from Funcionario f").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
