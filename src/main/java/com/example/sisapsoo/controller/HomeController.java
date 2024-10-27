@@ -1,6 +1,6 @@
 package com.example.sisapsoo.controller;
 
-import jakarta.persistence.criteria.Root;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +13,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class HomeController {
 
@@ -47,6 +48,23 @@ public class HomeController {
     @FXML
     private Label nomeUsuario;
 
+
+
+    private void trocarCena(ActionEvent event, String fxml) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxml));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
+        }
+    }
+
     @FXML
     void clientes(ActionEvent event) {
 
@@ -54,19 +72,9 @@ public class HomeController {
 
     @FXML
     void funcionarios(ActionEvent event) {
-        Node node = (Node) event.getSource();
-
-        Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/sisapsoo/login-view.fxml"))); //teste
-        } catch (IOException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        trocarCena(event, "/com/example/sisapsoo/gerenciamento-funcionarios-view.fxml");
     }
+
 
 
     @FXML
@@ -87,7 +95,7 @@ public class HomeController {
 
     @FXML
     void salgados(ActionEvent event) {
-
+        trocarCena(event, "/com/example/sisapsoo/gerenciamento-salgados-view.fxml");
     }
 
 }

@@ -1,45 +1,40 @@
 package com.example.sisapsoo.model;
 
-public class Salgado {
+import jakarta.persistence.*;
+import java.util.Set;
 
-	private String ID;
+@Entity
+public class Salgado {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idSalgado;
 
 	private String nome;
-
 	private float preco;
+	// Getters e Setters
 
-	private int quantidadeDisponivel;
-
-	public void getId() {
-
+	public Integer getIdSalgado() {
+		return idSalgado;
 	}
 
-	public void getNome() {
-
+	public void setIdSalgado(Integer idSalgado) {
+		this.idSalgado = idSalgado;
 	}
 
-	public void getPreco() {
-
+	public String getNome() {
+		return nome;
 	}
 
-	public void getQuantidade() {
-
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setId() {
-
+	public float getPreco() {
+		return preco;
 	}
 
-	public void setNome() {
-
-	}
-
-	public void setPreco() {
-
-	}
-
-	public void setQuantidade() {
-
+	public void setPreco(float preco) {
+		this.preco = preco;
 	}
 
 }

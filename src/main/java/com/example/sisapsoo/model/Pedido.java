@@ -2,17 +2,26 @@ package com.example.sisapsoo.model;
 
 import jakarta.persistence.*;
 
- @Entity
+
+import java.util.List;
+
+
+@Entity
  public class Pedido {
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer idPedido;
-     private String tipo;
-     private Double preco;
-     private String status;
-     @ManyToOne
-     @JoinColumn(name = "cliente_fk", referencedColumnName = "id")
-     private Cliente cliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPedido;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<PedidoSalgado> pedidoSalgados;
+
+    private Double preco;
+    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_fk", referencedColumnName = "id")
+    private Cliente cliente;
+
 
      public Integer getIdPedido() {
          return idPedido;
@@ -20,14 +29,6 @@ import jakarta.persistence.*;
 
      public void setIdPedido(Integer idPedido) {
          this.idPedido = idPedido;
-     }
-
-     public String getTipo() {
-         return tipo;
-     }
-
-     public void setTipo(String tipo) {
-         this.tipo = tipo;
      }
 
      public Double getPreco() {
@@ -42,7 +43,7 @@ import jakarta.persistence.*;
          return status;
      }
 
-     public void setStatus(String status) {
+    public void setStatus(String status) {
          this.status = status;
      }
 
@@ -53,5 +54,11 @@ import jakarta.persistence.*;
      public void setCliente(Cliente cliente) {
          this.cliente = cliente;
      }
+
+    public Double calcularPrecoTotal() {
+        return pedidoSalgados.stream()
+                .mapToDouble(PedidoSalgado::calcularSubtotal)
+                .sum();
+    }
  }
 

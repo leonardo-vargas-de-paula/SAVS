@@ -9,8 +9,7 @@ module com.example.sisapsoo {
     requires java.desktop;
 
     opens com.example.sisapsoo.model to javafx.base, org.hibernate.orm.core;
-    
-    // Exportar pacotes para JavaFX
+
     opens com.example.sisapsoo.controller to javafx.fxml;
 
     opens com.example.sisapsoo to javafx.fxml;
