@@ -17,20 +17,6 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("Salgado Smart");
 
-//        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
-//        stage.getIcons().add(icon);
-
-        // Gerente g = new Gerente();
-        // GerenteDAO gDAO = new GerenteDAO();
-
-        // g.setId("4");
-        // g.setSenha("1234");
-        // g.setNome("jose");
-        // g.setCpf("11");
-        // g.setTelefone("2333");
-        // g.setSalario(98.0);
-        // gDAO.save(g);
-
         LoginController controller = fxmlLoader.getController();
 
         stage.setScene(scene);

@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Funcionario")
 public class Funcionario extends Usuario{
-	/* VARIÁVEIS DA CLASSE */
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "func_sequence")
     @SequenceGenerator(sequenceName = "func_sequence", name = "func_seq")
@@ -28,10 +26,7 @@ public class Funcionario extends Usuario{
     @Column(name = "salario")
     private double salario;
 
-	/* CONSTRUTORES */
-
     public Funcionario(){
-        
     }
 
     public Funcionario(String nome, String cpf, String senha, String telefone, double salario){
@@ -41,8 +36,6 @@ public class Funcionario extends Usuario{
         this.telefone = telefone;
         this.salario = salario;
     }
-
-	/* GETTERS */
 
     public String getNome() {
         return nome;
@@ -63,8 +56,6 @@ public class Funcionario extends Usuario{
     public double getSalario() {
         return salario;
     }
-
-	/* SETTERS */
 
     public void setNome(String nome) {
         this.nome = nome;

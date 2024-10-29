@@ -4,22 +4,16 @@ public abstract class Usuario {
     protected String id;
     protected String senha;
 
-    /* CONSTRUTORES */
-
     public Usuario(){
-
     }
 
     public Usuario(String id){
-
     }
 
     public Usuario(String id, String senha){
         this.id = id;
         this.senha = senha;
     }
-
-    /* GETTERS */
 
     public String getId() {
         return id;
@@ -28,8 +22,6 @@ public abstract class Usuario {
     public String getSenha() {
         return senha;
     }
-
-    /* SETTERS */
 
     public void setId(String id) {
         this.id = id;
