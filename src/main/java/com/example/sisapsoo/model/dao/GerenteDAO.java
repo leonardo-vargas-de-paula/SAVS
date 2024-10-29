@@ -3,79 +3,76 @@ package com.example.sisapsoo.model.dao;
 import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Gerente;
 import jakarta.persistence.EntityManager;
-
 import java.util.List;
+import java.util.Optional;
 
 public class GerenteDAO {
-    EntityManager em = new ConnectionFactory().getConnection();
 
-    //insert-update
-    public Gerente save(Gerente u) {
+    public Gerente save(Gerente gerente) {
+        EntityManager entityManager = new ConnectionFactory().getConnection();
         try {
-            em.getTransaction().begin();
-            if (u.getId() == null) {
-                em.persist(u);
-                System.out.println("SALVOU USUARIO ----------------------------------------------");
+            entityManager.getTransaction().begin();
+            if (gerente.getId() == null) {
+                entityManager.persist(gerente);
+                System.out.println("Gerente salvo com sucesso.");
             } else {
-                em.merge(u);
+                entityManager.merge(gerente);
             }
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
+            entityManager.getTransaction().commit();
+        } catch (Exception excecao) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Erro ao salvar o gerente: " + excecao.getMessage());
         } finally {
-            em.close();
+            entityManager.close();
         }
-
-        return u;
+        return gerente;
     }
 
-    //select where id = <valor desejado>
-    public Gerente findById(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Gerente u = null;
-
+    public Optional<Gerente> findById(String id) {
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Gerente gerente = null;
         try {
-            u = em.find(Gerente.class, id);
-        } catch (Exception e) {
-            System.err.println(e);
+            gerente = entityManager.find(Gerente.class, id);
+        } catch (Exception excecao) {
+            System.err.println("Erro ao buscar gerente por ID: " + excecao.getMessage());
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return u;
+        return Optional.ofNullable(gerente);
     }
 
-    //Lista de todos os objetos Tabelateste
     public List<Gerente> findAll() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Gerente> us = null;
-
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        List<Gerente> listaGerentes = null;
         try {
-            us = em.createQuery("from Gerente us").getResultList();
-        } catch (Exception e) {
-            System.err.println(e);
+            listaGerentes = entityManager.createQuery("from Gerente", Gerente.class).getResultList();
+        } catch (Exception excecao) {
+            System.err.println("Erro ao listar gerentes: " + excecao.getMessage());
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
+        return listaGerentes;
     }
 
-    //delete
-    public Gerente remove(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Gerente us = null;
-
+    public Optional<Gerente> remove(String id) {
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Gerente gerente = null;
         try {
-            us = em.find(Gerente.class, id);
-            em.getTransaction().begin();
-            em.remove(us);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.err.println(e);
-            em.getTransaction().rollback();
+            gerente = entityManager.find(Gerente.class, id);
+            if (gerente != null) {
+                entityManager.getTransaction().begin();
+                entityManager.remove(gerente);
+                entityManager.getTransaction().commit();
+                System.out.println("Gerente removido com sucesso.");
+            } else {
+                System.out.println("Gerente não encontrado para remoção.");
+            }
+        } catch (Exception excecao) {
+            System.err.println("Erro ao remover gerente: " + excecao.getMessage());
+            entityManager.getTransaction().rollback();
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
-
+        return Optional.ofNullable(gerente);
     }
 }

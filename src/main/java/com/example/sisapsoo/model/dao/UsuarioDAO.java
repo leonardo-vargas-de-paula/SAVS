@@ -7,75 +7,75 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 public class UsuarioDAO {
-    EntityManager em = new ConnectionFactory().getConnection();
+    EntityManager entityManager = new ConnectionFactory().getConnection();
 
     //insert-update
-    public Usuario save(Usuario u) {
+    public Usuario save(Usuario usuario) {
         try {
-            em.getTransaction().begin();
-            if (u.getId() == null) {
-                em.persist(u);
+            entityManager.getTransaction().begin();
+            if (usuario.getId() == null) {
+                entityManager.persist(usuario);
                 System.out.println("SALVOU USUARIO ----------------------------------------------");
             } else {
-                em.merge(u);
+                entityManager.merge(usuario);
             }
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
         } finally {
-            em.close();
+            entityManager.close();
         }
 
-        return u;
+        return usuario;
     }
 
     //select where id = <valor desejado>
     public Usuario findById(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Usuario u = null;
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Usuario usuario = null;
 
         try {
-            u = em.find(Usuario.class, id);
-        } catch (Exception e) {
-            System.err.println(e);
+            usuario = entityManager.find(Usuario.class, id);
+        } catch (Exception exception) {
+            System.err.println(exception);
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return u;
+        return usuario;
     }
 
     //Lista de todos os objetos Tabelateste
     public List<Usuario> findAll() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Usuario> us = null;
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        List<Usuario> usuarios = null;
 
         try {
-            us = em.createQuery("from Usuario us").getResultList();
-        } catch (Exception e) {
-            System.err.println(e);
+            usuarios = entityManager.createQuery("from Usuario us").getResultList();
+        } catch (Exception exception) {
+            System.err.println(exception);
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
+        return usuarios;
     }
 
     //delete
     public Usuario remove(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Usuario us = null;
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Usuario usuarios = null;
 
         try {
-            us = em.find(Usuario.class, id);
-            em.getTransaction().begin();
-            em.remove(us);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.err.println(e);
-            em.getTransaction().rollback();
+            usuarios = entityManager.find(Usuario.class, id);
+            entityManager.getTransaction().begin();
+            entityManager.remove(usuarios);
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            System.err.println(exception);
+            entityManager.getTransaction().rollback();
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
+        return usuarios;
 
     }
 }

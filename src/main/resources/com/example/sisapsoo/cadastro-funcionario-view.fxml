@@ -11,6 +11,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
 <HBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroFuncController">
 
    <!-- Primeira metade da tela: Imagem de fundo e texto de boas-vindas -->
@@ -51,24 +53,39 @@
             <TextField fx:id="campoNome" prefWidth="300.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
             <TextField fx:id="campoCpf" prefWidth="300.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
             <TextField fx:id="campoSalario" prefWidth="300.0" promptText="Salário" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
             <TextField fx:id="campoTelefone" prefWidth="300.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: lightgray; -fx-font-size: 16px;">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
+
+            <!-- seleção de papel (funcionario ou gerente) -->
+            <ComboBox fx:id="campoPapel" prefWidth="300.0">
+               <items>
+                  <String fx:value="Funcionario"/>
+                  <String fx:value="Gerente"/>
+               </items>
+            </ComboBox>
+
             <Button fx:id="botaoCadastrar" prefWidth="200.0" style="-fx-background-color: #dd6262; -fx-text-fill: white; -fx-font-size: 16px;" text="CADASTRAR">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+            </Button>
          </VBox>
+
       </children>
    </AnchorPane>
 
