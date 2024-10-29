@@ -44,6 +44,10 @@ public class Funcionario extends Usuario{
 
 	/* GETTERS */
 
+    public int getId(){
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -65,6 +69,10 @@ public class Funcionario extends Usuario{
     }
 
 	/* SETTERS */
+
+    public void setId(int id){
+        this.id = id;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;

@@ -13,12 +13,10 @@ public class UsuarioDAO {
     public Usuario save(Usuario u) {
         try {
             em.getTransaction().begin();
-            if (u.getId() == null) {
-                em.persist(u);
-                System.out.println("SALVOU USUARIO ----------------------------------------------");
-            } else {
-                em.merge(u);
-            }
+            em.persist(u);
+            System.out.println("SALVOU USUARIO ----------------------------------------------");
+            em.merge(u);
+
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();

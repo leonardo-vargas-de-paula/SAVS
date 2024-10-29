@@ -3,7 +3,6 @@ package com.example.sisapsoo.model.dao;
 import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Gerente;
 import jakarta.persistence.EntityManager;
-
 import java.util.List;
 
 public class GerenteDAO {
@@ -13,12 +12,10 @@ public class GerenteDAO {
     public Gerente save(Gerente u) {
         try {
             em.getTransaction().begin();
-            if (u.getId() == null) {
-                em.persist(u);
-                System.out.println("SALVOU USUARIO ----------------------------------------------");
-            } else {
-                em.merge(u);
-            }
+            em.persist(u);
+            System.out.println("SALVOU USUARIO ----------------------------------------------");
+            em.merge(u);
+
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
