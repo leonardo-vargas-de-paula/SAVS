@@ -48,8 +48,6 @@ public class HomeController {
     @FXML
     private Label nomeUsuario;
 
-
-
     private void trocarCena(ActionEvent event, String fxml) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -74,8 +72,6 @@ public class HomeController {
     void funcionarios(ActionEvent event) {
         trocarCena(event, "/com/example/sisapsoo/gerenciamento-funcionarios-view.fxml");
     }
-
-
 
     @FXML
     void home(ActionEvent event) {

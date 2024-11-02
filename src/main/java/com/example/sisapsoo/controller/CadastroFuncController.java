@@ -12,6 +12,8 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -85,15 +87,13 @@ public class CadastroFuncController {
         }
 
         String senha = campoSenha.getText();
-        String senhaHash = hashPassword(senha); // hash da senha
-        
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String salario = campoSalario.getText();
         String telefone = campoTelefone.getText();
 
         try {
-            f.setSenha(senhaHash);
+            f.setSenha(hashPassword(senha));
             f.setNome(nome);
             f.setCpf(cpf);
             f.setSalario(Double.parseDouble(salario));
@@ -150,7 +150,7 @@ public class CadastroFuncController {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
-            
+
             // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {
