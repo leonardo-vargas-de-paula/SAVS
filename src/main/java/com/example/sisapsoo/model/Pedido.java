@@ -3,6 +3,7 @@ package com.example.sisapsoo.model;
 import jakarta.persistence.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,10 +14,11 @@ import java.util.List;
     private Integer idPedido;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<PedidoSalgado> pedidoSalgados;
+    private List<PedidoSalgado> pedidoSalgados= new ArrayList<>();;
 
     private Double preco;
     private String status;
+    private String loc;
 
     @ManyToOne
     @JoinColumn(name = "cliente_fk", referencedColumnName = "id")
@@ -62,5 +64,21 @@ import java.util.List;
                 .mapToDouble(PedidoSalgado::calcularSubtotal)
                 .sum();
     }
- }
+
+    public String getLoc() {
+        return loc;
+    }
+
+    public void setLoc(String loc) {
+        this.loc = loc;
+    }
+
+    public List<PedidoSalgado> getPedidoSalgados() {
+        return pedidoSalgados;
+    }
+
+    public void setPedidoSalgados(List<PedidoSalgado> pedidoSalgados) {
+        this.pedidoSalgados = pedidoSalgados;
+    }
+}
 
