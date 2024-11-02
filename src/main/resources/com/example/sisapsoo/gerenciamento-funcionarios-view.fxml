@@ -13,25 +13,6 @@
 
 <Pane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="999.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoFuncs">
    <children>
-      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="27.0" prefWidth="1000.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <BorderPane fx:id="borderPanel" layoutX="10.0" layoutY="38.0" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;">
          <center>
             <TableView fx:id="tabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

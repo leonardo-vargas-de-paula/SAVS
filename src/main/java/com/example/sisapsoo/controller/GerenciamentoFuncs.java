@@ -6,6 +6,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import com.example.sisapsoo.model.Funcionario;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
@@ -84,6 +88,26 @@ public class GerenciamentoFuncs implements Initializable{
         telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 
         tabela.setItems(funcionarios);
+    }
+
+    @FXML
+    private void voltar(ActionEvent event){
+        trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
+    }
+
+    private void trocarCena(ActionEvent event, String fxml) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxml));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
+        }
     }
 
     @FXML
