@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gerenciamento-funcionarios-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("Salgado Smart");
 
@@ -97,7 +97,7 @@ public class HelloApplication extends Application {
         pDAO.save(p);
 
 
-        LoginController controller = fxmlLoader.getController();
+        GerenciamentoFuncs controller = fxmlLoader.getController();
 
         stage.setScene(scene);
         stage.setResizable(false);

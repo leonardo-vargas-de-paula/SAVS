@@ -41,12 +41,12 @@ public class FuncionarioDAO {
     }
 
     //select where id = <valor desejado>
-    public Funcionario findById(String cpf) {
+    public Funcionario findById(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
         Funcionario f = null;
 
         try {
-            f = em.find(Funcionario.class, cpf);
+            f = em.find(Funcionario.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -81,8 +81,9 @@ public class FuncionarioDAO {
             em.remove(f);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e);
             em.getTransaction().rollback();
+            // Joga a exceção para o controller de deletar funcionário, caso haja um erro de tentar excluir um funcionário que não existe
+            throw e;
         } finally {
             em.close();
         }
