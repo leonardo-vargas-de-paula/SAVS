@@ -1,14 +1,20 @@
 package com.example.sisapsoo.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;    
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Button;
 import com.example.sisapsoo.model.Funcionario;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GerenciamentoFuncs implements Initializable{
