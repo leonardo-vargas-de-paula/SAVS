@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoSalgados">
+   <children>
+      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="27.0" prefWidth="1000.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <BorderPane fx:id="borderPanel" layoutX="10.0" layoutY="38.0" prefHeight="652.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;">
+         <center>
+            <TableView fx:id="tabelaSalgado" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="idSalgado" prefWidth="120.0" text="idSalgado" />
+                  <TableColumn fx:id="nome" prefWidth="123.0" text="Nome" />
+                  <TableColumn fx:id="preco" prefWidth="123.0" text="Preço" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <AnchorPane prefHeight="61.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="420.0" layoutY="5.0" text="Salgados">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="botaoHome" layoutX="853.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltarHome" prefHeight="0.0" prefWidth="52.0" text="Home" />
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+      <Button layoutX="536.0" layoutY="-106.0" mnemonicParsing="false" text="Button" />
+   </children>
+</Pane>
