@@ -10,7 +10,7 @@ public class Salgado {
 	private Integer idSalgado;
 
 	private String nome;
-	private float preco;
+	private double preco;
 	// Getters e Setters
 
 	public Integer getIdSalgado() {
@@ -29,11 +29,11 @@ public class Salgado {
 		this.nome = nome;
 	}
 
-	public float getPreco() {
+	public double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(float preco) {
+	public void setPreco(double preco) {
 		this.preco = preco;
 	}
 

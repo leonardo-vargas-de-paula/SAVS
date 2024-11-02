@@ -35,7 +35,7 @@
       </MenuBar>
       <BorderPane fx:id="borderPanel" layoutX="10.0" layoutY="38.0" prefHeight="652.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;">
          <center>
-            <TableView fx:id="tabela" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tabelaSalgado" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="idSalgado" prefWidth="120.0" text="idSalgado" />
                   <TableColumn fx:id="nome" prefWidth="123.0" text="Nome" />

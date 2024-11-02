@@ -24,10 +24,12 @@ import java.util.List;
 
 
      public Integer getIdPedido() {
+
          return idPedido;
      }
 
      public void setIdPedido(Integer idPedido) {
+
          this.idPedido = idPedido;
      }
 

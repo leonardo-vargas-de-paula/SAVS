@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GerenciamentoSalgados {
+public class GerenciamentoSalgados implements Initializable {
 
     private SalgadoDAO sDAO = new SalgadoDAO();
 
@@ -49,10 +50,10 @@ public class GerenciamentoSalgados {
     private MenuBar menuBar;
 
     @FXML
-    private TableColumn<Salgado, Float> preco;
+    private TableColumn<Salgado, Double> preco;
 
     @FXML
-    private TableView<Salgado> tabela;
+    private TableView<Salgado> tabelaSalgado;
 
     private void trocarCena(ActionEvent event, String fxml) {
         Node node = (Node) event.getSource();
@@ -75,14 +76,14 @@ public class GerenciamentoSalgados {
     }
 
 
-
+    @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Salgado> salgados = FXCollections.observableArrayList(sDAO.findAll());
 
         idSalgado.setCellValueFactory(new PropertyValueFactory<>("idSalgado"));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         preco.setCellValueFactory(new PropertyValueFactory<>("preco"));
-        tabela.setItems(salgados);
+        tabelaSalgado.setItems(salgados);
     }
 
 }

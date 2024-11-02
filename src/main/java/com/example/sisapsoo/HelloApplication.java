@@ -6,7 +6,9 @@ import com.example.sisapsoo.controller.LoginController;
 // import com.example.sisapsoo.model.Gerente;
 // import com.example.sisapsoo.model.dao.GerenteDAO;
 import com.example.sisapsoo.model.Gerente;
+import com.example.sisapsoo.model.Salgado;
 import com.example.sisapsoo.model.dao.GerenteDAO;
+import com.example.sisapsoo.model.dao.SalgadoDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,16 +24,23 @@ public class HelloApplication extends Application {
 //        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
 //        stage.getIcons().add(icon);
 
-         Gerente g = new Gerente();
-         GerenteDAO gDAO = new GerenteDAO();
+        Gerente g = new Gerente();
+        GerenteDAO gDAO = new GerenteDAO();
 
 
-         g.setSenha("1234");
-         g.setNome("jose");
-         g.setCpf("11");
-         g.setTelefone("2333");
-         g.setSalario(98.0);
-         gDAO.save(g);
+        g.setSenha("1234");
+        g.setNome("jose");
+        g.setCpf("11");
+        g.setTelefone("2333");
+        g.setSalario(98.0);
+        gDAO.save(g);
+
+        Salgado s = new Salgado();
+        SalgadoDAO sDAO = new SalgadoDAO();
+
+        s.setNome("Esfiha");
+        s.setPreco(21);
+        sDAO.save(s);
 
 //        LoginController controller = fxmlLoader.getController();
 

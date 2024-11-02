@@ -52,7 +52,7 @@ public class PedidoSalgado {
         this.quantidade = quantidade;
     }
 
-    public float calcularSubtotal() {
+    public double calcularSubtotal() {
         return salgado.getPreco() * quantidade;
     }
 }
