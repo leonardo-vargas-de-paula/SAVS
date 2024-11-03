@@ -80,4 +80,10 @@ public class PedidoDAO {
         return us;
 
     }
+
+    public List<Pedido> findAllPs() {
+        EntityManager em = new ConnectionFactory().getConnection();
+        return em.createQuery("SELECT p FROM Pedido p LEFT JOIN FETCH p.pedidoSalgados", Pedido.class)
+                .getResultList();
+    }
 }
