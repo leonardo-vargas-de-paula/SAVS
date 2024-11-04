@@ -112,8 +112,41 @@ public class GerenciamentoFuncs implements Initializable{
 
     @FXML
     void addFunc() {
-        // abrir uma tela tipo pop-up para cadastrar funcionário ou levar para a tela normal
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
+            Dialog<ButtonType> dialog = new Dialog<>();
+
+            // Cria o DialogPane a partir do FXML
+            DialogPane funcDialogPane = fxmlLoader.load();
+
+            // Configura o controlador
+            AdicionaFuncionarioController controller = fxmlLoader.getController();
+            controller.setGerenciamentoFuncs(this); // Passa a referência
+
+            dialog.setDialogPane(funcDialogPane);
+            dialog.setTitle("Adicionar Funcionário");
+
+            // Adiciona os botões de fechamento padrão
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            // Exibe o diálogo e espera uma resposta
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Lógica para adicionar funcionário
+                controller.adicionarFuncionario(); // Presumindo que você tenha um método para adicionar funcionário no controller
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+    public void atualizarTabela() {
+        ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList(fDAO.findAll());
+        tabela.setItems(funcionarios);
+    }
+
 
     @FXML
     void removerFunc(ActionEvent event) {

@@ -59,7 +59,7 @@ public class CadastroFuncController {
 
     private Funcionario f;
     private FuncionarioDAO fDAO;
-    private int idAtual; // armazena o CPF do usuario logado
+    private int idAtual;
 
     // metodo para definir o id do usuário logado
     public void setIdAtual(int idAtual) {
@@ -71,13 +71,11 @@ public class CadastroFuncController {
         f = new Funcionario();
         fDAO = new FuncionarioDAO();
 
-        // verifica se todos os campos estao preenchidos
         if (campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()) {
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
             return;
         }
 
-        // verifica se o usuario logado é um gerente
         if (!isGerenteAutorizado()) {
             showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
             return;
@@ -112,8 +110,8 @@ public class CadastroFuncController {
     }
 
     private boolean isGerenteAutorizado() {
-        Funcionario funcionarioAtual = fDAO.findById(idAtual); // busca o funcionario atual
-        return funcionarioAtual instanceof Gerente; // verifica se é gerente
+        Funcionario funcionarioAtual = fDAO.findById(idAtual);
+        return funcionarioAtual instanceof Gerente;
     }
 
     @FXML
@@ -145,12 +143,9 @@ public class CadastroFuncController {
 
     public static String hashPassword(String password) {
         try {
-            // Cria uma instância do MessageDigest para SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
 
-            // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {
                 String hex = Integer.toHexString(0xff & b);

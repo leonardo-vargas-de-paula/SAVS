@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Funcionario")
-public class Funcionario extends Usuario{
+public class Funcionario extends Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "func_sequence")
     @SequenceGenerator(sequenceName = "func_sequence", name = "func_seq")
@@ -26,19 +26,21 @@ public class Funcionario extends Usuario{
     @Column(name = "salario")
     private double salario;
 
-    public Funcionario(){
+    @Column(name = "tipoFuncionario") // Novo campo
+    private String tipoFuncionario;
+
+    public Funcionario() {
     }
 
-    public Funcionario(String nome, String cpf, String senha, String telefone, double salario){
+    public Funcionario(String nome, String cpf, String telefone, double salario, String tipoFuncionario) {
         this.nome = nome;
         this.cpf = cpf;
-        this.senha = senha;
         this.telefone = telefone;
         this.salario = salario;
+        this.tipoFuncionario = tipoFuncionario;
     }
 
-
-    public int getId(){
+    public int getId() {
         return id;
     }
 
@@ -62,7 +64,11 @@ public class Funcionario extends Usuario{
         return salario;
     }
 
-    public void setId(int id){
+    public String getTipoFuncionario() {
+        return tipoFuncionario;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -84,5 +90,9 @@ public class Funcionario extends Usuario{
 
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public void setTipoFuncionario(String tipoFuncionario) {
+        this.tipoFuncionario = tipoFuncionario;
     }
 }

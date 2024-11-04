@@ -117,8 +117,8 @@ public class CadastroGerenteController {
 
             labelSalvo.setVisible(true);
             desabilitarCamposCadastro();
-        } catch (Exception e) {
-            showAlert("Erro ao cadastrar: ", "" + e);
+        } catch (Exception exception) {
+            showAlert("Erro ao cadastrar: ", "" + exception);
         }
     }
 
@@ -165,7 +165,6 @@ public class CadastroGerenteController {
 
     public static String hashPassword(String password) {
         try {
-            // Cria instância do MessageDigest para SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(password.getBytes());
 
@@ -178,8 +177,8 @@ public class CadastroGerenteController {
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException exception) {
+            throw new RuntimeException(exception);
         }
     }
 }

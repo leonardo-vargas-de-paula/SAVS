@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sisapsoo.controller.AdicionaFuncionarioController">
+    <content>
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="Nome:"/>
+            <TextField fx:id="nomeField" />
+            <Label text="CPF:"/>
+            <TextField fx:id="cpfField" />
+            <Label text="Telefone:"/>
+            <TextField fx:id="telefoneField" />
+            <Label text="Salário:"/>
+            <TextField fx:id="salarioField" />
+            <Label text="Tipo de Funcionário:"/>
+            <ComboBox fx:id="tipoField" />
+        </VBox>
+    </content>
+    <buttonBar>
+        <ButtonBar>
+            <Button type="default" text="Adicionar" />
+            <Button text="Cancelar" />
+        </ButtonBar>
+    </buttonBar>
+</DialogPane>
