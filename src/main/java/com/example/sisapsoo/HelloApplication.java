@@ -71,19 +71,28 @@ public class HelloApplication extends Application {
         PedidoDAO pDAO = new PedidoDAO();
         Pedido p2 = new Pedido();
         PedidoDAO pDAO2 = new PedidoDAO();
-
+        Endereco e = new Endereco();
+        Endereco e2 = new Endereco();
+        EnderecoDAO eDAO = new EnderecoDAO();
+        EnderecoDAO eDAO2 = new EnderecoDAO();
 
         p.setCliente(c);
         p.setStatus("teste");
-        p.setLoc("av afonso pena 888");
         pDAO.save(p);
 
         p2.setCliente(c2);
         p2.setStatus("em confecção");
-        p2.setLoc("rua xyz 987");
         pDAO2.save(p2);
 
+        e.setRua("av afonso pena");
+        e2.setRua("rua xyz");
+        e.setNumero(988);
+        e2.setNumero(123);
+        e.setPedido(p);
+        e2.setPedido(p2);
 
+        eDAO.save(e);
+        eDAO2.save(e2);
 
         //criando um pedido salgado para o pedido
         PedidoSalgado ps = new PedidoSalgado();
