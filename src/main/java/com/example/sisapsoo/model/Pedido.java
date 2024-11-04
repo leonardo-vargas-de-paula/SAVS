@@ -17,8 +17,11 @@ import java.util.List;
     private List<PedidoSalgado> pedidoSalgados= new ArrayList<>();;
 
     private Double preco;
+
     private String status;
-    private String loc;
+
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Endereco loc;
 
     @ManyToOne
     @JoinColumn(name = "cliente_fk", referencedColumnName = "id")
@@ -65,11 +68,11 @@ import java.util.List;
                 .sum();
     }
 
-    public String getLoc() {
+    public Endereco getLoc() {
         return loc;
     }
 
-    public void setLoc(String loc) {
+    public void setLoc(Endereco loc) {
         this.loc = loc;
     }
 
