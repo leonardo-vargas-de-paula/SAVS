@@ -65,7 +65,7 @@ public class HomeController {
 
     @FXML
     void clientes(ActionEvent event) {
-
+        trocarCena(event, "/com/example/sisapsoo/gerenciamento-clientes-view.fxml");
     }
 
     @FXML

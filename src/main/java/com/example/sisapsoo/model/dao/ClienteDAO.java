@@ -13,11 +13,8 @@ public class ClienteDAO {
     public Cliente save(Cliente c) {
         try {
             em.getTransaction().begin();
-            if (c.getId() == null) {
-                em.persist(c);
-            } else {
-                em.merge(c);
-            }
+            em.persist(c);
+            em.merge(c);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();

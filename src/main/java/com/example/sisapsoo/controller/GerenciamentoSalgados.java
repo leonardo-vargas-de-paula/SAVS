@@ -26,7 +26,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GerenciamentoSalgados implements Initializable {
-
     private SalgadoDAO sDAO = new SalgadoDAO();
 
     @FXML
@@ -129,7 +128,6 @@ public class GerenciamentoSalgados implements Initializable {
         }
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<Salgado> salgados = FXCollections.observableArrayList(sDAO.findAll());
@@ -139,5 +137,4 @@ public class GerenciamentoSalgados implements Initializable {
         preco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         tabelaSalgado.setItems(salgados);
     }
-
 }
