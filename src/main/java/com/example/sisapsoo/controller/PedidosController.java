@@ -73,7 +73,7 @@ public class PedidosController implements Initializable {
 
     @FXML
     void addFunc(ActionEvent event) {
-
+        trocarCena(event, "/com/example/sisapsoo/adicionar-pedidos-view.fxml");
     }
 
     @FXML
