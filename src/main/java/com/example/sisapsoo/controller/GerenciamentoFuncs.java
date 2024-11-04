@@ -7,20 +7,18 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import com.example.sisapsoo.model.Funcionario;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -33,52 +31,39 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-public class GerenciamentoFuncs implements Initializable{
+public class GerenciamentoFuncs implements Initializable {
     private FuncionarioDAO fDAO = new FuncionarioDAO();
 
     @FXML
     private BorderPane borderPanel;
-
     @FXML
     private Label labelTitulo;
-
     @FXML
     private Pane mainPanel;
-
     @FXML
     private MenuBar menuBar;
-
     @FXML
     private TableView<Funcionario> tabela;
-
     @FXML
     private TableColumn<Funcionario, String> nome;
-
     @FXML
     private TableColumn<Funcionario, String> cpf;
-
     @FXML
     private TableColumn<Funcionario, String> salario;
-
     @FXML
     private TableColumn<Funcionario, String> telefone;
-
     @FXML
     private TableColumn<Funcionario, Integer> id;
-
     @FXML
     private Button addButton;
-
     @FXML
     private Button removeButton;
-
     @FXML
     private Pane painelDeCima;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList(fDAO.findAll());
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -91,7 +76,7 @@ public class GerenciamentoFuncs implements Initializable{
     }
 
     @FXML
-    private void voltar(ActionEvent event){
+    private void voltar(ActionEvent event) {
         trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
     }
 
@@ -106,7 +91,7 @@ public class GerenciamentoFuncs implements Initializable{
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
+            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
         }
     }
 
@@ -114,65 +99,55 @@ public class GerenciamentoFuncs implements Initializable{
     void addFunc() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
-            Dialog<ButtonType> dialog = new Dialog<>();
-
-            // Cria o DialogPane a partir do FXML
             DialogPane funcDialogPane = fxmlLoader.load();
 
-            // Configura o controlador
             AdicionaFuncionarioController controller = fxmlLoader.getController();
-            controller.setGerenciamentoFuncs(this); // Passa a referência
+            if (controller != null) {
+                controller.setGerenciamentoFuncs(this);
+            } else {
+                Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro: controlador do diálogo 'Adicionar Funcionário' está nulo.");
+                return;
+            }
 
+            Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(funcDialogPane);
             dialog.setTitle("Adicionar Funcionário");
-
-            // Adiciona os botões de fechamento padrão
             dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-            // Exibe o diálogo e espera uma resposta
             Optional<ButtonType> result = dialog.showAndWait();
-
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Lógica para adicionar funcionário
-                controller.adicionarFuncionario(); // Presumindo que você tenha um método para adicionar funcionário no controller
+                controller.adicionarFuncionario();
+                atualizarTabela();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de adicionar funcionário.", e);
         }
     }
-
 
     public void atualizarTabela() {
         ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList(fDAO.findAll());
         tabela.setItems(funcionarios);
     }
 
-
     @FXML
     void removerFunc(ActionEvent event) {
-        /*ObservableList<Funcionario> all_funcs, single_func;
-        all_funcs = tabela.getItems();
-        single_func = tabela.getSelectionModel().getSelectedItems();
-        single_func.forEach(all_funcs::remove);*/
-
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-func-dialog.fxml"));
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/delete-func-dialog.fxml"));
             DialogPane funcDialogPane = fxmlLoader.load();
-            
+
             DeleteFuncController deleteFuncController = fxmlLoader.getController();
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(funcDialogPane);
             dialog.setTitle("Deletar Funcionário");
 
-            Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.get() == ButtonType.OK){
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 deleteFuncController.remover();
+                atualizarTabela();
             }
-        }catch (IOException e){
-            e.printStackTrace();
+        } catch (IOException e) {
+            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de deletar funcionário.", e);
         }
     }
-
 }

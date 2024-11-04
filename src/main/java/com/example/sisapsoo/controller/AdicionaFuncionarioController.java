@@ -1,12 +1,15 @@
 package com.example.sisapsoo.controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
 import com.example.sisapsoo.model.Funcionario;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
+import javafx.fxml.FXML;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 
 public class AdicionaFuncionarioController {
+    private GerenciamentoFuncs gerenciamentoFuncs;
+    private FuncionarioDAO fDAO = new FuncionarioDAO();
 
     @FXML
     private TextField nomeField;
@@ -15,69 +18,32 @@ public class AdicionaFuncionarioController {
     private TextField cpfField;
 
     @FXML
-    private TextField salarioField;
+    private Spinner<Double> salarioSpinner;
 
     @FXML
     private TextField telefoneField;
-
-    @FXML
-    private RadioButton funcionarioRadio;
-
-    @FXML
-    private RadioButton gerenteRadio;
-
-    private ToggleGroup roleGroup;
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-    private GerenciamentoFuncs gerenciamentoFuncs;
-
-    @FXML
-    public void initialize() {
-        roleGroup = new ToggleGroup();
-        funcionarioRadio.setToggleGroup(roleGroup);
-        gerenteRadio.setToggleGroup(roleGroup);
-    }
 
     public void setGerenciamentoFuncs(GerenciamentoFuncs gerenciamentoFuncs) {
         this.gerenciamentoFuncs = gerenciamentoFuncs;
     }
 
     @FXML
-    private TextField senhaField;
+    public void initialize() {
+        // define o intervalo e o incremento do spinner de salário
+        SpinnerValueFactory<Double> valueFactory =
+                new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100000.0, 0.0, 100.0);
+        salarioSpinner.setValueFactory(valueFactory);
+    }
 
     @FXML
-    protected void adicionarFuncionario() {
-        String nome = nomeField.getText();
-        String cpf = cpfField.getText();
-        String telefone = telefoneField.getText();
-        String senha = senhaField.getText();
-        String tipoFuncionario = funcionarioRadio.isSelected() ? "Funcionario" : "Gerente";
+    public void adicionarFuncionario() {
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome(nomeField.getText());
+        funcionario.setCpf(cpfField.getText());
+        funcionario.setSalario(salarioSpinner.getValue());
+        funcionario.setTelefone(telefoneField.getText());
 
-        double salario;
-        try {
-            salario = Double.parseDouble(salarioField.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro de Formato");
-            alert.setHeaderText("Formato Inválido");
-            alert.setContentText("Por favor, insira um valor numérico válido para o salário.");
-            alert.showAndWait();
-            return;
-        }
-
-        Funcionario novoFuncionario = new Funcionario(nome, cpf, telefone, salario, tipoFuncionario);
-        funcionarioDAO.save(novoFuncionario);
+        fDAO.save(funcionario);
         gerenciamentoFuncs.atualizarTabela();
-
-        fecharDialog();
-    }
-
-    @FXML
-    private void cancelar() {
-        fecharDialog();
-    }
-
-    private void fecharDialog() {
-        Stage stage = (Stage) nomeField.getScene().getWindow();
-        stage.close();
     }
 }
