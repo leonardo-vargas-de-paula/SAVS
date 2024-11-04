@@ -1,17 +1,12 @@
 package com.example.sisapsoo;
 
-import com.example.sisapsoo.controller.CadastroFuncController;
-import com.example.sisapsoo.controller.GerenciamentoFuncs;
 import com.example.sisapsoo.controller.LoginController;
-// import com.example.sisapsoo.model.Gerente;
-// import com.example.sisapsoo.model.dao.GerenteDAO;
 import com.example.sisapsoo.model.*;
 import com.example.sisapsoo.model.dao.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -84,8 +79,6 @@ public class HelloApplication extends Application {
         ps2.setPedido(p);
         ps2.setQuantidade(2);
         psDAO2.save(ps2);
-
-
 
         //adicionando item ao pedido
         p.getPedidoSalgados().add(ps);

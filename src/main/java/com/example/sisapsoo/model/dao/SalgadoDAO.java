@@ -60,7 +60,7 @@ public class SalgadoDAO {
     }
 
     //delete
-    public Salgado remove(String id) {
+    public Salgado remove(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
         Salgado us = null;
 
@@ -70,8 +70,8 @@ public class SalgadoDAO {
             em.remove(us);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e);
             em.getTransaction().rollback();
+            throw e;
         } finally {
             em.close();
         }
