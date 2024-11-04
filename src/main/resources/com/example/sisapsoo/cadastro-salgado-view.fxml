@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane fx:id="dialogPane" prefHeight="676.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroSalgadoController">
+   <header>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" style="-fx-background-color: #6F4E37;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <center>
+                  <Pane fx:id="painelCadastro" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ECB176; -fx-background-radius: 10px;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="1.0" text="Cadastro de Salgado" textAlignment="CENTER">
+                           <font>
+                              <Font size="45.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="15.0" top="15.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="labelNome" layoutX="128.0" layoutY="223.0" text="Nome">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Separator fx:id="separador" layoutX="80.0" layoutY="81.0" prefHeight="12.0" prefWidth="717.0" />
+                        <Label fx:id="labelPreco" layoutX="130.0" layoutY="340.0" text="Preco">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="campoPreco" layoutX="239.0" layoutY="330.0" prefHeight="34.0" prefWidth="416.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="campoNome" layoutX="238.0" layoutY="214.0" prefHeight="59.0" prefWidth="416.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="botaoSalvar" layoutX="578.0" layoutY="519.0" mnemonicParsing="false" onAction="#salvar" text="Salvar">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botaoReiniciar" layoutX="84.0" layoutY="519.0" mnemonicParsing="false" onAction="#reiniciar" text="Cadastrar Novamente">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelSalvo" layoutX="407.0" layoutY="532.0" text="Salvo!!" textAlignment="CENTER" visible="false">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </header>
+   <buttonTypes>
+      <ButtonType fx:constant="OK" />
+   </buttonTypes>
+</DialogPane>
