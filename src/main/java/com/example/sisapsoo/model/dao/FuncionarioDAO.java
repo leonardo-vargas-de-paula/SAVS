@@ -4,7 +4,6 @@ import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +46,12 @@ public class FuncionarioDAO {
     }
 
     //select where id = <valor desejado>
-    public Funcionario findById(String cpf) {
-        EntityManager em = getEntityManager();
+    public Funcionario findById(Integer id) {
+        EntityManager em = new ConnectionFactory().getConnection();
         Funcionario f = null;
 
         try {
-            f = em.find(Funcionario.class, cpf);
+            f = em.find(Funcionario.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -63,22 +62,22 @@ public class FuncionarioDAO {
 
     //Lista de todos os objetos Funcionario
     public List<Funcionario> findAll() {
-        EntityManager em = ConnectionFactory.getConnection();
-        List<Funcionario> funcionarios = new ArrayList<>();
+        EntityManager em = new ConnectionFactory().getConnection();
+        List<Funcionario> f = null;
 
         try {
-            funcionarios = em.createQuery("SELECT f FROM Funcionario f", Funcionario.class).getResultList();
+            f = em.createQuery("from Funcionario f").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             em.close();
         }
-        return funcionarios;
+        return f;
     }
 
     //delete
     public Funcionario remove(Integer id) {
-        EntityManager em = ConnectionFactory.getConnection();
+        EntityManager em = new ConnectionFactory().getConnection();
         Funcionario f = null;
 
         try {
@@ -87,8 +86,9 @@ public class FuncionarioDAO {
             em.remove(f);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e);
             em.getTransaction().rollback();
+            // Joga a exceção para o controller de deletar funcionário, caso haja um erro de tentar excluir um funcionário que não existe
+            throw e;
         } finally {
             em.close();
         }
@@ -96,12 +96,12 @@ public class FuncionarioDAO {
 
     }
 
-    public Funcionario buscarFuncionarioAtual(String cpf) {
+    public Funcionario buscarFuncionarioAtual(String id) {
         EntityManager em = ConnectionFactory.getConnection();
         Funcionario funcionario = null;
 
         try {
-            funcionario = em.find(Funcionario.class, cpf);
+            funcionario = em.find(Funcionario.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {

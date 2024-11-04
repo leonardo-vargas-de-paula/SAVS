@@ -37,6 +37,11 @@ public class Funcionario extends Usuario{
         this.salario = salario;
     }
 
+
+    public int getId(){
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -55,6 +60,10 @@ public class Funcionario extends Usuario{
 
     public double getSalario() {
         return salario;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public void setNome(String nome) {

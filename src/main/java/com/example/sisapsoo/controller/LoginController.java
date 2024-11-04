@@ -3,18 +3,31 @@ package com.example.sisapsoo.controller;
 import com.example.sisapsoo.model.*;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import javafx.stage.Stage;
+import org.hibernate.mapping.List;
 
 public class LoginController {
     @FXML
@@ -28,11 +41,11 @@ public class LoginController {
         fDAO = new FuncionarioDAO();
     }
 
-    private Usuario autenticar(String username, String password) throws LoginException {
+    private Funcionario autenticar(String username, String password) throws LoginException {
         ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());
         String passHash = hashPassword(password);
 
-        for(Funcionario funcionario : funcionarios) {
+        for (Funcionario funcionario : funcionarios) {
             if (funcionario.getNome().equals(username) && funcionario.getSenha().equals(passHash)) {
                 return funcionario;
             }
@@ -46,19 +59,21 @@ public class LoginController {
         String password = passwordField.getText();
 
         try {
+            Funcionario usuario = autenticar(username, password);
+            trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
             usuarioAtual = autenticar(username, password); // salva o usuario autenticado
             abrirCadastroFuncionario();
         } catch (LoginException e) {
             showAlert("Erro de Login", e.getMessage());
         } catch (Exception e) {
-            showAlert("Erro", "Ocorreu um erro ao abrir a tela de cadastro.");
+//            showAlert("Erro", "Ocorreu um erro ao abrir a tela de cadastro.");
         }
     }
 
     private void abrirCadastroFuncionario() throws Exception {
         if (usuarioAtual != null && usuarioAtual instanceof Funcionario) {
-            String cpfAtual = ((Funcionario) usuarioAtual).getCpf(); // obtenha o CPF do usuário logado
-            Funcionario funcionarioAtual = fDAO.findById(cpfAtual);
+            int id = ((Funcionario) usuarioAtual).getId(); // obtenha o CPF do usuário logado
+            Funcionario funcionarioAtual = fDAO.findById(id);
 
             if (!(funcionarioAtual instanceof Gerente)) {
                 showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
@@ -102,6 +117,21 @@ public class LoginController {
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void trocarCena(ActionEvent event, String fxml) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxml));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
         }
     }
 }

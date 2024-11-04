@@ -1,10 +1,10 @@
 package com.example.sisapsoo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.util.Map;
+
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Gerente")
 public class Gerente extends Funcionario {
 
 	public Gerente() {

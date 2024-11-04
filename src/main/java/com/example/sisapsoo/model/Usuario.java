@@ -1,21 +1,21 @@
 package com.example.sisapsoo.model;
 
 public abstract class Usuario {
-    protected String id;
+    protected int id;
     protected String senha;
 
     public Usuario(){
     }
 
-    public Usuario(String id){
+    public Usuario(int id){
     }
 
-    public Usuario(String id, String senha){
+    public Usuario(int id, String senha){
         this.id = id;
         this.senha = senha;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -23,7 +23,7 @@ public abstract class Usuario {
         return senha;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

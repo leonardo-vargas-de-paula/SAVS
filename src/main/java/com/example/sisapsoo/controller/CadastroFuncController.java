@@ -1,6 +1,5 @@
 package com.example.sisapsoo.controller;
 
-import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
 import com.example.sisapsoo.model.Gerente;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
@@ -15,6 +14,8 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -58,11 +59,11 @@ public class CadastroFuncController {
 
     private Funcionario f;
     private FuncionarioDAO fDAO;
-    private String cpfAtual; // armazena o CPF do usuario logado
+    private int idAtual; // armazena o CPF do usuario logado
 
-    // metodo para definir o CPF do usuário logado
-    public void setCpfAtual(String cpfAtual) {
-        this.cpfAtual = cpfAtual;
+    // metodo para definir o id do usuário logado
+    public void setIdAtual(int idAtual) {
+        this.idAtual = idAtual;
     }
 
     @FXML
@@ -83,15 +84,13 @@ public class CadastroFuncController {
         }
 
         String senha = campoSenha.getText();
-        String senhaHash = hashPassword(senha); // Hash da senha
-
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String salario = campoSalario.getText();
         String telefone = campoTelefone.getText();
 
         try {
-            f.setSenha(senhaHash);
+            f.setSenha(hashPassword(senha));
             f.setNome(nome);
             f.setCpf(cpf);
             f.setSalario(Double.parseDouble(salario));
@@ -113,7 +112,7 @@ public class CadastroFuncController {
     }
 
     private boolean isGerenteAutorizado() {
-        Funcionario funcionarioAtual = fDAO.findById(cpfAtual); // busca o funcionario atual
+        Funcionario funcionarioAtual = fDAO.findById(idAtual); // busca o funcionario atual
         return funcionarioAtual instanceof Gerente; // verifica se é gerente
     }
 
@@ -150,7 +149,7 @@ public class CadastroFuncController {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
-            
+
             // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {

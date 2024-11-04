@@ -1,39 +1,43 @@
 package com.example.sisapsoo.model.dao;
 
 import com.example.sisapsoo.connection.ConnectionFactory;
-import com.example.sisapsoo.model.Usuario;
+import com.example.sisapsoo.model.Pedido;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class UsuarioDAO {
+public class PedidoDAO {
     EntityManager em = new ConnectionFactory().getConnection();
 
     //insert-update
-    public Usuario save(Usuario u) {
+    public Pedido save(Pedido u) {
+        EntityManager em = new ConnectionFactory().getConnection();
         try {
             em.getTransaction().begin();
-            em.persist(u);
-            System.out.println("SALVOU USUARIO ----------------------------------------------");
-            em.merge(u);
-
+            if (u.getIdPedido() == null) {
+                em.persist(u); // insere novo pedido
+            } else {
+                u = em.merge(u); // atualiza o pedido existente
+            }
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
         } finally {
             em.close();
         }
-
         return u;
     }
 
     //select where id = <valor desejado>
-    public Usuario findById(String id) {
+    public Pedido findById(String id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Usuario u = null;
+        Pedido u = null;
 
         try {
-            u = em.find(Usuario.class, id);
+            u = em.find(Pedido.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -43,12 +47,12 @@ public class UsuarioDAO {
     }
 
     //Lista de todos os objetos Tabelateste
-    public List<Usuario> findAll() {
+    public List<Pedido> findAll() {
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Usuario> us = null;
+        List<Pedido> us = null;
 
         try {
-            us = em.createQuery("from Usuario us").getResultList();
+            us = em.createQuery("from Pedido us").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
@@ -58,12 +62,12 @@ public class UsuarioDAO {
     }
 
     //delete
-    public Usuario remove(String id) {
+    public Pedido remove(String id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Usuario us = null;
+        Pedido us = null;
 
         try {
-            us = em.find(Usuario.class, id);
+            us = em.find(Pedido.class, id);
             em.getTransaction().begin();
             em.remove(us);
             em.getTransaction().commit();

@@ -56,7 +56,7 @@ public class CadastroGerenteController {
     private GerenteDAO gerenteDAO;
     private Funcionario funcionario;
     private FuncionarioDAO funcionarioDAO;
-    private String cpfAtual;
+    private Integer idAtual;
 
     @FXML
     public void initialize() {
@@ -65,8 +65,8 @@ public class CadastroGerenteController {
         gerenteDAO = new GerenteDAO();
     }
 
-    public void setCpfAtual(String cpfAtual) {
-        this.cpfAtual = cpfAtual;
+    public void setIdAtual(int idAtual) {
+        this.idAtual = idAtual;
     }
 
     @FXML
@@ -131,10 +131,10 @@ public class CadastroGerenteController {
     }
 
     private boolean isGerenteAutorizado() {
-        if (cpfAtual == null) {
+        if (idAtual == null) {
             return false;
         }
-        Funcionario funcionarioAtual = funcionarioDAO.findById(cpfAtual);
+        Funcionario funcionarioAtual = funcionarioDAO.findById(idAtual);
         return funcionarioAtual instanceof Gerente;
     }
 
