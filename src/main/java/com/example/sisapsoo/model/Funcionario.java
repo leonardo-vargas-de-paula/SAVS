@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "Funcionario")
 public class Funcionario extends Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "func_sequence")
-    @SequenceGenerator(sequenceName = "func_sequence", name = "func_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 

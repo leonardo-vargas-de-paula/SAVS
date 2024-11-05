@@ -1,6 +1,8 @@
 package com.example.sisapsoo.controller;
 
 
+import com.example.sisapsoo.model.Funcionario;
+import com.example.sisapsoo.model.Gerente;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -48,6 +51,8 @@ public class HomeController {
     @FXML
     private Label nomeUsuario;
 
+    LoginController loginController = new LoginController();
+
     private void trocarCena(ActionEvent event, String fxml) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -87,6 +92,14 @@ public class HomeController {
     void sairSistema(ActionEvent event) {
         Platform.exit();
 
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML

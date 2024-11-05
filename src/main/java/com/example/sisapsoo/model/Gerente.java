@@ -14,6 +14,4 @@ public class Gerente extends Funcionario {
 	public Gerente(String nome, String cpf, String telefone, double salario) {
 		super(nome, cpf, telefone, salario, "Gerente");
 	}
-
-
 }

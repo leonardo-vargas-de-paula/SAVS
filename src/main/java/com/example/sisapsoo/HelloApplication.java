@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
 //        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
 //        stage.getIcons().add(icon);
 
-        //adicionando um funcionario gerente
+        // adicionando um funcionario gerente
         Gerente g = new Gerente();
         GerenteDAO gDAO = new GerenteDAO();
 
@@ -35,66 +35,6 @@ public class HelloApplication extends Application {
         g.setTelefone("2333");
         g.setSalario(98.0);
         gDAO.save(g);
-
-        //adicionando um salgado
-        Salgado s = new Salgado();
-        SalgadoDAO sDAO = new SalgadoDAO();
-
-        s.setNome("Esfiha");
-        s.setPreco(21);
-        sDAO.save(s);
-
-        Salgado s2 = new Salgado();
-        SalgadoDAO sDAO2 = new SalgadoDAO();
-
-        s2.setNome("Kibe");
-        s2.setPreco(7);
-        sDAO2.save(s2);
-
-        //adicionando um cliente
-        Cliente c = new Cliente();
-        ClienteDAO cDAO = new ClienteDAO();
-
-        c.setNome("Gustavo Pereira Uzumaki");
-        c.setTelefone("67993253538");
-        cDAO.save(c);
-
-        //criando um pedido relacionado a um cliente (c)
-        Pedido p = new Pedido();
-        PedidoDAO pDAO = new PedidoDAO();
-
-        p.setCliente(c);
-        p.setStatus("teste");
-        p.setLoc("av afonso pena 888");
-        pDAO.save(p);
-
-        //criando um pedido salgado para o pedido
-        PedidoSalgado ps = new PedidoSalgado();
-        PedidoSalgadoDAO psDAO = new PedidoSalgadoDAO();
-
-        ps.setSalgado(s);//esfiha
-        ps.setPedido(p);
-        ps.setQuantidade(3);
-        psDAO.save(ps);
-
-        PedidoSalgado ps2 = new PedidoSalgado();
-        PedidoSalgadoDAO psDAO2 = new PedidoSalgadoDAO();
-
-        ps2.setSalgado(s2);//kibe
-        ps2.setPedido(p);
-        ps2.setQuantidade(2);
-        psDAO2.save(ps2);
-
-
-
-        //adicionando item ao pedido
-        p.getPedidoSalgados().add(ps);
-        p.getPedidoSalgados().add(ps2);
-
-        //adicionando preco
-        p.setPreco(p.calcularPrecoTotal());
-
-        pDAO.save(p);
 
         LoginController controller = fxmlLoader.getController();
 

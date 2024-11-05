@@ -10,9 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,22 +18,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import javafx.stage.Stage;
-import org.hibernate.mapping.List;
 
 public class LoginController {
     @FXML
     private TextField usernameField;
+
     @FXML
     private PasswordField passwordField;
+
     private FuncionarioDAO fDAO;
-    private Usuario usuarioAtual; // Variável para armazenar o usuário autenticado
+
+    private static Funcionario usuarioAtual; // Variável para armazenar o usuário autenticado ESTÁTICAMENTE -> FAZ PARTE DA CLASSE -> PERMITE A VERIFICAÇÃO
 
     public LoginController() {
         fDAO = new FuncionarioDAO();
@@ -59,10 +53,9 @@ public class LoginController {
         String password = passwordField.getText();
 
         try {
-            Funcionario usuario = autenticar(username, password);
-            trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
             usuarioAtual = autenticar(username, password); // salva o usuario autenticado
-            abrirCadastroFuncionario();
+            trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
+            //abrirCadastroFuncionario();
         } catch (LoginException e) {
             showAlert("Erro de Login", e.getMessage());
         } catch (Exception e) {
@@ -70,28 +63,10 @@ public class LoginController {
         }
     }
 
-    private void abrirCadastroFuncionario() throws Exception {
-        if (usuarioAtual != null && usuarioAtual instanceof Funcionario) {
-            int id = ((Funcionario) usuarioAtual).getId(); // obtenha o CPF do usuário logado
-            Funcionario funcionarioAtual = fDAO.findById(id);
-
-            if (!(funcionarioAtual instanceof Gerente)) {
-                showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
-                return;
-            }
-        }
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/cadastro-funcionario-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
-
-        Stage stage = new Stage();
-        stage.setTitle("Cadastro de Funcionário");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        Stage loginStage = (Stage) usernameField.getScene().getWindow();
-        loginStage.close();
+    public boolean verificaGerente(){
+        if (usuarioAtual != null && usuarioAtual instanceof Funcionario)
+            return usuarioAtual instanceof Gerente; // Retorna true se usuarioAtual é uma instância de Gerente
+        return false;
     }
 
     private void showAlert(String title, String message) {

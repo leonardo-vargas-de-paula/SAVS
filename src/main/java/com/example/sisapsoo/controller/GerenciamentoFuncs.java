@@ -31,30 +31,47 @@ public class GerenciamentoFuncs implements Initializable {
 
     @FXML
     private BorderPane borderPanel;
+
     @FXML
     private Label labelTitulo;
+
     @FXML
     private Pane mainPanel;
+
     @FXML
     private MenuBar menuBar;
+
     @FXML
     private TableView<Funcionario> tabela;
+
     @FXML
     private TableColumn<Funcionario, String> nome;
+
     @FXML
     private TableColumn<Funcionario, String> cpf;
+
     @FXML
     private TableColumn<Funcionario, String> salario;
+
     @FXML
     private TableColumn<Funcionario, String> telefone;
+
+    @FXML
+    private TableColumn<Funcionario, String> colunaTipo;
+
     @FXML
     private TableColumn<Funcionario, Integer> id;
+
     @FXML
     private Button addButton;
+
     @FXML
     private Button removeButton;
+
     @FXML
     private Pane painelDeCima;
+
+    private LoginController loginController = new LoginController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,6 +82,7 @@ public class GerenciamentoFuncs implements Initializable {
         cpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
         telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        colunaTipo.setCellValueFactory(new PropertyValueFactory<>("tipoFuncionario"));
 
         tabela.setItems(funcionarios);
     }
@@ -91,37 +109,29 @@ public class GerenciamentoFuncs implements Initializable {
 
     @FXML
     void addFunc() {
-        try {
-            System.out.println("aqui! 1");
+        if(loginController.verificaGerente())
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
+                DialogPane dialogPane = fxmlLoader.load();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
-            DialogPane dialogPane = fxmlLoader.load();
+                CadastroFuncController controller = fxmlLoader.getController();
 
-            CadastroFuncController controller = fxmlLoader.getController();
-            if (controller != null) {
-                controller.setGerenciamentoFuncs(this);
-            } else {
-                Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro: controlador do diálogo 'Adicionar Funcionário' está nulo.");
-                return;
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(dialogPane);
+                dialog.setTitle("Adicionar Funcionário");
+
+                Optional<ButtonType> result = dialog.showAndWait();
+
+                if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    ActionEvent evento = new ActionEvent();
+                    controller.salvar(evento);
+                    atualizarTabela();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            System.out.println("aqui! 2");
-
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(dialogPane);
-            dialog.setTitle("Adicionar Funcionário");
-
-            Optional<ButtonType> result = dialog.showAndWait();
-
-            if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                System.out.println("aqui! 4");
-                ActionEvent evento = new ActionEvent();
-                controller.salvar(evento);
-                atualizarTabela();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        else
+            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
     }
 
     public void atualizarTabela() {
@@ -131,23 +141,34 @@ public class GerenciamentoFuncs implements Initializable {
 
     @FXML
     void removerFunc(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/delete-func-dialog.fxml"));
-            DialogPane funcDialogPane = fxmlLoader.load();
+        if(loginController.verificaGerente())
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/delete-func-dialog.fxml"));
+                DialogPane funcDialogPane = fxmlLoader.load();
 
-            DeleteFuncController deleteFuncController = fxmlLoader.getController();
+                DeleteFuncController deleteFuncController = fxmlLoader.getController();
 
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(funcDialogPane);
-            dialog.setTitle("Deletar Funcionário");
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(funcDialogPane);
+                dialog.setTitle("Deletar Funcionário");
 
-            Optional<ButtonType> result = dialog.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                deleteFuncController.remover(); // Executa remoção
-                atualizarTabela(); // Atualiza tabela após remoção
+                Optional<ButtonType> result = dialog.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    deleteFuncController.remover(); // Executa remoção
+                    atualizarTabela(); // Atualiza tabela após remoção
+                }
+            } catch (IOException e) {
+                Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de deletar funcionário.", e);
             }
-        } catch (IOException e) {
-            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de deletar funcionário.", e);
-        }
+        else
+            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
