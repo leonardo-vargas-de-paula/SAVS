@@ -25,7 +25,7 @@
                 </HBox>
 
                 <HBox spacing="10">
-                    <Label text="Senha:"/>
+                    <Label text="Senhaa:"/>
                     <PasswordField fx:id="campoSenha" promptText="SENHA" />
                 </HBox>
             </children>
