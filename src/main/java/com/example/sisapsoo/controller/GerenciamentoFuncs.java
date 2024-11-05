@@ -19,14 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -99,10 +92,12 @@ public class GerenciamentoFuncs implements Initializable {
     @FXML
     void addFunc() {
         try {
+            System.out.println("aqui! 1");
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
             DialogPane dialogPane = fxmlLoader.load();
 
-            AdicionaFuncionarioController controller = fxmlLoader.getController();
+            CadastroFuncController controller = fxmlLoader.getController();
             if (controller != null) {
                 controller.setGerenciamentoFuncs(this);
             } else {
@@ -110,17 +105,22 @@ public class GerenciamentoFuncs implements Initializable {
                 return;
             }
 
+            System.out.println("aqui! 2");
+
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("Adicionar Funcionário");
 
             Optional<ButtonType> result = dialog.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                controller.adicionarFuncionario();
+
+            if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                System.out.println("aqui! 4");
+                ActionEvent evento = new ActionEvent();
+                controller.salvar(evento);
                 atualizarTabela();
             }
         } catch (IOException e) {
-            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de adicionar funcionário.", e);
+            e.printStackTrace();
         }
     }
 

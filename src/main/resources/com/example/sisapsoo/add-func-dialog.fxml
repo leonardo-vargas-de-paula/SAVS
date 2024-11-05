@@ -2,26 +2,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sisapsoo.controller.AdicionaFuncionarioController">
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:id="dialogPane" fx:controller="com.example.sisapsoo.controller.CadastroFuncController">
     <content>
         <VBox spacing="10" alignment="CENTER">
             <children>
                 <Label text="Adicionar Novo Funcionário" style="-fx-font-size: 16px;"/>
                 <HBox spacing="10">
                     <Label text="Nome:"/>
-                    <TextField fx:id="nomeField" promptText="Nome"/>
+                    <TextField fx:id="campoNome" promptText="Nome"/>
                 </HBox>
                 <HBox spacing="10">
                     <Label text="CPF:"/>
-                    <TextField fx:id="cpfField" promptText="CPF"/>
+                    <TextField fx:id="campoCpf" promptText="CPF"/>
                 </HBox>
                 <HBox spacing="10">
                     <Label text="Salário:"/>
-                    <TextField fx:id="salarioField" promptText="Salário"/>
+                    <TextField fx:id="campoSalario" promptText="Salário"/>
                 </HBox>
                 <HBox spacing="10">
                     <Label text="Telefone:"/>
-                    <TextField fx:id="telefoneField" promptText="Telefone"/>
+                    <TextField fx:id="campoTelefone" promptText="Telefone"/>
+                </HBox>
+
+                <HBox spacing="10">
+                    <Label text="Senha:"/>
+                    <PasswordField fx:id="campoSenha" promptText="SENHA" />
                 </HBox>
             </children>
         </VBox>

@@ -14,6 +14,8 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
 import java.security.MessageDigest;
@@ -56,10 +58,31 @@ public class CadastroFuncController {
     private Separator separador;
     @FXML
     private Label titulo;
+    @FXML
+    private DialogPane dialogPane;
+
+    private GerenciamentoFuncs gerenciamentoFuncs;
+
+    public void setGerenciamentoFuncs(GerenciamentoFuncs gerenciamentoFuncs) {
+        this.gerenciamentoFuncs = gerenciamentoFuncs;
+    }
+
+    @FXML
+    public void configurarBotaoCadastrar() {
+        System.out.println("Chegou aqui");
+        Button cadastrarButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        if (cadastrarButton != null) {
+            cadastrarButton.setOnAction(this::salvar);
+        } else {
+            System.err.println("O botão 'Cadastrar' não foi encontrado.");
+        }
+    }
+
 
     private Funcionario f;
     private FuncionarioDAO fDAO;
     private int idAtual;
+
 
     // metodo para definir o id do usuário logado
     public void setIdAtual(int idAtual) {
@@ -76,10 +99,10 @@ public class CadastroFuncController {
             return;
         }
 
-        if (!isGerenteAutorizado()) {
-            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
-            return;
-        }
+//        if (!isGerenteAutorizado()) {
+//            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros funcionários.");
+//            return;
+//        }
 
         String senha = campoSenha.getText();
         String nome = campoNome.getText();
