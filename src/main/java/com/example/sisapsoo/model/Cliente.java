@@ -10,8 +10,8 @@ import java.util.List;
 public class Cliente {
     // Variáveis da classe
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cliente_sequence")
-    @SequenceGenerator(sequenceName = "cliente_sequence", name = "cli_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "nome")

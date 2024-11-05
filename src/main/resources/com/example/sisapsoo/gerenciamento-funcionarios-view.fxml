@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPanel" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoFuncs">
+<BorderPane fx:id="borderPanel" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoFuncsController">
    <center>
       <TableView fx:id="tabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>

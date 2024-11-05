@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GerenciamentoSalgados implements Initializable {
+public class GerenciamentoSalgadosController implements Initializable {
     private SalgadoDAO sDAO = new SalgadoDAO();
 
     @FXML
@@ -85,29 +85,36 @@ public class GerenciamentoSalgados implements Initializable {
     }
 
     @FXML
-    void adicionar(ActionEvent event) {
+    void adicionar() {
         try{
             FXMLLoader fxml_loader = new FXMLLoader();
-            fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-salgado-view.fxml"));
+            fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-salgado-dialog.fxml"));
             DialogPane cadastro_salgado = fxml_loader.load();
 
-            CadastroSalgadoController delete_salg_controller = fxml_loader.getController();
+            CadastroSalgadoController add_salg_controller = fxml_loader.getController();
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(cadastro_salgado);
             dialog.setTitle("Cadastrar Salgado");
 
             Optional<ButtonType> clicked_button = dialog.showAndWait();
-            if(clicked_button.get() == ButtonType.OK){
-                System.out.println("");
+            if(clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
+                ActionEvent event = new ActionEvent();
+                add_salg_controller.salvar(event);
+                atualizarTabela();
             }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
+    public void atualizarTabela() {
+        ObservableList<Salgado> salgados = FXCollections.observableArrayList(sDAO.findAll());
+        tabelaSalgado.setItems(salgados);
+    }
+
     @FXML
-    void remover(ActionEvent event) {
+    void remover() {
         try{
             FXMLLoader fxml_loader = new FXMLLoader();
             fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-salg-dialog.fxml"));
@@ -120,8 +127,10 @@ public class GerenciamentoSalgados implements Initializable {
             dialog.setTitle("Deletar Salgado");
 
             Optional<ButtonType> clicked_button = dialog.showAndWait();
-            if(clicked_button.get() == ButtonType.OK){
-                delete_salg_controller.remover();
+            if(clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
+                ActionEvent event = new ActionEvent();
+                delete_salg_controller.remover(event);
+                atualizarTabela();
             }
         }catch (IOException e){
             e.printStackTrace();

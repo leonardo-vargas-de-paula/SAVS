@@ -23,10 +23,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class GerenciamentoFuncs implements Initializable {
+public class GerenciamentoFuncsController implements Initializable {
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
     @FXML
@@ -103,7 +102,7 @@ public class GerenciamentoFuncs implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
+            Logger.getLogger(GerenciamentoFuncsController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
         }
     }
 
@@ -111,7 +110,7 @@ public class GerenciamentoFuncs implements Initializable {
     void addFunc() {
         if(loginController.verificaGerente())
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/add-func-dialog.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/sisapsoo/cadastro-func-dialog.fxml"));
                 DialogPane dialogPane = fxmlLoader.load();
 
                 CadastroFuncController controller = fxmlLoader.getController();
@@ -158,7 +157,7 @@ public class GerenciamentoFuncs implements Initializable {
                     atualizarTabela(); // Atualiza tabela após remoção
                 }
             } catch (IOException e) {
-                Logger.getLogger(GerenciamentoFuncs.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de deletar funcionário.", e);
+                Logger.getLogger(GerenciamentoFuncsController.class.getName()).log(Level.SEVERE, "Erro ao carregar o diálogo de deletar funcionário.", e);
             }
         else
             showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");

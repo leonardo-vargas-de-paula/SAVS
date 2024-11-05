@@ -1,7 +1,6 @@
 package com.example.sisapsoo.controller;
 
 import com.example.sisapsoo.model.Cliente;
-import com.example.sisapsoo.model.Salgado;
 import com.example.sisapsoo.model.dao.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,10 +72,10 @@ public class GerenciamentoClientesController implements Initializable {
     }
 
     @FXML
-    void addFunc(ActionEvent event) {
+    void add() {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-cliente-view.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-cliente-dialog.fxml"));
             DialogPane clienteDialog = fxmlLoader.load();
 
             CadastroClienteController cadastrarClienteController = fxmlLoader.getController();
@@ -86,17 +85,18 @@ public class GerenciamentoClientesController implements Initializable {
             dialog.setTitle("Cadastrar Cliente");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.isPresent())
-                if(clickedButton.get() == ButtonType.OK)
-                    System.out.println();
-
+            if(clickedButton.isPresent() && clickedButton.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
+                ActionEvent event = new ActionEvent();
+                cadastrarClienteController.salvar(event);
+                atualizarTabela();
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
     @FXML
-    void remover(ActionEvent event) {
+    void remover() {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-cliente-dialog.fxml"));
@@ -109,12 +109,19 @@ public class GerenciamentoClientesController implements Initializable {
             dialog.setTitle("Deletar Cliente");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.get() == ButtonType.OK){
-                deleteClienteController.remover();
+            if(clickedButton.isPresent() && clickedButton.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
+                ActionEvent event = new ActionEvent();
+                deleteClienteController.remover(event);
+                atualizarTabela();
             }
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void atualizarTabela() {
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList(cDAO.findAll());
+        tabela.setItems(clientes);
     }
 
     @FXML

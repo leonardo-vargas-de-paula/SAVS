@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane fx:id="borderPanel" prefHeight="652.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoSalgados">
+<BorderPane fx:id="borderPanel" prefHeight="652.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoSalgadosController">
    <center>
       <TableView fx:id="tabelaSalgado" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
         <columns>

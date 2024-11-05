@@ -11,13 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class CadastroSalgadoController {
-
-    @FXML
-    private Button botaoReiniciar;
-
-    @FXML
-    private Button botaoSalvar;
-
     @FXML
     private TextField campoNome;
 
@@ -74,22 +67,6 @@ public class CadastroSalgadoController {
         }catch(Exception e){
             showAlert("Erro ao cadastrar: ", "" + e);
         }
-
-        return;
-    }
-
-    /**
-     * Limpa todos os campos
-     */
-    @FXML
-    void reiniciar(javafx.event.ActionEvent actionEvent) {
-        campoNome.clear();
-        campoPreco.clear();
-
-        campoNome.setDisable(false);
-        campoPreco.setDisable(false);
-
-        labelSalvo.setVisible(false);
 
         return;
     }

@@ -1,6 +1,7 @@
 package com.example.sisapsoo.controller;
 
 import com.example.sisapsoo.model.dao.ClienteDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
@@ -24,7 +25,8 @@ public class DeleteClienteController {
 
     private ClienteDAO cDAO = new ClienteDAO();
 
-    void remover(){
+    @FXML
+    void remover(ActionEvent event){
         if(cpfField.getText().isEmpty()){
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
             return;

@@ -9,7 +9,7 @@
 
 <DialogPane fx:id="dialogPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.DeleteClienteController">
     <header>
-      <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="365.0">
+      <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="365.0">
          <children>
             <TextField fx:id="cpfField" layoutX="109.0" layoutY="40.0" prefHeight="35.0" prefWidth="214.0" />
             <Label fx:id="cpfLabel" layoutX="52.0" layoutY="42.0" text="ID">
