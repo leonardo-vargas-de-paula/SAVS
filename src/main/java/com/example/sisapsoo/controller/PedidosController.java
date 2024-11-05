@@ -4,6 +4,8 @@ import com.example.sisapsoo.model.Pedido;
 import com.example.sisapsoo.model.PedidoSalgado;
 import com.example.sisapsoo.model.Salgado;
 import com.example.sisapsoo.model.dao.PedidoDAO;
+//import com.example.sisapsoo.model.enums.Status;
+import com.example.sisapsoo.model.enums.StatusPedido;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -32,6 +34,8 @@ public class PedidosController implements Initializable {
 
     @FXML
     private Button addButton;
+    @FXML
+    private ComboBox<StatusPedido> comboboxStatus;
 
     @FXML
     private BorderPane borderPanel;
@@ -71,6 +75,8 @@ public class PedidosController implements Initializable {
 
     @FXML
     private Label valorPedido;
+
+    private Pedido pedidoAtual;
 
     @FXML
     void addFunc(ActionEvent event) {
@@ -142,16 +148,17 @@ public class PedidosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Carrega os pedidos no ComboBox
-        carregarPedidos();  //Metodo para carregar os pedidos no ComboBox
+        carregarPedidos();
 
-        // Configura as colunas da TableView (nome, quantidade e preço do salgado)
         configurarTableView();
+
+        configurarComboBoxStatus();
 
         // Adiciona o listener para atualizar a TableView ao selecionar um pedido
         combobox1.valueProperty().addListener((obs, oldPedido, newPedido) -> {
             if (newPedido != null) {
                 // Carregar os salgados associados ao novo pedido selecionado
+                pedidoAtual = newPedido;
                 ObservableList<PedidoSalgado> salgados = FXCollections.observableArrayList(newPedido.getPedidoSalgados());
                 tabelaPedidos.setItems(salgados);
 
@@ -186,6 +193,45 @@ public class PedidosController implements Initializable {
         }
     }
 
+    private void configurarComboBoxStatus() {
+        // Adiciona os valores do enum na ComboBox
+        comboboxStatus.setItems(FXCollections.observableArrayList(StatusPedido.values()));
+
+        // Define como a descrição será exibida na ComboBox
+        comboboxStatus.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(StatusPedido status, boolean empty) {
+                super.updateItem(status, empty);
+                setText(empty || status == null ? null : status.getDescricao());
+            }
+        });
+
+        // Configura o botão da ComboBox
+        comboboxStatus.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(StatusPedido status, boolean empty) {
+                super.updateItem(status, empty);
+                setText(empty || status == null ? null : status.getDescricao());
+            }
+        });
+
+        // Listener para atualizar o status do pedido ao mudar a seleção
+        comboboxStatus.valueProperty().addListener((obs, oldStatus, newStatus) -> {
+            if (newStatus != null && pedidoAtual != null) {
+                PedidoDAO pedidoDAO = new PedidoDAO();
+                pedidoAtual.setStatus(newStatus.getDescricao()); // Atualiza o status do pedido atual
+                pedidoDAO.save(pedidoAtual);
+
+            }
+        });
 
 
+    }
+
+    public void setPedidoAtual(Pedido pedido) {
+        this.pedidoAtual = pedido;
+        // Atualiza a ComboBox de status para o status atual do pedido
+        comboboxStatus.setValue(StatusPedido.fromString(pedido.getStatus())); // Converte a String para StatusPedido
+    }
 }
+
