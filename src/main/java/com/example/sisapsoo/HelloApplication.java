@@ -11,7 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HelloApplication extends Application {
-    @Override
+     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
 //        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
 //        stage.getIcons().add(icon);
 
-        //adicionando um funcionario gerente
+        // adicionando um funcionario gerente
         Gerente g = new Gerente();
         GerenteDAO gDAO = new GerenteDAO();
 

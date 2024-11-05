@@ -1,29 +1,28 @@
 package com.example.sisapsoo.controller;
 
 import com.example.sisapsoo.model.Funcionario;
+import com.example.sisapsoo.model.Gerente;
 import com.example.sisapsoo.model.dao.FuncionarioDAO;
+import com.example.sisapsoo.model.dao.GerenteDAO;
+import jakarta.persistence.EntityManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
+import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ResourceBundle;
 
-public class CadastroFuncController {
-    @FXML
-    private Button botaoReiniciar;
-
-    @FXML
-    private Button botaoSalvar;
-
+public class CadastroFuncController implements Initializable {
     @FXML
     private TextField campoCpf;
 
@@ -34,10 +33,18 @@ public class CadastroFuncController {
     private TextField campoSalario;
 
     @FXML
+    private PasswordField campoSenha;
+
+    @FXML
     private TextField campoTelefone;
 
     @FXML
-    private TextField campoSenha;
+    private ChoiceBox<String> choiceBox;
+
+    private String[] opcoes = {"Gerente", "Funcionario"};
+
+    @FXML
+    private DialogPane dialogPane;
 
     @FXML
     private Label labelCpf;
@@ -49,39 +56,38 @@ public class CadastroFuncController {
     private Label labelSalario;
 
     @FXML
+    private Label labelSenha;
+
+    @FXML
     private Label labelTelefone;
 
     @FXML
-    private Label labelSalvo;
+    private Label labelTipo;
 
     @FXML
-    private BorderPane mainPanel;
-
-    @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private Pane painelCadastro;
-
-    @FXML
-    private Pane painelLateral;
-
-    @FXML
-    private Separator separador;
-
-    @FXML
-    private Label titulo;
+    private Label labelTitulo;
 
     private Funcionario f;
+
+    private Gerente g;
+
     private FuncionarioDAO fDAO;
+
+    private GerenteDAO gDAO;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        choiceBox.getItems().addAll(opcoes);
+    }
 
     @FXML
     void salvar(javafx.event.ActionEvent actionEvent) {
         f = new Funcionario();
+        g = new Gerente();
         fDAO = new FuncionarioDAO();
+        gDAO = new GerenteDAO();
 
-        // Verifica se todos os campos estão preenchidos
-        if(campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()){
+        if (campoSenha.getText().isEmpty() || campoCpf.getText().isEmpty() || campoNome.getText().isEmpty() || campoSalario.getText().isEmpty() || campoTelefone.getText().isEmpty()) {
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
             return;
         }
@@ -92,31 +98,42 @@ public class CadastroFuncController {
         String salario = campoSalario.getText();
         String telefone = campoTelefone.getText();
 
-        try {
-            f.setSenha(hashPassword(senha));
-            f.setNome(nome);
-            f.setCpf(cpf);
-            f.setSalario(Double.parseDouble(salario));
-            f.setTelefone(telefone);
-            
-            fDAO.save(f);
+        if(choiceBox.getValue() == "Gerente"){
+            try {
+                g.setSenha(hashPassword(senha));
+                g.setNome(nome);
+                g.setCpf(cpf);
+                g.setSalario(Double.parseDouble(salario));
+                g.setTelefone(telefone);
+                g.setTipoFuncionario("Gerente");
 
-            labelSalvo.setVisible(true);
-            campoNome.setDisable(true);
-            campoSenha.setDisable(true);
-            campoCpf.setDisable(true);
-            campoSalario.setDisable(true);
-            campoTelefone.setDisable(true);
-        }catch(Exception e){
-            showAlert("Erro ao cadastrar: ", "" + e);
+                gDAO.save(g);
+            } catch (Exception e) {
+                showAlert("Erro ao cadastrar: ", "" + e);
+            }
+        }else {
+            try {
+                f.setSenha(hashPassword(senha));
+                f.setNome(nome);
+                f.setCpf(cpf);
+                f.setSalario(Double.parseDouble(salario));
+                f.setTelefone(telefone);
+                f.setTipoFuncionario("Funcionário");
+
+                fDAO.save(f);
+            } catch (Exception e) {
+                showAlert("Erro ao cadastrar: ", "" + e);
+            }
         }
-    
+        campoNome.setDisable(true);
+        campoSenha.setDisable(true);
+        campoCpf.setDisable(true);
+        campoSalario.setDisable(true);
+        campoTelefone.setDisable(true);
+
         return;
     }
 
-    /**
-     * Limpa todos os campos
-     */
     @FXML
     void reiniciar(javafx.event.ActionEvent actionEvent) {
         campoNome.clear();
@@ -131,8 +148,6 @@ public class CadastroFuncController {
         campoSalario.setDisable(false);
         campoTelefone.setDisable(false);
 
-        labelSalvo.setVisible(false);
-
         return;
     }
 
@@ -146,12 +161,9 @@ public class CadastroFuncController {
 
     public static String hashPassword(String password) {
         try {
-            // Cria uma instância do MessageDigest para SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
 
-            // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {
                 String hex = Integer.toHexString(0xff & b);

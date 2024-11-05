@@ -6,73 +6,77 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 public class GerenteDAO {
-    EntityManager em = new ConnectionFactory().getConnection();
+    EntityManager entityManager = new ConnectionFactory().getConnection();
 
-    //insert-update
-    public Gerente save(Gerente u) {
+    public Gerente save(Gerente gerente) {
         try {
-            em.getTransaction().begin();
-            em.persist(u);
+            entityManager.getTransaction().begin();
+            entityManager.persist(gerente);
             System.out.println("SALVOU USUARIO ----------------------------------------------");
-            em.merge(u);
+            entityManager.merge(gerente);
 
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
+            System.err.println("Erro ao salvar o gerente: " + exception.getMessage());
         } finally {
-            em.close();
+            entityManager.close();
         }
 
-        return u;
+        return gerente;
     }
 
     //select where id = <valor desejado>
     public Gerente findById(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Gerente u = null;
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Gerente gerente = null;
 
         try {
-            u = em.find(Gerente.class, id);
-        } catch (Exception e) {
-            System.err.println(e);
+            gerente = entityManager.find(Gerente.class, id);
+        } catch (Exception exception) {
+            System.err.println("Erro ao buscar gerente por ID: " + exception.getMessage());
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return u;
+        return gerente;
     }
 
-    //Lista de todos os objetos Tabelateste
     public List<Gerente> findAll() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Gerente> us = null;
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        List<Gerente> gerentes = null;
 
         try {
-            us = em.createQuery("from Gerente us").getResultList();
-        } catch (Exception e) {
-            System.err.println(e);
+            gerentes = entityManager.createQuery("from Gerente us").getResultList();
+        } catch (Exception exception) {
+            System.err.println(exception);
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
+        return gerentes;
     }
 
     //delete
-    public Gerente remove(String id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Gerente us = null;
+    public Gerente remove(int id) {
+        EntityManager entityManager = new ConnectionFactory().getConnection();
+        Gerente gerente = null;
 
         try {
-            us = em.find(Gerente.class, id);
-            em.getTransaction().begin();
-            em.remove(us);
-            em.getTransaction().commit();
+            gerente = entityManager.find(Gerente.class, id);
+            if (gerente != null) {
+                this.entityManager.getTransaction().begin();
+                entityManager.remove(gerente);
+                entityManager.getTransaction().commit();
+                System.out.println("Gerente removido com sucesso.");
+            } else {
+                System.out.println("Gerente não encontrado para remoção.");
+            }
         } catch (Exception e) {
-            System.err.println(e);
-            em.getTransaction().rollback();
+            System.err.println("Erro ao remover gerente: " + e.getMessage());
+            entityManager.getTransaction().rollback();
         } finally {
-            em.close();
+            entityManager.close();
         }
-        return us;
+        return gerente;
 
     }
 }
