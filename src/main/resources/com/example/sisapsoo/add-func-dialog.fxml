@@ -5,23 +5,29 @@
 <DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sisapsoo.controller.AdicionaFuncionarioController">
     <content>
         <VBox spacing="10" alignment="CENTER">
-            <Label text="Adicionar Novo Funcionário" style="-fx-font-size: 16px;"/>
-            <HBox spacing="10">
-                <Label text="Nome:"/>
-                <TextField fx:id="nomeField" promptText="Nome"/>
-            </HBox>
-            <HBox spacing="10">
-                <Label text="CPF:"/>
-                <TextField fx:id="cpfField" promptText="CPF"/>
-            </HBox>
-            <HBox spacing="10">
-                <Label text="Salário:"/>
-                <Spinner fx:id="salarioSpinner" promptText="Salário"/>
-            </HBox>
-            <HBox spacing="10">
-                <Label text="Telefone:"/>
-                <TextField fx:id="telefoneField" promptText="Telefone"/>
-            </HBox>
+            <children>
+                <Label text="Adicionar Novo Funcionário" style="-fx-font-size: 16px;"/>
+                <HBox spacing="10">
+                    <Label text="Nome:"/>
+                    <TextField fx:id="nomeField" promptText="Nome"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="CPF:"/>
+                    <TextField fx:id="cpfField" promptText="CPF"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Salário:"/>
+                    <TextField fx:id="salarioField" promptText="Salário"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Telefone:"/>
+                    <TextField fx:id="telefoneField" promptText="Telefone"/>
+                </HBox>
+            </children>
         </VBox>
     </content>
+    <buttonTypes>
+        <ButtonType text="Cadastrar" buttonData="OK_DONE"/>
+        <ButtonType text="Cancelar" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
 </DialogPane>
