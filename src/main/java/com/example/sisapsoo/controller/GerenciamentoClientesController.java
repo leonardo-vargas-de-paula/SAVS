@@ -86,9 +86,10 @@ public class GerenciamentoClientesController implements Initializable {
             dialog.setTitle("Cadastrar Cliente");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.get() == ButtonType.OK){
-                System.out.println("");
-            }
+            if(clickedButton.isPresent())
+                if(clickedButton.get() == ButtonType.OK)
+                    System.out.println();
+
         }catch (IOException e){
             e.printStackTrace();
         }
