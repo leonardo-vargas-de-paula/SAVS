@@ -1,16 +1,14 @@
 package com.example.sisapsoo.controller;
 
-import com.example.sisapsoo.model.dao.FuncionarioDAO;
+import com.example.sisapsoo.model.dao.ClienteDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class DeleteFuncController {
-    private FuncionarioDAO fDAO = new FuncionarioDAO();
+public class DeleteClienteController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -24,6 +22,8 @@ public class DeleteFuncController {
     @FXML
     private DialogPane dialogPane;
 
+    private ClienteDAO cDAO = new ClienteDAO();
+
     void remover(){
         if(cpfField.getText().isEmpty()){
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
@@ -33,14 +33,14 @@ public class DeleteFuncController {
         String cpf = cpfField.getText();
 
         try{
-            fDAO.remove(Integer.parseInt(cpf));
+            cDAO.remove(Integer.parseInt(cpf));
         }catch(Exception e){
             showAlert("Erro ao deletar: ", "" + e);
         }
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
