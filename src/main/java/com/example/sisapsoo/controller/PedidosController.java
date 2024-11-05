@@ -5,6 +5,7 @@ import com.example.sisapsoo.model.PedidoSalgado;
 import com.example.sisapsoo.model.Salgado;
 import com.example.sisapsoo.model.dao.PedidoDAO;
 //import com.example.sisapsoo.model.enums.Status;
+import com.example.sisapsoo.model.enums.MetodoPagamento;
 import com.example.sisapsoo.model.enums.StatusPedido;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -51,6 +52,12 @@ public class PedidosController implements Initializable {
 
     @FXML
     private Pane mainPanel;
+
+    @FXML
+    private ComboBox<MetodoPagamento> comboboxMetodo;
+
+    @FXML
+    private Label metodoPagamento;
 
     @FXML
     private Pane painelDeCima;
@@ -103,7 +110,7 @@ public class PedidosController implements Initializable {
         }
     }
 
-    private void carregarPedidos(){
+    private void carregarPedidos() {
         PedidoDAO pDAO = new PedidoDAO();
         List<Pedido> pedidos = pDAO.findAllPs();
 
@@ -149,10 +156,9 @@ public class PedidosController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarPedidos();
-
         configurarTableView();
-
         configurarComboBoxStatus();
+        configurarComboBoxMetodo();
 
         // Adiciona o listener para atualizar a TableView ao selecionar um pedido
         combobox1.valueProperty().addListener((obs, oldPedido, newPedido) -> {
@@ -166,6 +172,7 @@ public class PedidosController implements Initializable {
                 nomeCliente.setText(newPedido.getCliente().getNome());
                 statusPedido.setText(newPedido.getStatus());
                 valorPedido.setText("R$ " + newPedido.getPreco());
+                metodoPagamento.setText(newPedido.getTipoPagamento());
             }
         });
     }
@@ -173,7 +180,7 @@ public class PedidosController implements Initializable {
     @FXML
     public void removerPedido(ActionEvent event) {
 
-        try{
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-pedido-dialog.fxml"));
             DialogPane funcDialogPane = fxmlLoader.load();
@@ -185,10 +192,10 @@ public class PedidosController implements Initializable {
             dialog.setTitle("Deletar Pedido");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.isPresent() && clickedButton.get() == ButtonType.OK){
+            if (clickedButton.isPresent() && clickedButton.get() == ButtonType.OK) {
                 deletePedidoController.remover();
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -228,10 +235,35 @@ public class PedidosController implements Initializable {
 
     }
 
-    public void setPedidoAtual(Pedido pedido) {
-        this.pedidoAtual = pedido;
-        // Atualiza a ComboBox de status para o status atual do pedido
-        comboboxStatus.setValue(StatusPedido.fromString(pedido.getStatus())); // Converte a String para StatusPedido
+    private void configurarComboBoxMetodo() {
+        // Adiciona os valores do enum na ComboBox
+        comboboxMetodo.setItems(FXCollections.observableArrayList(MetodoPagamento.values()));
+
+        // Define como o metodo será exibida na ComboBox
+        comboboxMetodo.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(MetodoPagamento metodo, boolean empty) {
+                super.updateItem(metodo, empty);
+                setText(empty || metodo == null ? null : metodo.getMetodo());
+            }
+        });
+
+        // Configura o botão da ComboBox
+        comboboxMetodo.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(MetodoPagamento metodo, boolean empty) {
+                super.updateItem(metodo, empty);
+                setText(empty || metodo == null ? null : metodo.getMetodo());
+            }
+        });
+
+        comboboxMetodo.valueProperty().addListener((obs, oldMetodo, newMetodo) -> {
+            if (newMetodo != null) {
+                PedidoDAO pedidoDAO = new PedidoDAO();
+                pedidoAtual.setTipoPagamento(newMetodo.getMetodo()); // Exibe o novo metodo selecionado
+                pedidoDAO.save(pedidoAtual);
+            }
+        });
     }
 }
 

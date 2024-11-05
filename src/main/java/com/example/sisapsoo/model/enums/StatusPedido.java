@@ -15,7 +15,7 @@ public enum StatusPedido {
         return descricao;
     }
 
-    // Método para converter de String para StatusPedido
+    //Metodo para converter de String para StatusPedido
     public static StatusPedido fromString(String status) {
         for (StatusPedido sp : StatusPedido.values()) {
             if (sp.getDescricao().equals(status)) {

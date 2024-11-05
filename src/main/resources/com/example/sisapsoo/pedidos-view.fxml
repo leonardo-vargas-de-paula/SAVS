@@ -47,12 +47,18 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="combobox1" layoutX="50.0" layoutY="28.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um pedido" />
-                              <Label fx:id="AlterarStatus" layoutX="69.0" layoutY="109.0" prefHeight="28.0" prefWidth="189.0" text="Alterar Status">
+                              <Label fx:id="AlterarStatus" layoutX="63.0" layoutY="96.0" prefHeight="28.0" prefWidth="189.0" text="Alterar Status">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboboxStatus" layoutX="37.0" layoutY="137.0" prefHeight="25.0" prefWidth="161.0" promptText="Alterar Status" />
+                              <ComboBox fx:id="comboboxStatus" layoutX="50.0" layoutY="124.0" prefHeight="25.0" prefWidth="161.0" promptText="Alterar Status" />
+                              <Label fx:id="AlterarMetodo" layoutX="50.0" layoutY="198.0" prefHeight="28.0" prefWidth="202.0" text="Método de Pagamento">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="comboboxMetodo" layoutX="50.0" layoutY="226.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um método" />
                            </children>
                         </AnchorPane>
                         <TableView fx:id="tabelaPedidos" layoutX="552.0" layoutY="69.0" prefHeight="357.0" prefWidth="197.0">
@@ -87,6 +93,16 @@
                            </font>
                         </Label>
                         <Label fx:id="valorPedido" layoutX="327.0" layoutY="295.0" prefHeight="28.0" prefWidth="164.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="327.0" layoutY="367.0" prefHeight="28.0" prefWidth="210.0" text="Método de Pagamento:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="metodoPagamento" layoutX="327.0" layoutY="395.0" prefHeight="28.0" prefWidth="164.0">
                            <font>
                               <Font size="13.0" />
                            </font>

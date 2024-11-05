@@ -18,6 +18,8 @@ import java.util.List;
 
     private Double preco;
 
+    private String tipoPagamento;
+
     private String status;
 
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -66,6 +68,14 @@ import java.util.List;
         return pedidoSalgados.stream()
                 .mapToDouble(PedidoSalgado::calcularSubtotal)
                 .sum();
+    }
+
+    public String getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(String tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
     }
 
     public Endereco getLoc() {
