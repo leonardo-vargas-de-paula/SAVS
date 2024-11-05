@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,11 +78,6 @@ public class PedidosController implements Initializable {
     }
 
     @FXML
-    void removerFunc(ActionEvent event) {
-
-    }
-
-    @FXML
     void voltar(ActionEvent event) {
         trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
     }
@@ -102,16 +98,13 @@ public class PedidosController implements Initializable {
     }
 
     private void carregarPedidos(){
-        Pedido p = new Pedido();
         PedidoDAO pDAO = new PedidoDAO();
-
         List<Pedido> pedidos = pDAO.findAllPs();
-
 
         ObservableList<Pedido> observablePedidos = FXCollections.observableArrayList(pedidos);
         combobox1.setItems(observablePedidos);
 
-        // Define o rótulo exibido no ComboBox
+        // Configura a aparência dos itens na lista da ComboBox
         combobox1.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Pedido pedido, boolean empty) {
@@ -123,6 +116,8 @@ public class PedidosController implements Initializable {
                 }
             }
         });
+
+        // Configura a célula que exibe o item selecionado
         combobox1.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Pedido pedido, boolean empty) {
@@ -167,6 +162,30 @@ public class PedidosController implements Initializable {
             }
         });
     }
+
+    @FXML
+    public void removerPedido(ActionEvent event) {
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-pedido-dialog.fxml"));
+            DialogPane funcDialogPane = fxmlLoader.load();
+
+            DeletePedidoController deletePedidoController = fxmlLoader.getController();
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(funcDialogPane);
+            dialog.setTitle("Deletar Pedido");
+
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.isPresent() && clickedButton.get() == ButtonType.OK){
+                deletePedidoController.remover();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

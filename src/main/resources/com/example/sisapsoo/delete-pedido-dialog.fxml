@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane fx:id="dialogPanePedido" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.DeletePedidoController">
+   <header>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="numeroPedido" layoutX="112.0" layoutY="75.0" prefHeight="35.0" prefWidth="214.0" />
+            <Label fx:id="idLabel" layoutX="51.0" layoutY="75.0" text="ID">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoOk" layoutX="229.0" layoutY="162.0" mnemonicParsing="false" onAction="#remover" prefHeight="24.0" prefWidth="72.0" text="OK" />
+            <Button fx:id="botaoCancelar" layoutX="308.0" layoutY="162.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="24.0" prefWidth="72.0" text="Cancelar" />
+         </children>
+      </AnchorPane>
+   </header>
+</DialogPane>

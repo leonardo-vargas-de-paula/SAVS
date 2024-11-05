@@ -74,7 +74,7 @@ public class AdicionarPedidosController {
         ObservableList<Cliente> observableClientes = FXCollections.observableArrayList(clientes);
         comboboxCliente.setItems(observableClientes);
 
-        // Define o rótulo exibido no ComboBox
+        // Define a aparência dos itens na lista da ComboBox
         comboboxCliente.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Cliente cliente, boolean empty) {
@@ -82,10 +82,12 @@ public class AdicionarPedidosController {
                 if (empty || cliente == null) {
                     setText(null);
                 } else {
-                    setText(cliente.getNome());  // Exibe o nome do cliente
+                    setText(cliente.getNome()); // Exibe o nome do cliente
                 }
             }
         });
+
+        // Define a célula que exibe o item selecionado
         comboboxCliente.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Cliente cliente, boolean empty) {
@@ -93,7 +95,7 @@ public class AdicionarPedidosController {
                 if (empty || cliente == null) {
                     setText(null);
                 } else {
-                    setText(cliente.getNome());  // Exibe o nome do cliente
+                    setText(cliente.getNome());
                 }
             }
         });
@@ -106,7 +108,7 @@ public class AdicionarPedidosController {
         ObservableList<Salgado> observableSalgados = FXCollections.observableArrayList(salgados);
         comboboxSalgado.setItems(observableSalgados);
 
-        // Define o rótulo exibido no ComboBox
+        // Define a aparência dos itens na lista da ComboBox
         comboboxSalgado.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Salgado salgado, boolean empty) {
@@ -114,10 +116,12 @@ public class AdicionarPedidosController {
                 if (empty || salgado == null) {
                     setText(null);
                 } else {
-                    setText(salgado.getNome());  // Exibe o nome do salgado
+                    setText(salgado.getNome()); // Exibe o nome do salgado
                 }
             }
         });
+
+        // Define a célula que exibe o item selecionado
         comboboxSalgado.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Salgado salgado, boolean empty) {
@@ -125,7 +129,7 @@ public class AdicionarPedidosController {
                 if (empty || salgado == null) {
                     setText(null);
                 } else {
-                    setText(salgado.getNome());  // Exibe o nome do salgado
+                    setText(salgado.getNome());
                 }
             }
         });
@@ -249,7 +253,7 @@ public class AdicionarPedidosController {
     }
 
     @FXML
-    private void voltar(ActionEvent event){
+    private void voltar(ActionEvent event) {
         trocarCena(event, "/com/example/sisapsoo/pedidos-view.fxml");
     }
 

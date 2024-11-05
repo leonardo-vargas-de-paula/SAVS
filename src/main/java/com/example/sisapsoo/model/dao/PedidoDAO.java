@@ -32,7 +32,7 @@ public class PedidoDAO {
     }
 
     //select where id = <valor desejado>
-    public Pedido findById(String id) {
+    public Pedido findById(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
         Pedido u = null;
 
@@ -62,7 +62,7 @@ public class PedidoDAO {
     }
 
     //delete
-    public Pedido remove(String id) {
+    public Pedido remove(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
         Pedido us = null;
 

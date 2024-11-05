@@ -30,7 +30,7 @@
                                 <Blend mode="DARKEN" />
                             </effect>
                         </Label>
-                        <Button fx:id="removeButton" layoutX="838.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerFunc" prefHeight="40.0" prefWidth="128.0" text="Remover por ID" />
+                        <Button fx:id="removeButton" layoutX="838.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerPedido" prefHeight="40.0" prefWidth="128.0" text="Remover por ID" />
                     </children>
                 </Pane>
             </top>
