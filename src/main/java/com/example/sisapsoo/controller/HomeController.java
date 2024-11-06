@@ -91,7 +91,6 @@ public class HomeController {
     @FXML
     void sairSistema(ActionEvent event) {
         Platform.exit();
-
     }
 
     private void showAlert(String title, String message) {
