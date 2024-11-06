@@ -4,16 +4,15 @@
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <DialogPane fx:id="dialogPane" minHeight="244.0" prefHeight="244.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroSalgadoController">
    <header>
-      <AnchorPane minHeight="199.0" prefHeight="199.0" prefWidth="647.0">
+      <AnchorPane minHeight="198.0" prefHeight="228.0" prefWidth="549.0">
          <children>
-            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" text="Cadastro de Salgado" textAlignment="CENTER">
+            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="14.0" text="Cadastro de Salgado" textAlignment="CENTER" textFill="#515151">
                <font>
                   <Font size="34.0" />
                </font>
@@ -21,23 +20,12 @@
                   <Insets bottom="15.0" top="15.0" />
                </padding>
             </Label>
-            <Label fx:id="labelNome" layoutX="63.0" layoutY="105.0" text="Nome">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Separator fx:id="separador" layoutX="43.0" layoutY="65.0" prefHeight="12.0" prefWidth="493.0" />
-            <Label fx:id="labelPreco" layoutX="64.0" layoutY="158.0" text="Preco">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoPreco" layoutX="151.0" layoutY="151.0" prefHeight="39.0" prefWidth="360.0">
+            <TextField fx:id="campoPreco" layoutX="106.0" layoutY="144.0" prefHeight="39.0" prefWidth="360.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoNome" layoutX="151.0" layoutY="98.0" prefHeight="39.0" prefWidth="360.0">
+            <TextField fx:id="campoNome" layoutX="106.0" layoutY="85.0" prefHeight="39.0" prefWidth="360.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;">
                <font>
                   <Font size="20.0" />
                </font>
