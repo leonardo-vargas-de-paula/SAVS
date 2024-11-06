@@ -4,20 +4,19 @@
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane minHeight="311.0" prefHeight="311.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroClienteController">
+<DialogPane minHeight="311.0" prefHeight="311.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.CadastroClienteController">
    <buttonTypes>
       <ButtonType fx:constant="OK" />
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
    <header>
-      <AnchorPane minHeight="250.0" prefHeight="259.0" prefWidth="647.0">
+      <AnchorPane minHeight="250.0" prefHeight="259.0" prefWidth="647.0" style="-fx-background-color: white;">
          <children>
-            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="8.0" text="Cadastro de Cliente" textAlignment="CENTER">
+            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="14.0" text="Cadastro de Cliente" textAlignment="CENTER" textFill="#515151">
                <font>
                   <Font size="34.0" />
                </font>
@@ -25,23 +24,12 @@
                   <Insets bottom="15.0" top="15.0" />
                </padding>
             </Label>
-            <Label fx:id="labelNome" layoutX="99.0" layoutY="115.0" text="Nome">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Separator fx:id="separador" layoutX="77.0" layoutY="79.0" prefHeight="12.0" prefWidth="493.0" />
-            <Label fx:id="labelTelefone" layoutX="77.0" layoutY="189.0" text="Telefone">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="campoNome" layoutX="187.0" layoutY="108.0" prefHeight="39.0" prefWidth="360.0">
+            <TextField fx:id="campoNome" layoutX="65.0" layoutY="94.0" prefHeight="39.0" prefWidth="360.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoTelefone" layoutX="187.0" layoutY="182.0" prefHeight="39.0" prefWidth="360.0">
+            <TextField fx:id="campoTelefone" layoutX="65.0" layoutY="161.0" prefHeight="39.0" prefWidth="360.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: b0b0b0; -fx-padding: 5 0 5 0;">
                <font>
                   <Font size="20.0" />
                </font>

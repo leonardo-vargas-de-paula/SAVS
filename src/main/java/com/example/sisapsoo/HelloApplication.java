@@ -6,9 +6,11 @@ import com.example.sisapsoo.model.dao.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
      @Override
@@ -17,8 +19,8 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         stage.setTitle("Salgado Smart");
 
-//        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
-//        stage.getIcons().add(icon);
+         Image icon = new Image(getClass().getResourceAsStream("/assets/images/coxinha.png"));
+         stage.getIcons().add(icon);
 
         // adicionando um funcionario gerente
         Gerente g = new Gerente();
@@ -29,6 +31,7 @@ public class HelloApplication extends Application {
         g.setCpf("11");
         g.setTelefone("2333");
         g.setSalario(98.0);
+        g.setTipoFuncionario("Gerente");
         gDAO.save(g);
 
         //adicionando um salgado
