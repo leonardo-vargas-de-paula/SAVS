@@ -11,40 +11,40 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPanel" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoFuncsController">
-   <center>
-      <TableView fx:id="tabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-            <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nome" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="cpf" prefWidth="75.0" text="CPF" />
-            <TableColumn fx:id="telefone" prefWidth="75.0" text="Telefone" />
-            <TableColumn fx:id="salario" prefWidth="75.0" text="Salario" />
-            <TableColumn fx:id="colunaTipo" prefWidth="75.0" text="Tipo" />
-        </columns>
-      </TableView>
-   </center>
-   <top>
-      <Pane fx:id="painelDeCima" prefHeight="64.0" prefWidth="980.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="addButton" layoutX="656.0" layoutY="12.0" mnemonicParsing="false" onAction="#addFunc" prefHeight="40.0" prefWidth="169.0" text="Adicionar Funcionario" />
-            <Label fx:id="labelTitulo" contentDisplay="CENTER" layoutX="384.0" layoutY="7.0" text="Funcionários" textAlignment="CENTER">
-               <font>
-                  <Font size="35.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="NW_RESIZE" />
-               </cursor>
-               <effect>
-                  <Blend mode="DARKEN" />
-               </effect>
-            </Label>
-            <Button fx:id="removeButton" layoutX="838.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerFunc" prefHeight="40.0" prefWidth="128.0" text="Remover por ID" />
-            <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="39.0" prefWidth="112.0" text="Voltar">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-   </top>
+    <center>
+        <TableView fx:id="tabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="cpf" prefWidth="75.0" text="CPF" />
+                <TableColumn fx:id="telefone" prefWidth="75.0" text="Telefone" />
+                <TableColumn fx:id="salario" prefWidth="75.0" text="Salário" />
+                <TableColumn fx:id="colunaTipo" prefWidth="75.0" text="Tipo" />
+            </columns>
+        </TableView>
+    </center>
+    <top>
+        <Pane fx:id="painelDeCima" prefHeight="64.0" prefWidth="980.0" style="-fx-background-color: #DD6262;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="addButton" layoutX="656.0" layoutY="12.0" mnemonicParsing="false" onAction="#addFunc" prefHeight="40.0" prefWidth="169.0" text="Adicionar Funcionário" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
+                <Label fx:id="labelTitulo" contentDisplay="CENTER" layoutX="384.0" layoutY="7.0" text="Funcionários" textAlignment="CENTER" textFill="#ebebeb">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="NW_RESIZE" />
+                    </cursor>
+                    <effect>
+                        <Blend mode="DARKEN" />
+                    </effect>
+                </Label>
+                <Button fx:id="removeButton" layoutX="838.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerFunc" prefHeight="40.0" prefWidth="128.0" text="Remover por ID" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
+                <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="39.0" prefWidth="112.0" text="Voltar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </top>
 </BorderPane>
