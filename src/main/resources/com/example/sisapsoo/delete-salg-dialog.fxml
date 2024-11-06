@@ -2,28 +2,25 @@
 
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<DialogPane fx:id="dialogPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.DeleteSalgController">
+<DialogPane fx:id="dialogPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.DeleteSalgController">
     <header>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="82.0" prefWidth="321.0">
-         <children>
-            <TextField fx:id="idField" layoutX="98.0" layoutY="25.0" prefHeight="45.0" prefWidth="168.0" />
-            <Label fx:id="labelId" layoutX="47.0" layoutY="29.0" prefHeight="36.0" prefWidth="36.0" text="ID">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="365.0">
+            <children>
+                <TextField fx:id="idField" layoutX="76.0" layoutY="29.0" prefHeight="35.0" prefWidth="214.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: b0b0b0; -fx-border-width: 0 0 1 0;" />
+            </children>
+        </AnchorPane>
     </header>
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </content>
     <expandableContent>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
     </expandableContent>
-   <buttonTypes>
-      <ButtonType fx:constant="OK" />
-      <ButtonType fx:constant="CANCEL" />
-   </buttonTypes>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
 </DialogPane>
