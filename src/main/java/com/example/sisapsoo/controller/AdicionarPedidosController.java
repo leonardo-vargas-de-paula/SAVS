@@ -254,7 +254,7 @@ public class AdicionarPedidosController {
 
     @FXML
     private void voltar(ActionEvent event) {
-        trocarCena(event, "/com/example/sisapsoo/pedidos-view.fxml");
+        trocarCena(event, "/com/example/sisapsoo/gerenciamento-pedidos-view.fxml");
     }
 
     //teste

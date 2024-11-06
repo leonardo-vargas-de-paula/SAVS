@@ -1,8 +1,6 @@
 package com.example.sisapsoo.controller;
 
 
-import com.example.sisapsoo.model.Funcionario;
-import com.example.sisapsoo.model.Gerente;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,7 +82,7 @@ public class HomeController {
 
     @FXML
     void pedidos(ActionEvent event) {
-        trocarCena(event, "/com/example/sisapsoo/pedidos-view.fxml");
+        trocarCena(event, "/com/example/sisapsoo/gerenciamento-pedidos-view.fxml");
     }
 
     @FXML

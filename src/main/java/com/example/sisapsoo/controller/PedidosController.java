@@ -2,7 +2,6 @@ package com.example.sisapsoo.controller;
 
 import com.example.sisapsoo.model.Pedido;
 import com.example.sisapsoo.model.PedidoSalgado;
-import com.example.sisapsoo.model.Salgado;
 import com.example.sisapsoo.model.dao.PedidoDAO;
 //import com.example.sisapsoo.model.enums.Status;
 import com.example.sisapsoo.model.enums.MetodoPagamento;
@@ -87,7 +86,7 @@ public class PedidosController implements Initializable {
 
     @FXML
     void addFunc(ActionEvent event) {
-        trocarCena(event, "/com/example/sisapsoo/adicionar-pedidos-view.fxml");
+        trocarCena(event, "/com/example/sisapsoo/cadastro-pedidos-view.fxml");
     }
 
     @FXML

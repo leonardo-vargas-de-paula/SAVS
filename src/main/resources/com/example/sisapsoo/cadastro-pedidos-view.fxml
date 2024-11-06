@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPanel" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #DD6262;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.AdicionarPedidosController">
+      <top>
+          <Pane fx:id="painelDeCima" prefHeight="64.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+              <children>
+                  <Label fx:id="labelTitulo" contentDisplay="CENTER" layoutX="308.0" layoutY="7.0" prefHeight="51.0" prefWidth="342.0" text="Adicionar Pedido" textAlignment="CENTER" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="35.0" />
+                      </font>
+                      <cursor>
+                          <Cursor fx:constant="NW_RESIZE" />
+                      </cursor>
+                      <effect>
+                          <Blend mode="DARKEN" />
+                      </effect>
+                  </Label>
+              <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#voltar" prefHeight="49.0" prefWidth="112.0" style="-fx-font-weight: bold; -fx-background-color: white;" text="Voltar" textFill="#6b6b6b" />
+            <Button fx:id="botaoReiniciar" layoutX="817.0" layoutY="8.0" mnemonicParsing="false" onAction="#reiniciarPedido" prefHeight="49.0" prefWidth="149.0" style="-fx-background-color: white;" text="Reiniciar Pedido" textFill="#6b6b6b">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+              </children>
+          </Pane>
+      </top>
+   <bottom>
+            <Pane prefHeight="569.0" prefWidth="980.0" style="-fx-background-color: White; -fx-background-radius: 20px;" BorderPane.alignment="CENTER">
+                <children>
+                    <AnchorPane layoutX="162.0" layoutY="33.0" minHeight="200.0" minWidth="197.0" prefHeight="275.0" prefWidth="307.0" style="-fx-background-color: #DD6262; -fx-background-radius: 10px;">
+                        <children>
+                            <Label layoutX="64.0" layoutY="14.0" prefHeight="28.0" prefWidth="76.0" style="-fx-font-weight: bold;" text="Cliente" textFill="WHITE">
+                                <font>
+                                    <Font size="19.0" />
+                                </font>
+                            </Label>
+                            <ComboBox fx:id="comboboxCliente" layoutX="22.0" layoutY="42.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um cliente" />
+                  <Label fx:id="comboboxSalgados" layoutX="52.0" layoutY="79.0" prefHeight="28.0" prefWidth="100.0" style="-fx-font-weight: bold;" text="Salgados" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboboxSalgado" layoutX="22.0" layoutY="107.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um salgado" />
+                  <TextField fx:id="textFieldQuant" layoutX="23.0" layoutY="176.0" prefHeight="24.0" prefWidth="167.0" />
+                          <Label layoutX="39.0" layoutY="151.0" prefHeight="28.0" prefWidth="135.0" style="-fx-font-weight: bold;" text="Quantidade:" textFill="WHITE">
+                              <font>
+                                  <Font size="19.0" />
+                              </font>
+                          </Label>
+                  <Button fx:id="botaoSalvar" layoutX="154.0" layoutY="207.0" mnemonicParsing="false" onAction="#salvarSalgado" prefHeight="52.0" prefWidth="137.0" style="-fx-background-color: white;" text="Salvar salgado" textFill="#6b6b6b">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                        </children>
+                    </AnchorPane>
+            <AnchorPane layoutX="162.0" layoutY="324.0" prefHeight="223.0" prefWidth="308.0" style="-fx-background-color: #DD6262; -fx-background-radius: 10px;">
+               <children>
+                  <TextField fx:id="textFieldRua" layoutX="19.0" layoutY="50.0" prefHeight="25.0" prefWidth="270.0" />
+                          <Label layoutX="20.0" layoutY="14.0" prefHeight="28.0" prefWidth="52.0" style="-fx-font-weight: bold;" text="Rua:" textFill="WHITE">
+                              <font>
+                                  <Font size="19.0" />
+                              </font>
+                          </Label>
+                  <Button fx:id="botaoSalvarEndereco" layoutX="154.0" layoutY="162.0" mnemonicParsing="false" onAction="#salvarPedido" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: white;" text="Salvar endereço" textFill="#6b6b6b">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="textFieldNumero" layoutX="20.0" layoutY="119.0" prefHeight="25.0" prefWidth="169.0" />
+                  <Label layoutX="19.0" layoutY="91.0" prefHeight="28.0" prefWidth="94.0" style="-fx-font-weight: bold;" text="Número:" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="586.0" layoutY="35.0" prefHeight="385.0" prefWidth="227.0" style="-fx-background-color: #DD6262; -fx-background-radius: 10px;">
+               <children>
+                          <TableView fx:id="tabelaPedidos" layoutX="14.0" layoutY="14.0" prefHeight="357.0" prefWidth="197.0">
+                              <columns>
+                                  <TableColumn fx:id="salgado" prefWidth="100.0" text="Salgado" />
+                                  <TableColumn fx:id="quantidade" prefWidth="99.0" text="Quantidade" />
+                              </columns>
+                          </TableView>
+               </children>
+            </AnchorPane>
+                </children>
+            </Pane>
+   </bottom>
+  </BorderPane>

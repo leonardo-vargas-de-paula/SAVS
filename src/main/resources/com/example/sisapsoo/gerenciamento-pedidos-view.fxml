@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPanel" prefHeight="639.0" prefWidth="980.0" style="-fx-background-color: #DD6262;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.PedidosController">
+      <top>
+          <Pane fx:id="painelDeCima" prefHeight="64.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+              <children>
+                  <Button fx:id="addButton" layoutX="698.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFunc" prefHeight="47.0" prefWidth="116.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Adicionar" textFill="#6b6b6b" />
+                  <Label fx:id="labelTitulo" contentDisplay="CENTER" layoutX="384.0" layoutY="7.0" text="Pedidos" textAlignment="CENTER" textFill="#ebebeb">
+                      <font>
+                          <Font name="System Bold" size="35.0" />
+                      </font>
+                      <cursor>
+                          <Cursor fx:constant="NW_RESIZE" />
+                      </cursor>
+                      <effect>
+                          <Blend mode="DARKEN" />
+                      </effect>
+                  </Label>
+                  <Button fx:id="removeButton" layoutX="833.0" layoutY="11.0" mnemonicParsing="false" onAction="#removerPedido" prefHeight="44.0" prefWidth="133.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Remover por ID" textFill="#6b6b6b" />
+              <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#voltar" prefHeight="44.0" prefWidth="106.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Voltar" textFill="#6b6b6b" />
+              </children>
+          </Pane>
+      </top>
+   <center>
+      <Pane prefHeight="550.0" prefWidth="980.0" style="-fx-background-color: White; -fx-background-radius: 20px;">
+         <children>
+            <AnchorPane layoutX="21.0" layoutY="68.0" prefHeight="323.0" prefWidth="269.0" style="-fx-background-color: #DD6262; -fx-background-radius: 10px;">
+               <children>
+                  <Label contentDisplay="CENTER" layoutX="86.0" layoutY="27.0" prefHeight="28.0" prefWidth="89.0" text="Pedidos" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="combobox1" layoutX="50.0" layoutY="61.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um pedido" />
+                  <Label fx:id="AlterarStatus" layoutX="56.0" layoutY="121.0" prefHeight="28.0" prefWidth="189.0" style="-fx-font-weight: bold;" text="Alterar Status" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboboxStatus" layoutX="50.0" layoutY="149.0" prefHeight="25.0" prefWidth="161.0" promptText="Alterar Status" />
+                  <Label fx:id="AlterarMetodo" layoutX="15.0" layoutY="216.0" prefHeight="28.0" prefWidth="272.0" style="-fx-font-weight: bold;" text="Método de Pagamento" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboboxMetodo" layoutX="50.0" layoutY="251.0" prefHeight="25.0" prefWidth="161.0" promptText="Selecione um método" />
+               </children>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="15.0" radius="7.0" width="15.0" />
+               </effect>
+            </AnchorPane>
+            <TableView fx:id="tabelaPedidos" layoutX="664.0" layoutY="68.0" prefHeight="357.0" prefWidth="197.0">
+              <columns>
+                <TableColumn fx:id="salgado" prefWidth="100.0" text="Salgado" />
+                <TableColumn fx:id="quantidade" prefWidth="99.0" text="Quantidade" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="68.0" prefHeight="28.0" prefWidth="97.0" style="-fx-font-weight: bold; -fx-background-color: #DD6262; -fx-background-radius: 5px;" text="Cliente:" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="354.0" layoutY="150.0" prefHeight="29.0" prefWidth="204.0" style="-fx-font-weight: bold; -fx-background-color: #DD6262; -fx-background-radius: 5px;" text="Status do pedido:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="statusPedido" layoutX="356.0" layoutY="179.0" prefHeight="28.0" prefWidth="161.0" style="-fx-font-weight: bold;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomeCliente" layoutX="354.0" layoutY="96.0" prefHeight="28.0" prefWidth="164.0" style="-fx-font-weight: bold;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="354.0" layoutY="247.0" prefHeight="28.0" prefWidth="76.0" style="-fx-font-weight: bold; -fx-background-color: #DD6262; -fx-background-radius: 5px;" text="Valor:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="valorPedido" layoutX="354.0" layoutY="275.0" prefHeight="28.0" prefWidth="164.0" style="-fx-font-weight: bold;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="354.0" layoutY="339.0" prefHeight="28.0" prefWidth="265.0" style="-fx-font-weight: bold; -fx-background-color: #DD6262; -fx-background-radius: 5px;" text="Método de Pagamento:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="metodoPagamento" layoutX="354.0" layoutY="367.0" prefHeight="28.0" prefWidth="164.0" style="-fx-font-weight: bold;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+  </BorderPane>
