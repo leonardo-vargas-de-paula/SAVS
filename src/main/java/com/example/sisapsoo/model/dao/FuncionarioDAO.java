@@ -1,94 +1,92 @@
 package com.example.sisapsoo.model.dao;
-
 import com.example.sisapsoo.connection.ConnectionFactory;
 import com.example.sisapsoo.model.Funcionario;
-import jakarta.persistence.Query;
 import jakarta.persistence.EntityManager;
+
+
+import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.query.NativeQuery;
-
 public class FuncionarioDAO {
-    EntityManager em = new ConnectionFactory().getConnection();
 
-    //insert
+    EntityManager em = getEntityManager();
+
+    private EntityManager getEntityManager() {
+        return ConnectionFactory.getConnection();
+    }
+
     public Funcionario save(Funcionario f) {
+//        EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(f);
-            System.out.println("SALVOU FUNCIONARIO ----------------------------------------------");
             em.getTransaction().commit();
+            System.out.println("SALVOU FUNCIONARIO");
         } catch (Exception e) {
             em.getTransaction().rollback();
+            System.err.println("Erro ao salvar funcionário: " + e.getMessage());
         } finally {
             em.close();
         }
-
         return f;
     }
 
-    // update
-    public Funcionario update(Funcionario f){
-        try {
-            em.getTransaction().begin();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
+//    public Funcionario update(Funcionario f){
+//        EntityManager em = getEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            em.merge(f);
+//            em.getTransaction().commit();
+//        } catch(Exception e){
+//            em.getTransaction().rollback();
+//            System.err.println("Erro ao atualizar o funcionário: " + e);
+//        } finally {
+//            em.close();
+//        }
+//        return f;
+//    }
 
-        return f;
-    }
-
-    //select where id = <valor desejado>
     public Funcionario findById(Integer id) {
-        EntityManager em = new ConnectionFactory().getConnection();
+        EntityManager em = getEntityManager();
         Funcionario f = null;
 
         try {
             f = em.find(Funcionario.class, id);
         } catch (Exception e) {
-            System.err.println(e);
+            System.err.println("Erro ao buscar funcionário: " + e.getMessage());
         } finally {
             em.close();
         }
         return f;
     }
 
-    //Lista de todos os objetos Funcionario
     public List<Funcionario> findAll() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Funcionario> f = null;
+        EntityManager em = getEntityManager();
+        List<Funcionario> funcionarios = new ArrayList<>();
 
         try {
-            f = em.createQuery("from Funcionario f").getResultList();
+            funcionarios = em.createQuery("from Funcionario f", Funcionario.class).getResultList();
         } catch (Exception e) {
-            System.err.println(e);
+            System.err.println("Erro ao listar funcionários: " + e.getMessage());
         } finally {
             em.close();
         }
-        return f;
+        return funcionarios;
     }
 
-    //delete
-    public Funcionario remove(Integer id) {
-        EntityManager em = new ConnectionFactory().getConnection();
-        Funcionario f = null;
-
+    public void remove(Integer id) {
+        EntityManager em = getEntityManager();
         try {
-            f = em.find(Funcionario.class, id);
+            Funcionario f = em.find(Funcionario.class, id);
             em.getTransaction().begin();
             em.remove(f);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            // Joga a exceção para o controller de deletar funcionário, caso haja um erro de tentar excluir um funcionário que não existe
+            System.err.println("Erro ao remover funcionário: " + e.getMessage());
             throw e;
         } finally {
             em.close();
         }
-        return f;
-
     }
-
 }

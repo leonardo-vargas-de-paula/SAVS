@@ -1,46 +1,43 @@
 package com.example.sisapsoo.controller;
 
-import com.example.sisapsoo.model.dao.FuncionarioDAO;
+import com.example.sisapsoo.model.dao.SalgadoDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
-public class DeleteFuncController {
-    private FuncionarioDAO fDAO = new FuncionarioDAO();
-
-    @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
-    private TextField cpfField;
-
-    @FXML
-    private Label cpfLabel;
+public class DeleteSalgController {
+    private SalgadoDAO sDAO = new SalgadoDAO();
 
     @FXML
     private DialogPane dialogPane;
 
-    void remover(){
-        if(cpfField.getText().isEmpty()){
+    @FXML
+    private TextField idField;
+
+    @FXML
+    private Label labelId;
+
+    @FXML
+    void remover(ActionEvent event){
+        if(idField.getText().isEmpty()){
             showAlert("Campos vazios!", "Não deixe nenhum campo vazio.");
             return;
         }
 
-        String cpf = cpfField.getText();
+        String id = idField.getText();
 
         try{
-            fDAO.remove(Integer.parseInt(cpf));
+            sDAO.remove(Integer.parseInt(id));
         }catch(Exception e){
-            showAlert("Erro ao deletar: ", "" + e);
+            showAlert("Erro ao deletar: ", "" + e + " Provavelmente o salgado está associado a um pedido.");
         }
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

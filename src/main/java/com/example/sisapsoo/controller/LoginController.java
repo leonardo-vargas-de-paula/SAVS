@@ -10,9 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,12 +18,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
-
 import javafx.stage.Stage;
-import org.hibernate.mapping.List;
 
 public class LoginController {
-
     @FXML
     private TextField usernameField;
 
@@ -34,29 +29,21 @@ public class LoginController {
 
     private FuncionarioDAO fDAO;
 
+    private static Funcionario usuarioAtual; // Variável para armazenar o usuário autenticado ESTÁTICAMENTE -> FAZ PARTE DA CLASSE -> PERMITE A VERIFICAÇÃO
+
     public LoginController() {
         fDAO = new FuncionarioDAO();
     }
 
     private Funcionario autenticar(String username, String password) throws LoginException {
-        ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());  // Cria uma lista de funcionarios
-        // ArrayList<Gerente> gerentes = (ArrayList<Gerentes>) gDAO.findAll();  // Cria uma lista de gerentes
-
+        ArrayList<Funcionario> funcionarios = new ArrayList<>(fDAO.findAll());
         String passHash = hashPassword(password);
 
-        // Verifica se há funcionários com as credenciais
-        for(Funcionario funcionario : funcionarios){
+        for (Funcionario funcionario : funcionarios) {
             if (funcionario.getNome().equals(username) && funcionario.getSenha().equals(passHash)) {
                 return funcionario;
             }
         }
-
-        // for (Gerente gerente : gerentes) {
-        //     if (gerente.getNome().equals(username) && gerente.getSenha().equals(password)) {
-        //         return gerente;
-        //     }
-        // }
-
         throw new LoginException("Usuário ou senha incorretos.");
     }
 
@@ -66,15 +53,24 @@ public class LoginController {
         String password = passwordField.getText();
 
         try {
-            Funcionario usuario = autenticar(username, password);
+            usuarioAtual = autenticar(username, password); // salva o usuario autenticado
             trocarCena(event, "/com/example/sisapsoo/home-view.fxml");
+            //abrirCadastroFuncionario();
         } catch (LoginException e) {
             showAlert("Erro de Login", e.getMessage());
+        } catch (Exception e) {
+//            showAlert("Erro", "Ocorreu um erro ao abrir a tela de cadastro.");
         }
     }
 
+    public boolean verificaGerente(){
+        if (usuarioAtual != null && usuarioAtual instanceof Funcionario)
+            return usuarioAtual instanceof Gerente; // Retorna true se usuarioAtual é uma instância de Gerente
+        return false;
+    }
+
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
@@ -83,12 +79,8 @@ public class LoginController {
 
     public static String hashPassword(String password) {
         try {
-            // Cria uma instância do MessageDigest para SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            // Executa o hash da senha
             byte[] hashBytes = digest.digest(password.getBytes());
-            
-            // Converte o hash em uma string hexadecimal
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) {
                 String hex = Integer.toHexString(0xff & b);

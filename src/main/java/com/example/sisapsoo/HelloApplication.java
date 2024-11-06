@@ -1,22 +1,17 @@
 package com.example.sisapsoo;
 
-import com.example.sisapsoo.controller.CadastroFuncController;
-import com.example.sisapsoo.controller.GerenciamentoFuncs;
 import com.example.sisapsoo.controller.LoginController;
-// import com.example.sisapsoo.model.Gerente;
-// import com.example.sisapsoo.model.dao.GerenteDAO;
 import com.example.sisapsoo.model.*;
 import com.example.sisapsoo.model.dao.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HelloApplication extends Application {
-    @Override
+     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
@@ -25,7 +20,7 @@ public class HelloApplication extends Application {
 //        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/images/coxinha.png")));
 //        stage.getIcons().add(icon);
 
-        //adicionando um funcionario gerente
+        // adicionando um funcionario gerente
         Gerente g = new Gerente();
         GerenteDAO gDAO = new GerenteDAO();
 
@@ -117,8 +112,6 @@ public class HelloApplication extends Application {
         ps2.setPedido(p);
         ps2.setQuantidade(2);
         psDAO2.save(ps2);
-
-
 
         //adicionando item ao pedido
         p.getPedidoSalgados().add(ps);
