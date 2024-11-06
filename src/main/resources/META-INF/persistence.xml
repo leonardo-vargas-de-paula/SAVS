@@ -7,14 +7,15 @@
     <persistence-unit name="sistemaApsoo">
         <!-- Implementação do JPA, neste caso Hibernate -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!-- Lista das entidades com o pacote correto -->
-        <class>com.example.sisapsoo.model.Usuario</class>
-        <class>com.example.sisapsoo.model.Funcionario</class>
-        <class>com.example.sisapsoo.model.Cliente</class>
-        <class>com.example.sisapsoo.model.Gerente</class>
-        <class>com.example.sisapsoo.model.Pedido</class>
-        <class>com.example.sisapsoo.model.Salgado</class>
-        <class>com.example.sisapsoo.model.PedidoSalgado</class>
+        <!-- Aqui são listadas todas as entidades -->
+        <class>model.Usuario</class>
+        <class>model.Funcionario</class>
+        <class>model.Cliente</class>
+        <class>model.Gerente</class>
+        <class>model.Pedido</class>
+        <class>model.Salgado</class>
+        <class>model.PedidoSalgado</class>
+        <class>model.Endereco</class>
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

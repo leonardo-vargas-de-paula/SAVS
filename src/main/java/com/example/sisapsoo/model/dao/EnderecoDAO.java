@@ -1,75 +1,72 @@
 package com.example.sisapsoo.model.dao;
 
 import com.example.sisapsoo.connection.ConnectionFactory;
-import com.example.sisapsoo.model.Pedido;
+import com.example.sisapsoo.model.Endereco;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class PedidoDAO {
+public class EnderecoDAO {
     EntityManager em = new ConnectionFactory().getConnection();
 
     //insert-update
-    public Pedido save(Pedido u) {
-        EntityManager em = new ConnectionFactory().getConnection();
+    public Endereco save(Endereco c) {
         try {
             em.getTransaction().begin();
-            if (u.getIdPedido() == null) {
-                em.persist(u); // insere novo pedido
+            if (c.getIdEndereco() == null) {
+                em.persist(c);
             } else {
-                u = em.merge(u); // atualiza o pedido existente
+                em.merge(c);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-            e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
-        return u;
+
+        return c;
     }
 
     //select where id = <valor desejado>
-    public Pedido findById(Integer id) {
+    public Endereco findById(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Pedido u = null;
+        Endereco c= null;
 
         try {
-            u = em.find(Pedido.class, id);
+            c= em.find(Endereco.class, id);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             em.close();
         }
-        return u;
+        return c;
     }
 
     //Lista de todos os objetos Tabelateste
-    public List<Pedido> findAll() {
+    public List<Endereco> findAll() {
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Pedido> us = null;
+        List<Endereco> cs = null;
 
         try {
-            us = em.createQuery("from Pedido us").getResultList();
+            cs = em.createQuery("from Endereco vv").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             em.close();
         }
-        return us;
+        return cs;
     }
 
     //delete
-    public Pedido remove(Integer id) {
+    public Endereco remove(Integer id) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Pedido us = null;
+        Endereco c= null;
 
         try {
-            us = em.find(Pedido.class, id);
+            c= em.find(Endereco.class, id);
             em.getTransaction().begin();
-            em.remove(us);
+            em.remove(c);
             em.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e);
@@ -77,13 +74,8 @@ public class PedidoDAO {
         } finally {
             em.close();
         }
-        return us;
+        return c;
 
     }
 
-    public List<Pedido> findAllPs() {
-        EntityManager em = new ConnectionFactory().getConnection();
-        return em.createQuery("SELECT p FROM Pedido p LEFT JOIN FETCH p.pedidoSalgados", Pedido.class)
-                .getResultList();
-    }
 }

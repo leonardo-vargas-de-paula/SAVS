@@ -34,6 +34,101 @@ public class HelloApplication extends Application {
         g.setTipoFuncionario("Gerente");
         gDAO.save(g);
 
+        //adicionando um salgado
+        Salgado s = new Salgado();
+        SalgadoDAO sDAO = new SalgadoDAO();
+
+        s.setNome("Esfiha");
+        s.setPreco(21);
+        sDAO.save(s);
+
+        Salgado s2 = new Salgado();
+        SalgadoDAO sDAO2 = new SalgadoDAO();
+
+        s2.setNome("Kibe");
+        s2.setPreco(7);
+        sDAO2.save(s2);
+
+        //adicionando um cliente
+        Cliente c = new Cliente();
+        ClienteDAO cDAO = new ClienteDAO();
+
+        c.setNome("Gustavo Pereira Uzumaki");
+        c.setTelefone("67993253538");
+        cDAO.save(c);
+
+        Cliente c2 = new Cliente();
+        ClienteDAO cDAO2 = new ClienteDAO();
+
+        c2.setNome("Funanashi Funabashi");
+        c2.setTelefone("00000000000");
+        cDAO2.save(c2);
+
+        //criando um pedido relacionado a um cliente (c)
+        Pedido p = new Pedido();
+        PedidoDAO pDAO = new PedidoDAO();
+        Pedido p2 = new Pedido();
+        PedidoDAO pDAO2 = new PedidoDAO();
+        Endereco e = new Endereco();
+        Endereco e2 = new Endereco();
+        EnderecoDAO eDAO = new EnderecoDAO();
+        EnderecoDAO eDAO2 = new EnderecoDAO();
+
+        p.setCliente(c);
+        p.setStatus("teste");
+        pDAO.save(p);
+
+        p2.setCliente(c2);
+        p2.setStatus("em confecção");
+        pDAO2.save(p2);
+
+        e.setRua("av afonso pena");
+        e2.setRua("rua xyz");
+        e.setNumero(988);
+        e2.setNumero(123);
+        e.setPedido(p);
+        e2.setPedido(p2);
+
+        eDAO.save(e);
+        eDAO2.save(e2);
+
+        //criando um pedido salgado para o pedido
+        PedidoSalgado ps = new PedidoSalgado();
+        PedidoSalgadoDAO psDAO = new PedidoSalgadoDAO();
+        PedidoSalgado ps3 = new PedidoSalgado();
+        PedidoSalgadoDAO psDAO3 = new PedidoSalgadoDAO();
+
+        ps.setSalgado(s);//esfiha
+        ps.setPedido(p);
+        ps.setQuantidade(3);
+        psDAO.save(ps);
+
+        ps3.setSalgado(s);//esfiha
+        ps3.setPedido(p2);
+        ps3.setQuantidade(10);
+        psDAO3.save(ps3);
+
+        PedidoSalgado ps2 = new PedidoSalgado();
+        PedidoSalgadoDAO psDAO2 = new PedidoSalgadoDAO();
+
+        ps2.setSalgado(s2);//kibe
+        ps2.setPedido(p);
+        ps2.setQuantidade(2);
+        psDAO2.save(ps2);
+
+        //adicionando item ao pedido
+        p.getPedidoSalgados().add(ps);
+        p.getPedidoSalgados().add(ps2);
+
+        p2.getPedidoSalgados().add(ps3);
+
+        //adicionando preco
+        p.setPreco(p.calcularPrecoTotal());
+        p2.setPreco(p2.calcularPrecoTotal());
+
+        pDAO.save(p);
+        pDAO2.save(p2);
+
         LoginController controller = fxmlLoader.getController();
 
         stage.setScene(scene);

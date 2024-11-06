@@ -85,7 +85,7 @@ public class HomeController {
 
     @FXML
     void pedidos(ActionEvent event) {
-
+        trocarCena(event, "/com/example/sisapsoo/pedidos-view.fxml");
     }
 
     @FXML
