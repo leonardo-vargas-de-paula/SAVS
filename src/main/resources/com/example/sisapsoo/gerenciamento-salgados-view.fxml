@@ -8,29 +8,32 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="borderPanel" prefHeight="652.0" prefWidth="980.0" style="-fx-background-color: #ECB176; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sisapsoo.controller.GerenciamentoSalgadosController">
-   <center>
-      <TableView fx:id="tabelaSalgado" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="idSalgado" prefWidth="120.0" text="idSalgado" />
-            <TableColumn fx:id="nome" prefWidth="123.0" text="Nome" />
-            <TableColumn fx:id="preco" prefWidth="123.0" text="Preço" />
-        </columns>
-      </TableView>
-   </center>
-   <top>
-      <AnchorPane prefHeight="61.0" prefWidth="980.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="420.0" layoutY="5.0" text="Salgados">
-               <font>
-                  <Font size="35.0" />
-               </font>
-            </Label>
-            <Button fx:id="botaoAdicionar" layoutX="706.0" layoutY="12.0" mnemonicParsing="false" onAction="#adicionar" prefHeight="40.0" prefWidth="101.0" text="Adicionar" />
-            <Button fx:id="botaoRemover" layoutX="823.0" layoutY="12.0" mnemonicParsing="false" onAction="#remover" prefHeight="39.0" prefWidth="125.0" text="Remover por ID" />
-            <Button fx:id="botaoVoltar" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarHome" prefHeight="43.0" prefWidth="99.0" text="Voltar" />
-         </children>
-      </AnchorPane>
-   </top>
+    <center>
+        <TableView fx:id="tabelaSalgado" prefHeight="591.0" prefWidth="390.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="idSalgado" prefWidth="120.0" text="idSalgado" />
+                <TableColumn fx:id="nome" prefWidth="123.0" text="Nome" />
+                <TableColumn fx:id="preco" prefWidth="123.0" text="Preço" />
+            </columns>
+        </TableView>
+    </center>
+    <top>
+        <AnchorPane prefHeight="61.0" prefWidth="980.0" style="-fx-background-color: #DD6262;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="420.0" layoutY="5.0" text="Salgados" textFill="#ebebeb">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Button fx:id="botaoAdicionar" layoutX="706.0" layoutY="12.0" mnemonicParsing="false" onAction="#adicionar" prefHeight="40.0" prefWidth="101.0" text="Adicionar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
+                <Button fx:id="botaoRemover" layoutX="823.0" layoutY="12.0" mnemonicParsing="false" onAction="#remover" prefHeight="39.0" prefWidth="125.0" text="Remover por ID" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
+                <Button fx:id="botaoVoltar" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarHome" prefHeight="43.0" prefWidth="99.0" text="Voltar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </top>
 </BorderPane>
