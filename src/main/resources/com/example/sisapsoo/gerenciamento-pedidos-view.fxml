@@ -113,7 +113,7 @@
                         <Font size="19.0" />
                     </font>
                 </Label>
-                <Label fx:id="rua" layoutX="356.0" layoutY="440.0" prefHeight="28.0" prefWidth="161.0" style="-fx-font-weight: bold;">
+                <Label fx:id="rua" layoutX="356.0" layoutY="440.0" prefHeight="28.0" prefWidth="168.0" style="-fx-font-weight: bold;">
                     <font>
                         <Font size="13.0" />
                     </font>

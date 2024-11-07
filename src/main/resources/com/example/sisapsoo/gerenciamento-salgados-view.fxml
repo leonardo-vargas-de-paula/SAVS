@@ -26,9 +26,9 @@
                         <Font size="35.0" />
                     </font>
                 </Label>
-                <Button fx:id="botaoAdicionar" layoutX="706.0" layoutY="12.0" mnemonicParsing="false" onAction="#adicionar" prefHeight="40.0" prefWidth="101.0" text="Adicionar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
-                <Button fx:id="botaoRemover" layoutX="823.0" layoutY="12.0" mnemonicParsing="false" onAction="#remover" prefHeight="39.0" prefWidth="125.0" text="Remover por ID" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
-                <Button fx:id="botaoVoltar" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarHome" prefHeight="43.0" prefWidth="99.0" text="Voltar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b">
+                <Button fx:id="botaoAdicionar" layoutX="672.0" layoutY="12.0" mnemonicParsing="false" onAction="#adicionar" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Adicionar" textFill="#6b6b6b" />
+                <Button fx:id="botaoRemover" layoutX="798.0" layoutY="13.0" mnemonicParsing="false" onAction="#remover" prefHeight="39.0" prefWidth="151.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Remover por ID" textFill="#6b6b6b" />
+                <Button fx:id="botaoVoltar" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarHome" prefHeight="43.0" prefWidth="99.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Voltar" textFill="#6b6b6b">
                     <font>
                         <Font size="15.0" />
                     </font>

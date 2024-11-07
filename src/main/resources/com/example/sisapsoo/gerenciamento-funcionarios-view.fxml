@@ -26,7 +26,7 @@
     <top>
         <Pane fx:id="painelDeCima" prefHeight="64.0" prefWidth="980.0" style="-fx-background-color: #DD6262;" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="addButton" layoutX="656.0" layoutY="12.0" mnemonicParsing="false" onAction="#addFunc" prefHeight="40.0" prefWidth="169.0" text="Adicionar Funcionário" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
+                <Button fx:id="addButton" layoutX="633.0" layoutY="12.0" mnemonicParsing="false" onAction="#addFunc" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Adicionar Funcionário" textFill="#6b6b6b" />
                 <Label fx:id="labelTitulo" contentDisplay="CENTER" layoutX="384.0" layoutY="7.0" text="Funcionários" textAlignment="CENTER" textFill="#ebebeb">
                     <font>
                         <Font size="35.0" />
@@ -38,8 +38,8 @@
                         <Blend mode="DARKEN" />
                     </effect>
                 </Label>
-                <Button fx:id="removeButton" layoutX="838.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerFunc" prefHeight="40.0" prefWidth="128.0" text="Remover por ID" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b" />
-                <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="39.0" prefWidth="112.0" text="Voltar" style="-fx-background-color: white; -fx-font-weight: bold;" textFill="#6b6b6b">
+                <Button fx:id="removeButton" layoutX="834.0" layoutY="12.0" mnemonicParsing="false" onAction="#removerFunc" prefHeight="40.0" prefWidth="139.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Remover por ID" textFill="#6b6b6b" />
+                <Button fx:id="buttonVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: white; -fx-font-weight: bold;" text="Voltar" textFill="#6b6b6b">
                     <font>
                         <Font size="15.0" />
                     </font>
