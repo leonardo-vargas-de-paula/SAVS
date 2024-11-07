@@ -81,6 +81,12 @@ public class PedidosController implements Initializable {
 
     @FXML
     private Label valorPedido;
+    @FXML
+    private Label rua;
+    @FXML
+    private Label numero;
+
+
 
     private Pedido pedidoAtual;
 
@@ -172,6 +178,9 @@ public class PedidosController implements Initializable {
                 statusPedido.setText(newPedido.getStatus());
                 valorPedido.setText("R$ " + newPedido.getPreco());
                 metodoPagamento.setText(newPedido.getTipoPagamento());
+                rua.setText(newPedido.getLoc().getRua() + " ,");
+                numero.setText(String.valueOf(newPedido.getLoc().getNumero()));
+
             }
         });
     }

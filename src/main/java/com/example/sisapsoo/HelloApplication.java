@@ -23,8 +23,8 @@ public class HelloApplication extends Application {
          stage.getIcons().add(icon);
 
         // adicionando um funcionario gerente
-        Gerente g = new Gerente();
-        GerenteDAO gDAO = new GerenteDAO();
+        Funcionario g = new Funcionario();
+        FuncionarioDAO gDAO = new FuncionarioDAO();
 
         g.setSenha(hashPassword("1234"));
         g.setNome("jose");

@@ -64,6 +64,8 @@ public class GerenciamentoSalgadosController implements Initializable {
     @FXML
     private TableView<Salgado> tabelaSalgado;
 
+    private LoginController loginController = new LoginController();
+
     private void trocarCena(ActionEvent event, String fxml) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -86,26 +88,30 @@ public class GerenciamentoSalgadosController implements Initializable {
 
     @FXML
     void adicionar() {
-        try{
-            FXMLLoader fxml_loader = new FXMLLoader();
-            fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-salgado-dialog.fxml"));
-            DialogPane cadastro_salgado = fxml_loader.load();
+        if(loginController.verificaGerente()) {
+            try {
+                FXMLLoader fxml_loader = new FXMLLoader();
+                fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/cadastro-salgado-dialog.fxml"));
+                DialogPane cadastro_salgado = fxml_loader.load();
 
-            CadastroSalgadoController add_salg_controller = fxml_loader.getController();
+                CadastroSalgadoController add_salg_controller = fxml_loader.getController();
 
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(cadastro_salgado);
-            dialog.setTitle("Cadastrar Salgado");
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(cadastro_salgado);
+                dialog.setTitle("Cadastrar Salgado");
 
-            Optional<ButtonType> clicked_button = dialog.showAndWait();
-            if(clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
-                ActionEvent event = new ActionEvent();
-                add_salg_controller.salvar(event);
-                atualizarTabela();
+                Optional<ButtonType> clicked_button = dialog.showAndWait();
+                if (clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    ActionEvent event = new ActionEvent();
+                    add_salg_controller.salvar(event);
+                    atualizarTabela();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (IOException e){
-            e.printStackTrace();
         }
+        else
+            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
     }
 
     public void atualizarTabela() {
@@ -115,26 +121,30 @@ public class GerenciamentoSalgadosController implements Initializable {
 
     @FXML
     void remover() {
-        try{
-            FXMLLoader fxml_loader = new FXMLLoader();
-            fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-salg-dialog.fxml"));
-            DialogPane salgado_dialog = fxml_loader.load();
+        if(loginController.verificaGerente()) {
+            try {
+                FXMLLoader fxml_loader = new FXMLLoader();
+                fxml_loader.setLocation(getClass().getResource("/com/example/sisapsoo/delete-salg-dialog.fxml"));
+                DialogPane salgado_dialog = fxml_loader.load();
 
-            DeleteSalgController delete_salg_controller = fxml_loader.getController();
+                DeleteSalgController delete_salg_controller = fxml_loader.getController();
 
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(salgado_dialog);
-            dialog.setTitle("Deletar Salgado");
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(salgado_dialog);
+                dialog.setTitle("Deletar Salgado");
 
-            Optional<ButtonType> clicked_button = dialog.showAndWait();
-            if(clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
-                ActionEvent event = new ActionEvent();
-                delete_salg_controller.remover(event);
-                atualizarTabela();
+                Optional<ButtonType> clicked_button = dialog.showAndWait();
+                if (clicked_button.isPresent() && clicked_button.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    ActionEvent event = new ActionEvent();
+                    delete_salg_controller.remover(event);
+                    atualizarTabela();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (IOException e){
-            e.printStackTrace();
         }
+        else
+            showAlert("Acesso Negado", "Apenas gerentes podem cadastrar outros gerentes.");
     }
 
     @Override
@@ -145,5 +155,13 @@ public class GerenciamentoSalgadosController implements Initializable {
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         preco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         tabelaSalgado.setItems(salgados);
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

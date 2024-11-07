@@ -109,4 +109,8 @@ public class LoginController {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Erro ao carregar a cena: " + fxml, e);
         }
     }
+
+    public static Funcionario getUsuarioAtual(){
+        return usuarioAtual;
+    }
 }

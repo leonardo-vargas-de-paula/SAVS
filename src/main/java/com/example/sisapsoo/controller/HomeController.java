@@ -1,10 +1,13 @@
 package com.example.sisapsoo.controller;
 
 
+import com.example.sisapsoo.model.Funcionario;
+import com.example.sisapsoo.model.Gerente;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,15 +17,14 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class HomeController {
+public class HomeController implements Initializable {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     private Button botaoClientes;
@@ -43,7 +45,7 @@ public class HomeController {
     private Button botaoSalgados;
 
     @FXML
-    private Label cargoFuncionario;
+    private Label cargoFunc;
 
     @FXML
     private Label nomeUsuario;
@@ -102,5 +104,19 @@ public class HomeController {
     void salgados(ActionEvent event) {
         trocarCena(event, "/com/example/sisapsoo/gerenciamento-salgados-view.fxml");
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (LoginController.getUsuarioAtual() != null) {
+            String cargo;
+            if (loginController.verificaGerente())
+                cargo = "Gerente";
+            else
+                cargo = "Funcionário";
+            nomeUsuario.setText(LoginController.getUsuarioAtual().getNome());
+            cargoFunc.setText(cargo);
+        }
+    }
+
 
 }
