@@ -14,3 +14,4 @@
     <li>Hibernate - JPA</li>
   </ul>
 </p>
+[Banner PC-App - Integra 2024.pdf](https://github.com/user-attachments/files/18619555/Banner.PC-App.-.Integra.2024.pdf)
