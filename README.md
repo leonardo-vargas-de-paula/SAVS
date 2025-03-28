@@ -9,9 +9,8 @@
 <p>
   <h3>Tecnologias e ferramentas</h3>
   <ul>
-    <l1>JavaFX</l1>
+    <li>JavaFX</li>
     <li>MySQL</li>
     <li>Hibernate - JPA</li>
   </ul>
 </p>
-[Banner PC-App - Integra 2024.pdf](https://github.com/user-attachments/files/18619555/Banner.PC-App.-.Integra.2024.pdf)
